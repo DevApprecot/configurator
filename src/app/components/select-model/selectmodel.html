@@ -1,10 +1,14 @@
-<div class="row">
-    <h1 class="text-center">Διαμορφώστε το Volkswagen σας</h1>
-</div>
+<div class="container-fluid">
+	<div class="row m-t-md">
+		<h1 class="text-center">Επιλέξτε ένα μοντέλο για το {{$ctrl.family}}</h1>
+	</div>
 
-<div class="row">
+	<div class="row m-t-md">
 
-    <car car="item" ng-repeat="item in $ctrl.cars track by $index"></car>
-    
+		<car car="item"
+		     on-select="$ctrl.selectModel(item)"
+		     ng-repeat="item in $ctrl.models track by $index"></car>
+
+	</div>
 
 </div>

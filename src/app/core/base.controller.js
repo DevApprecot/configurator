@@ -5,7 +5,7 @@
         .module('configurator')
         .controller('BaseCtrl', BaseCtrl);
 
-    BaseCtrl.inject = [''];
+    BaseCtrl$inject = [''];
 
     function BaseCtrl() {
         var vm = this;

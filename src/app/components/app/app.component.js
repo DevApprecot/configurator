@@ -1,28 +1,28 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    // Usage:
-    // 
-    // Creates:
-    // 
+	angular
+		.module('configurator')
+		.component('app', {
+			templateUrl: './app/components/app/app.html',
+			controller: AppCtrl,
+			bindings: {},
+		});
 
-    angular
-        .module('configurator')
-        .component('app', {
-            templateUrl: './app/components/app/app.html',
-            controller: AppCtrl,
-            bindings: {},
-        });
+	AppCtrl$inject = [];
 
-    AppCtrl.inject = [];
+	function AppCtrl() {
+		var ctrl = this;
 
-    function AppCtrl() {
-        var ctrl = this;
+		//This is the car object which will be sent on service
+		ctrl.car = {};
 
+		ctrl.$onInit = function() {
 
-
-        ctrl.$onInit = function () {};
-        ctrl.$onChanges = function (changesObj) {};
-        ctrl.$onDestory = function () {};
-    }
+		};
+		ctrl.$onChanges = function(changesObj) {
+			console.log('app changes', changesObj);
+		};
+		ctrl.$onDestory = function() {};
+	}
 })();

@@ -3,6 +3,14 @@
 @import "partials/base";
 @import "partials/figures";
 @import "partials/typography";
+@import "partials/app-header";
+@import "partials/app-footer";
+@import "partials/car";
+@import "partials/steps";
+@import "partials/mixins";
 
 //Themes
 @import "themes/default";
+
+//External
+@import "fontawesome/font-awesome.scss";

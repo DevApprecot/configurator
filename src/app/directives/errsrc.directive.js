@@ -5,7 +5,7 @@
         .module('configurator')
         .directive('errSrc', errSrc);
 
-    errSrc.inject = [];
+    errSrc$inject = [];
 
     function errSrc() {
 

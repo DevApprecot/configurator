@@ -1,0 +1,14 @@
+<div class="container-fluid">
+	<div class="row m-t-md">
+		<h1 class="text-center">Διαμορφώστε το Volkswagen σας</h1>
+	</div>
+
+	<div class="row m-t-md">
+
+		<car car="item"
+		     on-select="$ctrl.selectFamily(item)"
+		     ng-repeat="item in $ctrl.cars track by $index"></car>
+
+
+	</div>
+</div>
