@@ -11,7 +11,7 @@
 			}
 		});
 
-	AppHeaderCtrl$inject = ['$state'];
+	AppHeaderCtrl.$inject = ['$state'];
 
 	function AppHeaderCtrl($state) {
 		var ctrl = this;
@@ -21,16 +21,9 @@
 		}
 
 		ctrl.goBack = function() {
-			const currentState = $state.current.name;
 
-			if (currentState == 'app.select-model') {
-				delete ctrl.parent.car.model;
-				delete ctrl.parent.car.family;
-				$state.go('app.select-family');
-			} else if (currentState == 'app.select-options') {
-				delete ctrl.parent.car.model;
-				$state.go('app.select-model', { familyId: ctrl.parent.car.family.id });
-			}
+			delete ctrl.parent.car.family;
+			$state.go('app.select-family');
 		}
 
 		ctrl.$onInit = function() {};

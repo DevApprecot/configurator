@@ -5,6 +5,10 @@ steps {
 		padding: 0;
 		overflow: hidden;
 		width: 100%;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 80px;
 	}
 	.steps a {
 		text-decoration: none;

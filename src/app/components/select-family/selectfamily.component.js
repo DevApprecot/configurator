@@ -11,13 +11,17 @@
 			}
 		});
 
-	SelectFamilyCtrl.$inject = [];
+	SelectFamilyCtrl.$inject = ['$state'];
 
-	function SelectFamilyCtrl() {
+	function SelectFamilyCtrl($state) {
 		var ctrl = this;
 
 		ctrl.selectFamily = function(family) {
-			ctrl.parent.car = angular.copy(angular.extend(ctrl.parent.car, { family }))
+			ctrl.parent.car = angular.copy(angular.extend(ctrl.parent.car, { family }));
+
+			$state.go('app.select-options.step-one', {
+				familyId: family.id
+			})
 		}
 
 		ctrl.cars = [{

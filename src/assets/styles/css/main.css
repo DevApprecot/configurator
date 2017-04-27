@@ -135,10 +135,19 @@ body {
 .m-t-sm {
   margin-top: 5px; }
 
+.padding {
+  padding: 20px; }
+
+table.table.table-hover tbody tr:hover {
+  cursor: pointer; }
+
 div.body {
   min-height: 780px;
   display: block;
   margin-top: 80px; }
+  div.body select-options {
+    margin-top: 160px;
+    display: block; }
 
 body {
   font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; }
@@ -222,7 +231,11 @@ steps {
   steps .steps {
     padding: 0;
     overflow: hidden;
-    width: 100%; }
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 80px; }
   steps .steps a {
     text-decoration: none;
     display: block;

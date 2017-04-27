@@ -9,7 +9,7 @@
 			bindings: {},
 		});
 
-	AppCtrl$inject = [];
+	AppCtrl.$inject = [];
 
 	function AppCtrl() {
 		var ctrl = this;

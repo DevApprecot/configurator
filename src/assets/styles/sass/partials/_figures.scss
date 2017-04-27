@@ -12,8 +12,25 @@ body {
 	margin-top: 5px;
 }
 
+.padding {
+	padding: 20px;
+}
+
+table.table.table-hover {
+	tbody {
+		tr:hover {
+			cursor: pointer;
+		}
+	}
+}
+
 div.body {
 	min-height: 780px;
 	display: block;
 	margin-top: 80px;
+
+	select-options {
+		margin-top: 160px;
+		display: block;
+	}
 }

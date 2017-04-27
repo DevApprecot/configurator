@@ -2,10 +2,10 @@
 	'use strict';
 
 	angular
-		.module('app')
+		.module('configurator')
 		.service('API', API);
 
-	API$inject = ['http'];
+	API.$inject = ['http'];
 
 	function API(http) {
 
@@ -19,7 +19,13 @@
 
 		function getMakes() {}
 
-		function getModels() {}
+		function getModels() {
+
+			let params = {};
+
+			return http.get(params, './app/resources/models.json');
+
+		}
 
 		function getVariants() {}
 

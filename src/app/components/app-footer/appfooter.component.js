@@ -10,7 +10,7 @@
             bindings: {},
         });
 
-    AppFooterCtrl$inject = [''];
+    AppFooterCtrl.$inject = [];
 
     function AppFooterCtrl() {
         var ctrl = this;

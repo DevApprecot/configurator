@@ -2,10 +2,10 @@
 	'use strict';
 
 	angular
-		.module('app')
+		.module('configurator')
 		.service('http', http);
 
-	http$inject = ['$http'];
+	http.$inject = ['$http'];
 
 	function http($http) {
 
@@ -22,7 +22,18 @@
 				url: endpoint,
 				params,
 				headers: {
-					'Content-Type:': 'application-json'
+					'Content-Type': 'application-json'
+				}
+			})
+		}
+
+		function postRequest(payload, endpoint) {
+			return $http({
+				method: 'POST',
+				url: endpoint,
+				data: angular.toJson(payload),
+				headers: {
+					'Content-Type': 'application-json'
 				}
 			})
 		}
