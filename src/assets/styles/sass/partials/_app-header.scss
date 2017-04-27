@@ -8,9 +8,7 @@ app-header {
 	z-index: 2;
 	display: block;
 	height: 80px;
-	color: $white;
-
-
+	color: $white; // overflow: hidden;
 	a.previous {
 		margin: 30px 0 0 0;
 		display: inline-block;
@@ -22,5 +20,16 @@ app-header {
 	p.price {
 		margin: 32px 0 0 0;
 		display: inline-block;
+	}
+
+	img.logo {
+		position: absolute;
+		left: 50%;
+		-ms-transform: translate(-50%);
+		-webkit-transform: translate(-50%);
+		transform: translate(-50%);
+		padding: 15px;
+		height: 80px;
+		width: auto;
 	}
 }

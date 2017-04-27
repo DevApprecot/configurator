@@ -1,7 +1,7 @@
-<div ng-show="!$ctrl.stateIs('app.select-family')"
-     class="container-fluid">
+<div class="container-fluid">
 
-	<a href
+	<a ng-show="!$ctrl.stateIs('app.select-family')"
+	   href
 	   ng-click="$ctrl.goBack()"
 	   class="previous pull-left">
 		<h2 class="text-center">
@@ -10,7 +10,13 @@
 	</a>
 
 
-	<p class="price pull-right">
+	<img class="logo"
+	     ng-src="./assets/img/{{$ctrl.parent.theme}}-logo.png"
+	     alt="{{$ctrl.parent.theme}} logo">
+
+
+	<p ng-show="!$ctrl.stateIs('app.select-family')"
+	   class="price pull-right">
 		από {{$ctrl.parent.car.family.cost | currency}}
 	</p>
 

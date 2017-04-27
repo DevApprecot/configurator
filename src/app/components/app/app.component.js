@@ -6,7 +6,9 @@
 		.component('app', {
 			templateUrl: './app/components/app/app.html',
 			controller: AppCtrl,
-			bindings: {},
+			bindings: {
+				theme:'@'
+			},
 		});
 
 	AppCtrl.$inject = [];
@@ -18,7 +20,7 @@
 		ctrl.car = {};
 
 		ctrl.$onInit = function() {
-
+			console.log(ctrl.theme);
 		};
 		ctrl.$onChanges = function(changesObj) {
 			console.log('app changes', changesObj);

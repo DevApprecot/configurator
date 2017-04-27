@@ -214,6 +214,15 @@ app-header {
   app-header p.price {
     margin: 32px 0 0 0;
     display: inline-block; }
+  app-header img.logo {
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    padding: 15px;
+    height: 80px;
+    width: auto; }
 
 app-footer {
   height: 100px;
@@ -235,7 +244,8 @@ steps {
     position: fixed;
     left: 0;
     right: 0;
-    top: 80px; }
+    top: 80px;
+    z-index: 1; }
   steps .steps a {
     text-decoration: none;
     display: block;

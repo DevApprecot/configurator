@@ -12,7 +12,7 @@
 
 			.state('app', {
 				url: '/app',
-				template: '<app></app>'
+				template: '<app theme="{{base.theme}}"></app>'
 			})
 
 			.state('app.select-family', {

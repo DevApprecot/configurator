@@ -21,7 +21,6 @@
 		}
 
 		ctrl.goBack = function() {
-
 			delete ctrl.parent.car.family;
 			$state.go('app.select-family');
 		}
