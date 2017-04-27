@@ -1,0 +1,76 @@
+@import "../partials/colors";
+
+.vw {
+
+	//Header
+	app-header {
+		background-color: $vw-dark;
+
+		a.previous {
+
+			&:hover i {
+				color: darken($vw-special, 10)
+			}
+
+			i {
+				color: $vw-special
+			}
+		}
+	} //Footer
+	app-footer {
+		background-color: $vw-gray;
+	} //Car component
+	car p {
+		color: $vw-dark;
+	} //Steps
+	steps .steps a {
+		color: darken($vw-dark, 50);
+
+		i {
+			color: $vw-special
+		}
+	}
+
+	steps li {
+		background-color: darken($vw-gray, 5);
+
+		&:not(:last-child)::after {
+			border-left-color: darken($vw-gray, 5);
+		}
+
+		&.current {
+			background-color: lighten($vw-gray, 5);
+			a,
+			a>i {
+				color: $vw-special;
+			}
+
+			&::after {
+				border-left-color: lighten($vw-gray, 5);
+			}
+
+			&~li {
+				background-color: darken($vw-gray, 5);
+				a {
+					color: darken($vw-dark, 50);
+					i {
+						color: #efefef;
+					}
+				}
+
+				&::after {
+					border-left-color: darken($vw-gray, 5);
+				}
+			}
+		}
+
+		&:hover {
+			background-color: darken($vw-gray, 10);
+
+			&::after {
+				border-left-color: darken($vw-gray, 10)
+			}
+		}
+	}
+}
+

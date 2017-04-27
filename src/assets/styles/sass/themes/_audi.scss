@@ -1,0 +1,73 @@
+.audi {
+
+	//Header
+	app-header {
+		background-color: $audi-dark;
+
+		a.previous {
+
+			&:hover i {
+				color: darken($audi-special, 10)
+			}
+
+			i {
+				color: $audi-special
+			}
+		}
+	} //Footer
+	app-footer {
+		background-color: $audi-gray;
+	} //Car component
+	car p {
+		color: $audi-dark;
+	} //Steps
+	steps .steps a {
+		color: darken($audi-dark, 50);
+
+		i {
+			color: $audi-special
+		}
+	}
+
+	steps li {
+		background-color: darken($audi-gray, 5);
+
+		&:not(:last-child)::after {
+			border-left-color: darken($audi-gray, 5);
+		}
+
+		&.current {
+			background-color: lighten($audi-gray, 5);
+			a,
+			a>i {
+				color: $audi-special;
+			}
+
+			&::after {
+				border-left-color: lighten($audi-gray, 5);
+			}
+
+			&~li {
+				background-color: darken($audi-gray, 5);
+				a {
+					color: darken($audi-dark, 50);
+					i {
+						color: #efefef;
+					}
+				}
+
+				&::after {
+					border-left-color: darken($audi-gray, 5);
+				}
+			}
+		}
+
+		&:hover {
+			background-color: darken($audi-gray, 10);
+
+			&::after {
+				border-left-color: darken($audi-gray, 10)
+			}
+		}
+	}
+}

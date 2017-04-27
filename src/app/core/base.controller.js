@@ -1,21 +1,23 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    angular
-        .module('configurator')
-        .controller('BaseCtrl', BaseCtrl);
+	angular
+		.module('configurator')
+		.controller('BaseCtrl', BaseCtrl);
 
-    BaseCtrl$inject = [''];
+	BaseCtrl$inject = [''];
 
-    function BaseCtrl() {
-        var vm = this;
+	function BaseCtrl() {
+		var vm = this;
+		vm.changeTheme = function() {
+            console.log('hi');
+			(vm.theme == 'vw') ? vm.theme = 'audi': vm.theme = 'vw';
+		}
 
+		activate();
 
-        activate();
-
-
-        function activate() {
-            vm.theme = "default";
-        }
-    }
+		function activate() {
+			vm.theme = "audi";
+		}
+	}
 })();

@@ -1,3 +1,5 @@
+@import '../partials/colors';
+
 steps {
 	.steps {
 		padding: 0;
@@ -5,12 +7,12 @@ steps {
 		width: 100%;
 	}
 	.steps a {
-		color: #2f3538;
 		text-decoration: none;
 		display: block;
 		margin: 0;
-		width: 100%;
 		padding: 30px 20px;
+		position: relative;
+		bottom: 4px;
 	}
 
 	.steps li:first-child:nth-last-child(1) {
@@ -55,7 +57,7 @@ steps {
 	}
 
 	.steps li:not(:last-child) {
-		border-right: 3px solid white;
+		border-right: 3px solid $white;
 	}
 
 
@@ -69,7 +71,7 @@ steps {
 		top: 0;
 		left: 0;
 		display: block;
-		border-left: 25px solid white;
+		border-left: 25px solid $white;
 		/* width: arrow width, color: background of document */
 		border-top: 40px solid transparent;
 		/* width: half height */
@@ -88,7 +90,7 @@ steps {
 		right: -25px;
 		/* arrow width (negated) */
 		display: block;
-		border-left: 25px solid #7c8437;
+		border-left: 25px solid;
 		/* width: arrow width */
 		border-top: 40px solid transparent;
 		/* width: half height */
@@ -97,41 +99,5 @@ steps {
 		width: 0;
 		height: 0;
 		content: " ";
-	}
-	/* Setup colors (both the background and the arrow) */
-	/* Completed */
-	.steps li {
-		background-color: darken(#dee1e3, 20);
-	}
-	.steps li:not(:last-child)::after {
-		border-left-color: darken(#dee1e3, 20);
-	}
-	/* Current */
-	.steps li.current {
-		background-color: #dee1e3;
-
-		a {
-			color: darken(#2f3538, 50);
-			i {
-				color: #0099da;
-			}
-		}
-	}
-	.steps li.current::after {
-		border-left-color: #dee1e3;
-	}
-	/* Following */
-	.steps li.current~li {
-		background-color: #EBEBEB;
-	}
-	.steps li.current~li::after {
-		border-left-color: #EBEBEB;
-	}
-	/* Hover for completed and current */
-	.steps li:hover {
-		background-color: darken(#dee1e3, 20)
-	}
-	.steps li:hover::after {
-		border-left-color: darken(#dee1e3, 20)
 	}
 }

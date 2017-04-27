@@ -1,3 +1,5 @@
+@import '../partials/colors';
+
 app-header {
 	position: fixed;
 	left: 0;
@@ -6,22 +8,14 @@ app-header {
 	z-index: 2;
 	display: block;
 	height: 68px;
-	color: #fff;
+	color: $white;
 
 
 	a.previous {
 		margin: 22px 0 0 0;
 		display: inline-block;
 		text-decoration: none;
-		color: #fff;
-
-		i {
-			color: #0099da
-		}
-	}
-
-	a.previous:hover i {
-		color: darken(#0099da, 10)
+		color: $white;
 	}
 
 

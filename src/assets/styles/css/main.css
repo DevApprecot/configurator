@@ -185,8 +185,8 @@ pre {
   font-weight: 400;
   line-height: 18.5667px; }
 
-steps {
-  font-size: 16px; }
+steps a {
+  font-size: 18px; }
 
 app-header {
   position: fixed;
@@ -202,10 +202,6 @@ app-header {
     display: inline-block;
     text-decoration: none;
     color: #fff; }
-    app-header a.previous i {
-      color: #0099da; }
-  app-header a.previous:hover i {
-    color: #0075a7; }
   app-header p.price {
     margin: 24px 0 0 0;
     display: inline-block; }
@@ -219,29 +215,21 @@ car a:focus {
   cursor: pointer;
   text-decoration: none; }
 
-car p {
-  color: #333; }
-
 steps {
   /* remove extra padding on the first object since it doesn't have an arrow to the left */
   /* white arrow to the left to "erase" background (starting from the 2nd object) */
-  /* colored arrow to the right */
-  /* Setup colors (both the background and the arrow) */
-  /* Completed */
-  /* Current */
-  /* Following */
-  /* Hover for completed and current */ }
+  /* colored arrow to the right */ }
   steps .steps {
     padding: 0;
     overflow: hidden;
     width: 100%; }
   steps .steps a {
-    color: #2f3538;
     text-decoration: none;
     display: block;
     margin: 0;
-    width: 100%;
-    padding: 30px 20px; }
+    padding: 30px 20px;
+    position: relative;
+    bottom: 4px; }
   steps .steps li:first-child:nth-last-child(1) {
     width: calc(100% / 1); }
   steps .steps li:first-child:nth-last-child(2),
@@ -270,7 +258,7 @@ steps {
     /* padding around text, last should include arrow width */
     padding: 5px 5px 5px 30px; }
   steps .steps li:not(:last-child) {
-    border-right: 3px solid white; }
+    border-right: 3px solid #fff; }
   steps .steps li:first-child {
     padding-left: 5px; }
   steps .steps li:nth-child(n+2)::before {
@@ -278,7 +266,7 @@ steps {
     top: 0;
     left: 0;
     display: block;
-    border-left: 25px solid white;
+    border-left: 25px solid #fff;
     /* width: arrow width, color: background of document */
     border-top: 40px solid transparent;
     /* width: half height */
@@ -295,7 +283,7 @@ steps {
     right: -25px;
     /* arrow width (negated) */
     display: block;
-    border-left: 25px solid #7c8437;
+    border-left: 25px solid;
     /* width: arrow width */
     border-top: 40px solid transparent;
     /* width: half height */
@@ -304,32 +292,90 @@ steps {
     width: 0;
     height: 0;
     content: " "; }
-  steps .steps li {
-    background-color: #a7afb4; }
-  steps .steps li:not(:last-child)::after {
-    border-left-color: #a7afb4; }
-  steps .steps li.current {
-    background-color: #dee1e3; }
-    steps .steps li.current a {
-      color: black; }
-      steps .steps li.current a i {
-        color: #0099da; }
-  steps .steps li.current::after {
-    border-left-color: #dee1e3; }
-  steps .steps li.current ~ li {
-    background-color: #EBEBEB; }
-  steps .steps li.current ~ li::after {
-    border-left-color: #EBEBEB; }
-  steps .steps li:hover {
-    background-color: #a7afb4; }
-  steps .steps li:hover::after {
-    border-left-color: #a7afb4; }
 
-.default app-header {
-  background-color: #2f3538; }
+.vw app-header {
+  background-color: #2f3638; }
+  .vw app-header a.previous:hover i {
+    color: #0075a7; }
+  .vw app-header a.previous i {
+    color: #0099da; }
 
-.default app-footer {
+.vw app-footer {
   background-color: #dee1e3; }
+
+.vw car p {
+  color: #2f3638; }
+
+.vw steps .steps a {
+  color: black; }
+  .vw steps .steps a i {
+    color: #0099da; }
+
+.vw steps li {
+  background-color: #d0d4d7; }
+  .vw steps li:not(:last-child)::after {
+    border-left-color: #d0d4d7; }
+  .vw steps li.current {
+    background-color: #eceeef; }
+    .vw steps li.current a,
+    .vw steps li.current a > i {
+      color: #0099da; }
+    .vw steps li.current::after {
+      border-left-color: #eceeef; }
+    .vw steps li.current ~ li {
+      background-color: #d0d4d7; }
+      .vw steps li.current ~ li a {
+        color: black; }
+        .vw steps li.current ~ li a i {
+          color: #efefef; }
+      .vw steps li.current ~ li::after {
+        border-left-color: #d0d4d7; }
+  .vw steps li:hover {
+    background-color: #c2c8cc; }
+    .vw steps li:hover::after {
+      border-left-color: #c2c8cc; }
+
+.audi app-header {
+  background-color: #2e3532; }
+  .audi app-header a.previous:hover i {
+    color: #ad0025; }
+  .audi app-header a.previous i {
+    color: #e00030; }
+
+.audi app-footer {
+  background-color: #54494b; }
+
+.audi car p {
+  color: #2e3532; }
+
+.audi steps .steps a {
+  color: black; }
+  .audi steps .steps a i {
+    color: #e00030; }
+
+.audi steps li {
+  background-color: #463d3f; }
+  .audi steps li:not(:last-child)::after {
+    border-left-color: #463d3f; }
+  .audi steps li.current {
+    background-color: #625557; }
+    .audi steps li.current a,
+    .audi steps li.current a > i {
+      color: #e00030; }
+    .audi steps li.current::after {
+      border-left-color: #625557; }
+    .audi steps li.current ~ li {
+      background-color: #463d3f; }
+      .audi steps li.current ~ li a {
+        color: black; }
+        .audi steps li.current ~ li a i {
+          color: #efefef; }
+      .audi steps li.current ~ li::after {
+        border-left-color: #463d3f; }
+  .audi steps li:hover {
+    background-color: #393133; }
+    .audi steps li:hover::after {
+      border-left-color: #393133; }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

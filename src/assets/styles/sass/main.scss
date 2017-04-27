@@ -8,9 +8,11 @@
 @import "partials/car";
 @import "partials/steps";
 @import "partials/mixins";
+@import "partials/colors";
 
 //Themes
-@import "themes/default";
+@import "themes/vw";
+@import "themes/audi";
 
 //External
 @import "fontawesome/font-awesome.scss";
