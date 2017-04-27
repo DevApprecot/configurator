@@ -13,6 +13,7 @@
 
 	function SelectOptionsCtrl() {
 		var ctrl = this;
+		ctrl.selectedModel = null;
 
 		ctrl.$onInit = function() {};
 		ctrl.$onChanges = function(changesObj) {};

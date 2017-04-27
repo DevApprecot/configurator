@@ -68,6 +68,13 @@
 			&::after {
 				border-left-color: darken($audi-gray, 10)
 			}
+		} //Button
+	}
+
+	button {
+		&.my-button {
+			background-color: $audi-special;
+			color: $white
 		}
 	}
 }

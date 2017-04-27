@@ -138,6 +138,9 @@ body {
 .padding {
   padding: 20px; }
 
+.o-hidden {
+  overflow: hidden; }
+
 table.table.table-hover tbody tr:hover {
   cursor: pointer; }
 
@@ -316,6 +319,11 @@ steps {
     height: 0;
     content: " "; }
 
+button.my-button {
+  border: none;
+  border-radius: 0;
+  cursor: pointer; }
+
 .vw app-header {
   background-color: #2f3638; }
   .vw app-header a.previous:hover i {
@@ -358,6 +366,10 @@ steps {
     .vw steps li:hover::after {
       border-left-color: #c2c8cc; }
 
+.vw button.my-button {
+  background-color: #0099da;
+  color: #fff; }
+
 .audi app-header {
   background-color: #2e3532; }
   .audi app-header a.previous:hover i {
@@ -399,6 +411,10 @@ steps {
     background-color: #393133; }
     .audi steps li:hover::after {
       border-left-color: #393133; }
+
+.audi button.my-button {
+  background-color: #e00030;
+  color: #fff; }
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

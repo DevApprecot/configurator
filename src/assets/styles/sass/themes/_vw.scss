@@ -71,6 +71,11 @@
 				border-left-color: darken($vw-gray, 10)
 			}
 		}
+	} //Button
+	button {
+		&.my-button {
+			background-color: $vw-special;
+			color: $white
+		}
 	}
 }
-

@@ -36,14 +36,15 @@
 
 					ctrl.family = _families[0];
 
-
 					ctrl.models = resp.data.filter(item => item.Family === 'TRANSPORTER T5');
 					console.log(ctrl.models);
 				}, resp => {
 					console.log('Failed to get moels', resp);
 				})
 		};
-		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onChanges = function(changesObj) {
+			console.log(changesObj);
+		};
 		ctrl.$onDestory = function() {};
 	}
 })();

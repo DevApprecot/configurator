@@ -5,7 +5,7 @@
 	<div class="table-responsive m-t-md">
 		<table tr-ng-grid=""
 		       items="$ctrl.models"
-		       selected-items="or.mySelectedItems"
+		       selected-items="$ctrl.selectedItem"
 		       selection-mode="SingleRow"
 		       enable-filtering="false"
 		       enable-sorting="false"
@@ -50,21 +50,12 @@
 					</td>
 				</tr>
 			</tbody>
-			<!--<tbody>
-				<tr>
-					<td>
-						<img ng-src="{{model.Photo}}"
-						     err-src="{{$ctrl.default.url}}"
-						     alt="{{model.ModelDescription}}">
-					</td>
-					<td>{{model.ModelDescription}}</td>
-					<td>{{'-/ ' + model.PowerKW + ' / ' + model.PowerPS}}</td>
-					<td>{{model.Price}}</td>
-					<td>{{model.CO2EmissionCombined}}</td>
-				</tr>
-			</tbody>-->
 		</table>
 
 	</div>
+
+	<button ng-disabled="!$ctrl.selectedItem.length"
+	        class="pull-right my-button btn btn-lg ">Επόμενο</button>
+
 
 </div>
