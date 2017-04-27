@@ -138,7 +138,7 @@ body {
 div.body {
   min-height: 780px;
   display: block;
-  margin-top: 68px; }
+  margin-top: 80px; }
 
 body {
   font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; }
@@ -195,15 +195,15 @@ app-header {
   right: 0;
   z-index: 2;
   display: block;
-  height: 68px;
+  height: 80px;
   color: #fff; }
   app-header a.previous {
-    margin: 22px 0 0 0;
+    margin: 30px 0 0 0;
     display: inline-block;
     text-decoration: none;
     color: #fff; }
   app-header p.price {
-    margin: 24px 0 0 0;
+    margin: 32px 0 0 0;
     display: inline-block; }
 
 app-footer {
