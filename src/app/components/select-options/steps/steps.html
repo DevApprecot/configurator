@@ -1,23 +1,34 @@
 <ul class="steps steps-5">
 	<li ui-sref-active="current">
 		<a ui-sref="app.select-options.step-one">
-			<i class="fa fa-check-circle"></i> <span class="hidden-xs ">Μοντελο</span>
+			<i class="fa"
+			   ng-class="{'fa-circle-o':!$ctrl.stepsFlag[0], 'fa-check-circle': $ctrl.stepsFlag[0]}"></i>
+			<span class="hidden-xs ">Μοντελο</span>
 		</a>
 	</li>
 	<li ui-sref-active="current">
-		<a ui-sref="app.select-options.step-two">
-			<i class="fa fa-circle-o"></i> <span class="hidden-xs ">Χρώμα</span>
+		<a ng-disabled="!$ctrl.stepsFlag[0]"
+		   ui-sref="app.select-options.step-two ({ modelId: $ctrl.model.Code})">
+			<i class="fa"
+			   ng-class="{'fa-circle-o':!$ctrl.stepsFlag[1], 'fa-check-circle': $ctrl.stepsFlag[1]}"></i>
+			<span class="hidden-xs ">Χρώμα </span>
 		</a>
 	</li>
 	<li ui-sref-active="current">
-		<a ui-sref="app.select-options.step-three">
-			<i class="fa fa-circle-o"></i> <span class="hidden-xs ">Εξοπλισμός</span>
+		<a ng-disabled="!$ctrl.stepsFlag[1]"
+		   ui-sref="app.select-options.step-three ({modelId: $ctrl.model.Code , colorId: $ctrl.color.id})">
+			<i class="fa"
+			   ng-class="{'fa-circle-o':!$ctrl.stepsFlag[2], 'fa-check-circle': $ctrl.stepsFlag[2]}"></i>
+			<span class="hidden-xs ">Εξοπλισμός</span>
 		</a>
 	</li>
 
 	<li ui-sref-active="current">
-		<a ui-sref="app.select-options.step-four">
-			<i class="fa fa-circle-o"></i> <span class="hidden-xs ">Σύνοψη</span>
+		<a ng-disabled="!$ctrl.stepsFlag[2]"
+		   ui-sref="app.select-options.step-four">
+			<i class="fa"
+			   ng-class="{'fa-circle-o':!$ctrl.stepsFlag[3], 'fa-check-circle': $ctrl.stepsFlag[3]}"></i>
+			<span class="hidden-xs ">Σύνοψη</span>
 		</a>
 	</li>
 </ul>

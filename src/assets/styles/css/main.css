@@ -129,6 +129,9 @@ table {
 body {
   background-color: #fff; }
 
+.m-t-lg {
+  margin-top: 35px; }
+
 .m-t-md {
   margin-top: 20px; }
 
@@ -140,6 +143,10 @@ body {
 
 .o-hidden {
   overflow: hidden; }
+
+a[disabled=disabled] {
+  pointer-events: none;
+  cursor: default; }
 
 table.table.table-hover tbody tr:hover {
   cursor: pointer; }

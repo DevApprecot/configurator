@@ -11,9 +11,9 @@
 			}
 		});
 
-	AppHeaderCtrl.$inject = ['$state'];
+	AppHeaderCtrl.$inject = ['$state', '$stateParams', 'Data'];
 
-	function AppHeaderCtrl($state) {
+	function AppHeaderCtrl($state, $stateParams, Data) {
 		var ctrl = this;
 
 		ctrl.stateIs = function(stateName) {
@@ -22,7 +22,8 @@
 
 		ctrl.goBack = function() {
 			delete ctrl.parent.car.family;
-			$state.go('app.select-family');
+			Data.clear.options();
+			$state.go('app.select-family', { makeId: $stateParams.makeId });
 		}
 
 		ctrl.$onInit = function() {};

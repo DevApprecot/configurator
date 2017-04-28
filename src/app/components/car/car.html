@@ -2,10 +2,10 @@
 	<a ng-click="$ctrl.onSelect({item:$ctrl.car})">
 		<img class="img-responsive"
 		     err-src="{{$ctrl.defaultImg}}"
-		     ng-src="{{$ctrl.car.imgUrl}}"
+		     ng-src="{{$ctrl.car.Photo || '-'}}"
 		     alt="{{$ctrl.car.description}}">
 		<div class="text-center">
-			<h3 class="m-t-sm">{{$ctrl.car.name}}</h3>
+			<h3 class="m-t-sm">{{$ctrl.car.ModelDescription}}</h3>
 			<p class="m-t-sm">{{$ctrl.car.description}}</p>
 		</div>
 	</a>

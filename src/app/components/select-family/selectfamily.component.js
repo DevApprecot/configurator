@@ -11,41 +11,65 @@
 			}
 		});
 
-	SelectFamilyCtrl.$inject = ['$state'];
+	SelectFamilyCtrl.$inject = ['$state', '$stateParams', 'API', '$q', 'Data'];
 
-	function SelectFamilyCtrl($state) {
+	function SelectFamilyCtrl($state, $stateParams, API, $q, Data) {
 		var ctrl = this;
 
-		ctrl.selectFamily = function(family) {
-			ctrl.parent.car = angular.copy(angular.extend(ctrl.parent.car, { family }));
+		var _getMake = getMake;
+		var _getFamilies = getFamilies;
 
-			$state.go('app.select-options.step-one', {
-				familyId: family.id
-			})
-		}
+		ctrl.selectFamily = selectFamily;
 
-		ctrl.cars = [{
-			imgUrl: 'assets/img/car-1.png',
-			description: 'A very nice car',
-			name: 'Golf',
-			id: 1,
-			cost: 18589
-        }, {
-			imgUrl: 'qweaseqwe',
-			description: 'A very nice car',
-			name: 'Polo',
-			id: 2,
-			cost: 16898
-        }, {
-			imgUrl: 'assets/img/car-2.png',
-			description: 'A very beautiful car',
-			name: 'Touran',
-			id: 3,
-			cost: 17982
-        }]
+		ctrl.$onInit = function() {
 
-		ctrl.$onInit = function() {};
+			_getMake($stateParams.makeId)
+				.then(makeCode => {
+					_getFamilies(makeCode);
+				}, resp => {
+					console.log(resp);
+				});
+
+		};
+
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
+
+		function getFamilies(makeCode) {
+			API.families(makeCode)
+				.then(resp => {
+					ctrl.families = resp.data;
+					console.log(ctrl.families);
+				}, resp => {
+					console.log('Failed to get families');
+				})
+		}
+
+		function getMake() {
+
+			var deferred = $q.defer();
+
+			API.make()
+				.then(resp => {
+					ctrl.make = resp.data;
+					deferred.resolve(resp.data.Code);
+					Data.set.make(resp.data);
+				}, resp => {
+					console.log('Failed to get makes');
+					deferred.reject({ data: 'ERROR' });
+				})
+
+			return deferred.promise;
+		}
+
+		function selectFamily(family) {
+			ctrl.parent.car = angular.copy(angular.extend(ctrl.parent.car, { family }));
+			Data.set.family(family);
+
+			$state.go('app.select-options.step-one', {
+				makeId: $stateParams.makeId,
+				familyId: family.Code
+			})
+		}
 	}
 })();

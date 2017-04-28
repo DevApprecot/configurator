@@ -6,7 +6,12 @@
 		.component('stepOne', {
 			templateUrl: './app/components/select-options/step-one/stepone.html',
 			controller: StepOneCtrl,
-			bindings: {},
+			bindings: {
+				onSelect: '&'
+			},
+			require: {
+				parent: '^selectOptions'
+			}
 		});
 
 	StepOneCtrl.$inject = ['API', 'DEFAULT_CAR_IMAGE'];
@@ -35,16 +40,17 @@
 					}
 
 					ctrl.family = _families[0];
-
 					ctrl.models = resp.data.filter(item => item.Family === 'TRANSPORTER T5');
+
 					console.log(ctrl.models);
 				}, resp => {
 					console.log('Failed to get moels', resp);
 				})
 		};
-		ctrl.$onChanges = function(changesObj) {
-			console.log(changesObj);
-		};
+
+		ctrl.$onChanges = function(changesObj) {};
+
 		ctrl.$onDestory = function() {};
+
 	}
 })();

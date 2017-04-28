@@ -1,0 +1,63 @@
+<div class="row m-t-lg">
+	<h1>Επιλέξτε εξοπλισμό χειροκίνητα</small></h1>
+</div>
+
+<div class="row m-t-md">
+
+	<form name="addEquipmentForm"
+	      ng-submit="$ctrl.onSelect({equipment:$ctrl.equipment}); $ctrl.clearForm()">
+
+		<div class="row form-group">
+
+			<label for="code"
+			       class="col-md-1">Κωδικός:</label>
+
+			<div class="col-md-8">
+				<input ng-model="$ctrl.equipment.code"
+				       required
+				       type="text"
+				       class="form-control"
+				       placeholder="Συμπληρώστε τον κωδικού του εξοπλισμού">
+			</div>
+
+		</div>
+
+		<div class="row form-group">
+
+			<label for="code"
+			       class="col-md-1">Περιγραφή:</label>
+
+			<div class="col-md-8">
+				<input ng-model="$ctrl.equipment.description"
+				       required
+				       type="text"
+				       class="form-control"
+				       placeholder="Συμπληρώστε την περιγραφή του εξοπλισμού">
+			</div>
+
+		</div>
+
+		<div class="row form-group">
+
+			<label for="code"
+			       class="col-md-1">Τιμή:</label>
+
+			<div class="col-md-8">
+				<input ng-model="$ctrl.equipment.price"
+				       required
+				       type="number"
+				       class="form-control"
+				       placeholder="Συμπληρώστε την τιμή του εξοπλισμού">
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<button type="submit"
+				        class=" btn btn-md my-button">Προσθήκη</button>
+			</div>
+		</div>
+	</form>
+
+</div>

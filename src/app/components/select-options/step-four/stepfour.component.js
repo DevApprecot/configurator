@@ -9,13 +9,14 @@
 			bindings: {},
 		});
 
-	StepFourCtrl.$inject = [];
+	StepFourCtrl.$inject = ['Data'];
 
-	function StepFourCtrl() {
+	function StepFourCtrl(Data) {
 		var ctrl = this;
 
-
-		ctrl.$onInit = function() {};
+		ctrl.$onInit = function() {
+			console.log('Step four got equipment', Data.get.equipment());
+		};
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
 	}

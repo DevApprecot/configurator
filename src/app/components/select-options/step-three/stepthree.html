@@ -1,1 +1,105 @@
-Step Three
+<div>
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<h1>{{$ctrl.family.ModelDescription}} <small class="text-muted">{{$ctrl.model.ModelDescription}}</small></h1>
+
+			<div class="table-responsive m-t-md">
+				<table tr-ng-grid=""
+				       items="$ctrl.equipment"
+				       selected-items="$ctrl.selectedItems"
+				       selection-mode="MultiRow"
+				       enable-filtering="false"
+				       enable-sorting="false"
+				       class="table table-hover">
+					<thead>
+						<tr>
+							<th field-name="OptionCode"
+							    display-name="Κωδικός"
+							    display-align="center"
+							    width="15%"></th>
+
+							<th field-name="ModelCode"
+							    display-name="Kωδικός Μοντέλου"
+							    display-align="center"
+							    width="15%"></th>
+
+							<th field-name="OptionDescription"
+							    display-name="Περιγραφή"
+							    width="30%"></th>
+
+							<th field-name="Price"
+							    display-name="Τιμή"
+							    display-format="trNgGridCurrency:gridItem"
+							    display-align="center"
+							    width="10%">
+							</th>
+
+							<th field-name="ChangeCO2"
+							    display-name="CO2"
+							    display-align="center"
+							    width="15%"></th>
+
+							<th field-name="ItemGroup"
+							    display-name="Τύπος"
+							    display-align="center"
+							    width="15%"></th>
+						</tr>
+					</thead>
+				</table>
+
+			</div>
+
+		</div>
+
+		<div class="row m-t-lg o-hidden">
+			<h1>Χειροκίνητοι εξοπλισμοί</h1>
+
+			<div class="m-t-md"
+			     ng-show="!$ctrl.manualEquipments.length">
+				<small class="text-muted">Δεν έχετε προσθέσει εξοπλισμό χειροκίνητα</small>
+			</div>
+
+			<div ng-show="$ctrl.manualEquipments.length"
+			     class="table-responsive m-t-md">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Κωδικός</th>
+							<th>Περιγραφή</th>
+							<th>Τιμή</th>
+							<th>Ενέργεια</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="equipment in $ctrl.manualEquipments track by $index">
+							<td>{{equipment.code}}</td>
+							<td>{{equipment.description}}</td>
+							<td>{{equipment.price | currency}}</td>
+							<td><button ng-click="$ctrl.removeEquipment($index)"
+								        class="btn btn-md my-button">Αφαίρεση</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row m-t-md">
+			<button ng-click="$ctrl.onSelect({equipment: 
+			{
+                autoEquipments:$ctrl.selectedItems,
+                manualEquipments:$ctrl.manualEquipments
+            }
+            })"
+			        ng-disabled="!($ctrl.selectedItems.length || $ctrl.manualEquipments.length)"
+			        class="pull-right my-button btn btn-lg ">Επόμενο</button>
+		</div>
+
+
+		<manual-equipment-form on-select="$ctrl.addEquipment(equipment)"></manual-equipment-form>
+
+
+	</div>
+
+</div>

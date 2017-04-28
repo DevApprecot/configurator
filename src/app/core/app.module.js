@@ -1,5 +1,5 @@
-(function () {
-    'use strict';
+(function() {
+	'use strict';
 
-    angular.module('configurator', ['ui.router', 'trNgGrid']);
+	angular.module('configurator', ['ui.router', 'trNgGrid', 'ngStorage']);
 })();

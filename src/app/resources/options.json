@@ -1,0 +1,24 @@
+[
+	{
+		"OptionCode": "OPT-52522-1",
+		"OptionName": "OPT-52522-1",
+		"ModelCode": "52522",
+		"ChangeCO2": 1,
+		"Photo": null,
+		"OptionDescription": "test package bla bla OPT-52522-1",
+		"ItemGroup": "Ersatzteile",
+		"VAT": 19,
+		"Price": 2300
+  },
+	{
+		"OptionCode": "OPT-52522-2",
+		"OptionName": "OPT-52522-2",
+		"ModelCode": "52522",
+		"ChangeCO2": 4,
+		"Photo": null,
+		"OptionDescription": "OPT-36422-1",
+		"ItemGroup": "Wheels",
+		"VAT": 19,
+		"Price": 2900
+  }
+]

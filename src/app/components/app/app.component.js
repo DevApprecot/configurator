@@ -7,24 +7,27 @@
 			templateUrl: './app/components/app/app.html',
 			controller: AppCtrl,
 			bindings: {
-				theme:'@'
+				theme: '@'
 			},
 		});
 
-	AppCtrl.$inject = [];
+	AppCtrl.$inject = ['Data'];
 
-	function AppCtrl() {
+	function AppCtrl(Data) {
 		var ctrl = this;
 
 		//This is the car object which will be sent on service
-		ctrl.car = {};
-
-		ctrl.$onInit = function() {
-			console.log(ctrl.theme);
+		ctrl.car = {
+			family: Data.get.family() || null
 		};
+
+		ctrl.$onInit = function() {};
+
 		ctrl.$onChanges = function(changesObj) {
 			console.log('app changes', changesObj);
 		};
+
 		ctrl.$onDestory = function() {};
+
 	}
 })();

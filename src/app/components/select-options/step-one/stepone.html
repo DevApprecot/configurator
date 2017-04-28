@@ -5,7 +5,7 @@
 	<div class="table-responsive m-t-md">
 		<table tr-ng-grid=""
 		       items="$ctrl.models"
-		       selected-items="$ctrl.selectedItem"
+		       selected-items="$ctrl.selectedItems"
 		       selection-mode="SingleRow"
 		       enable-filtering="false"
 		       enable-sorting="false"
@@ -25,8 +25,10 @@
 					    display-align="center"
 					    width="20%"></th>
 
-					<th display-name="Τιμή"
+					<th field-name="Price"
+					    display-name="Τιμή"
 					    display-align="center"
+					    display-format="trNgGridCurrency:gridItem"
 					    width="10%">
 					</th>
 
@@ -44,17 +46,14 @@
 						     err-src="{{$ctrl.default.url}}"
 						     alt="{{model.ModelDescription}}">
 					</td>
-
-					<td>
-						<div>{{(gridDisplayItem.Price || '-') | currency}}</div>
-					</td>
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
 
-	<button ng-disabled="!$ctrl.selectedItem.length"
+	<button ng-click="$ctrl.onSelect({model:$ctrl.selectedItems[0]})"
+	        ng-disabled="!$ctrl.selectedItems.length"
 	        class="pull-right my-button btn btn-lg ">Επόμενο</button>
 
 

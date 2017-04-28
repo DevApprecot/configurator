@@ -6,16 +6,20 @@
 		.component('steps', {
 			templateUrl: './app/components/select-options/steps/steps.html',
 			controller: StepsCtrl,
-			bindings: {},
+			bindings: {
+				stepsFlag: "<",
+				model: "<",
+				color: "<"
+			},
 		});
 
-	StepsCtrl.$inject = [];
+	StepsCtrl.$inject = ['Data'];
 
-	function StepsCtrl() {
+	function StepsCtrl(Data) {
 		var ctrl = this;
 
 		ctrl.$onInit = function() {};
-		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onChanges = function(changesObj) {}
 		ctrl.$onDestory = function() {};
 	}
 })();

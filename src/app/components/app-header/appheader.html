@@ -5,7 +5,7 @@
 	   ng-click="$ctrl.goBack()"
 	   class="previous pull-left">
 		<h2 class="text-center">
-			<strong><i class="fa fa-angle-double-left"></i> {{$ctrl.parent.car.family.name}} <small>{{$ctrl.parent.car.model.name}}</small></strong>
+			<strong><i class="fa fa-angle-double-left"></i> {{$ctrl.parent.car.family.ModelDescription}}</strong>
 		</h2>
 	</a>
 
@@ -17,7 +17,7 @@
 
 	<p ng-show="!$ctrl.stateIs('app.select-family')"
 	   class="price pull-right">
-		από {{$ctrl.parent.car.family.cost | currency}}
+		από {{$ctrl.parent.car.family.PriceBeforeTaxes | currency}}
 	</p>
 
 </div>

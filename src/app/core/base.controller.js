@@ -13,7 +13,7 @@
 		activate();
 
 		function activate() {
-			vm.theme = "audi";
+			vm.theme = "vw";
 		}
 	}
 })();

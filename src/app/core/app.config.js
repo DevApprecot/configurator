@@ -16,36 +16,36 @@
 			})
 
 			.state('app.select-family', {
-				url: '/car/family',
+				url: '/car/make/:makeId/family',
 				template: '<select-family></select-family>'
 			})
 
 			.state('app.select-options', {
-				url: '/car/family/:familyId',
+				url: '/car/make/:makeId/family/:familyId',
 				template: '<select-options></select-options>'
 			})
 
 			.state('app.select-options.step-one', {
-				url: '/car/family/:familyId/step-1',
-				template: '<step-one></step-one>'
+				url: '/model',
+				template: '<step-one on-select="$ctrl.selectModel(model)"></step-one>'
 			})
 
 			.state('app.select-options.step-two', {
-				url: '/car/family/:familyId/step-2',
-				template: '<step-two></step-two>'
+				url: '/model/:modelId/color',
+				template: '<step-two on-select="$ctrl.selectColor(colorOptions)"></step-two>'
 			})
 
 			.state('app.select-options.step-three', {
-				url: '/car/family/:familyId/step-3',
-				template: '<step-three></step-three>'
+				url: '/model/:modelId/color/:colorId/options',
+				template: '<step-three on-select="$ctrl.selectEquipment(equipment)"></step-three>'
 			})
 
 			.state('app.select-options.step-four', {
-				url: '/car/family/:familyId/step-4',
+				url: '/model/:modelId/color/:colorId/options=selected/synopsis',
 				template: '<step-four></step-four>'
 			})
 
-		$urlRouterProvider.otherwise('/app/car/family');
+		$urlRouterProvider.otherwise('/app/car/make/60/family');
 
 	}
 })();
