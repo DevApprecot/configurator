@@ -50,6 +50,7 @@
 			ctrl.color = Data.get.color() || null;
 			ctrl.completedSteps = Data.get.steps() || [false, false, false, false];
 		};
+		
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
 	}

@@ -29,6 +29,16 @@ a[disabled=disabled] {
 	cursor: default;
 }
 
+@media (min-width:768px) {
+	.row.vertical-align {
+		display: flex;
+		align-items: center;
+	}
+}
+
+table th {
+	font-weight: bold;
+}
 
 table.table.table-hover {
 	tbody {

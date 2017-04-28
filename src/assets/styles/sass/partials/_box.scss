@@ -1,0 +1,25 @@
+@import "../partials/colors";
+
+div.box {
+
+	-webkit-box-shadow: -1px 5px 8px -4px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: -1px 5px 8px -4px rgba(0, 0, 0, 0.75);
+	box-shadow: -1px 5px 8px -4px rgba(0, 0, 0, 0.75);
+
+	label {
+		font-weight: bold;
+	}
+
+	div.box-header {
+		padding: 20px 30px;
+	}
+
+	div.box-body {
+		background-color: $white;
+		padding: 20px 30px;
+	}
+
+	div.box-footer {
+		padding: 20px 30px;
+	}
+}

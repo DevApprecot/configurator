@@ -148,6 +148,14 @@ a[disabled=disabled] {
   pointer-events: none;
   cursor: default; }
 
+@media (min-width: 768px) {
+  .row.vertical-align {
+    display: flex;
+    align-items: center; } }
+
+table th {
+  font-weight: bold; }
+
 table.table.table-hover tbody tr:hover {
   cursor: pointer; }
 
@@ -331,6 +339,20 @@ button.my-button {
   border-radius: 0;
   cursor: pointer; }
 
+div.box {
+  -webkit-box-shadow: -1px 5px 8px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 5px 8px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 5px 8px -4px rgba(0, 0, 0, 0.75); }
+  div.box label {
+    font-weight: bold; }
+  div.box div.box-header {
+    padding: 20px 30px; }
+  div.box div.box-body {
+    background-color: #fff;
+    padding: 20px 30px; }
+  div.box div.box-footer {
+    padding: 20px 30px; }
+
 .vw app-header {
   background-color: #2f3638; }
   .vw app-header a.previous:hover i {
@@ -377,6 +399,10 @@ button.my-button {
   background-color: #0099da;
   color: #fff; }
 
+.vw div.box div.box-header {
+  background-color: #2f3638;
+  color: #fff; }
+
 .audi app-header {
   background-color: #2e3532; }
   .audi app-header a.previous:hover i {
@@ -421,6 +447,10 @@ button.my-button {
 
 .audi button.my-button {
   background-color: #e00030;
+  color: #fff; }
+
+.audi div.box div.box-header {
+  background-color: #2e3532;
   color: #fff; }
 
 /*!

@@ -15,7 +15,14 @@
 		var ctrl = this;
 
 		ctrl.$onInit = function() {
-			console.log('Step four got equipment', Data.get.equipment());
+
+			Object.keys(Data.get)
+				.map(val => {
+					ctrl[val] = Data.get[val]()
+				})
+
+				console.log(ctrl);
+
 		};
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
