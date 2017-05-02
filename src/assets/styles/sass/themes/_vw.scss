@@ -1,7 +1,4 @@
-@import "../partials/colors";
-
 .vw {
-
 	//Header
 	app-header {
 		background-color: $vw-dark;
@@ -24,7 +21,7 @@
 		color: $vw-dark;
 	} //Steps
 	steps .steps a {
-		color: darken($vw-dark, 50);
+		color: $vw-special
 
 		i {
 			color: $vw-special
@@ -52,7 +49,7 @@
 			&~li {
 				background-color: darken($vw-gray, 5);
 				a {
-					color: darken($vw-dark, 50);
+					color: $white;
 					i {
 						color: #efefef;
 					}
@@ -70,8 +67,9 @@
 			&::after {
 				border-left-color: darken($vw-gray, 10)
 			}
-		}
-	} //Button
+		} //Button
+	}
+
 	button {
 		&.my-button {
 			background-color: $vw-special;
@@ -82,6 +80,4 @@
 		background-color: $vw-dark;
 		color: $white;
 	}
-
-
 }

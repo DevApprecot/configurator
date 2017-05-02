@@ -1,0 +1,44 @@
+[
+	{
+		"OptionCode": "B2B2",
+		"OptionName": "590898D829AD170DE10000007F000002",
+		"ModelCode": "8XFAS4",
+		"ChangeCO2": 0.0,
+		"Photo": null,
+		"OptionDescription": "Θαλασσί Teal Απλό ",
+		"ItemGroup": "Χρώματα",
+		"VAT": null,
+		"Price": 0.0
+}, {
+		"OptionCode": "2T2T",
+		"OptionName": "590898CE29AD170DE10000007F000002",
+		"ModelCode": "8XFAS4",
+		"ChangeCO2": 0.0,
+		"Photo": null,
+		"OptionDescription": "Μαύρο Περλέ",
+		"ItemGroup": "Χρώματα",
+		"VAT": null,
+		"Price": 359.0
+}, {
+		"OptionCode": "2TB4-PDR",
+		"OptionName": "590898CF29AD170DE10000007F000002",
+		"ModelCode": "8XFAS4",
+		"ChangeCO2": 0.0,
+		"Photo": null,
+		"OptionDescription": "Μαύρο Περλέ σε συνδυασμό με Package (PDR)",
+		"ItemGroup": "Χρώματα",
+		"VAT": null,
+		"Price": 470.0
+}, {
+		"OptionCode": "2TB4",
+		"OptionName": "590898D029AD170DE10000007F000002",
+		"ModelCode": "8XFAS4",
+		"ChangeCO2": 0.0,
+		"Photo": null,
+		"OptionDescription": "Μαύρο Περλέ σε συνδυασμό με Package (PDR)",
+		"ItemGroup": "Χρώματα",
+		"VAT": null,
+		"Price": 0.0
+}
+
+]

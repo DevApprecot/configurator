@@ -144,6 +144,9 @@ body {
 .o-hidden {
   overflow: hidden; }
 
+a:focus {
+  outline: none; }
+
 a[disabled=disabled] {
   pointer-events: none;
   cursor: default; }
@@ -152,6 +155,14 @@ a[disabled=disabled] {
   .row.vertical-align {
     display: flex;
     align-items: center; } }
+
+@media (max-width: 767px) {
+  .rp-m-t-lg {
+    margin-top: 35px; }
+  .rp-m-t-md {
+    margin-top: 20px; }
+  .rp-m-t-sm {
+    margin-top: 5px; } }
 
 table th {
   font-weight: bold; }
@@ -367,9 +378,8 @@ div.box {
   color: #2f3638; }
 
 .vw steps .steps a {
-  color: black; }
-  .vw steps .steps a i {
-    color: #0099da; }
+  color: #0099da i;
+    color-color: #0099da; }
 
 .vw steps li {
   background-color: #d0d4d7; }
@@ -385,7 +395,7 @@ div.box {
     .vw steps li.current ~ li {
       background-color: #d0d4d7; }
       .vw steps li.current ~ li a {
-        color: black; }
+        color: #fff; }
         .vw steps li.current ~ li a i {
           color: #efefef; }
       .vw steps li.current ~ li::after {
@@ -404,53 +414,53 @@ div.box {
   color: #fff; }
 
 .audi app-header {
-  background-color: #2e3532; }
+  background-color: #2b2e34; }
   .audi app-header a.previous:hover i {
-    color: #ad0025; }
+    color: #e6090c; }
   .audi app-header a.previous i {
-    color: #e00030; }
+    color: #f72b2e; }
 
 .audi app-footer {
-  background-color: #54494b; }
+  background-color: #a4b3bb; }
 
 .audi car p {
-  color: #2e3532; }
+  color: #2b2e34; }
 
 .audi steps .steps a {
-  color: black; }
+  color: #f72b2e; }
   .audi steps .steps a i {
-    color: #e00030; }
+    color: #f72b2e; }
 
 .audi steps li {
-  background-color: #463d3f; }
+  background-color: #95a7b0; }
   .audi steps li:not(:last-child)::after {
-    border-left-color: #463d3f; }
+    border-left-color: #95a7b0; }
   .audi steps li.current {
-    background-color: #625557; }
+    background-color: #b3bfc6; }
     .audi steps li.current a,
     .audi steps li.current a > i {
-      color: #e00030; }
+      color: #f72b2e; }
     .audi steps li.current::after {
-      border-left-color: #625557; }
+      border-left-color: #b3bfc6; }
     .audi steps li.current ~ li {
-      background-color: #463d3f; }
+      background-color: #95a7b0; }
       .audi steps li.current ~ li a {
-        color: black; }
+        color: #fff; }
         .audi steps li.current ~ li a i {
           color: #efefef; }
       .audi steps li.current ~ li::after {
-        border-left-color: #463d3f; }
+        border-left-color: #95a7b0; }
   .audi steps li:hover {
-    background-color: #393133; }
+    background-color: #879ba5; }
     .audi steps li:hover::after {
-      border-left-color: #393133; }
+      border-left-color: #879ba5; }
 
 .audi button.my-button {
-  background-color: #e00030;
+  background-color: #f72b2e;
   color: #fff; }
 
 .audi div.box div.box-header {
-  background-color: #2e3532;
+  background-color: #2b2e34;
   color: #fff; }
 
 /*!

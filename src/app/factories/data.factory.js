@@ -24,7 +24,8 @@
 				model: getModel,
 				steps: getSteps,
 				color: getColorOptions,
-				equipment: getEquipment
+				equipment: getEquipment,
+				currentPrice: calculateCurrentPrice
 			},
 			set: {
 				make: setMake,
@@ -35,7 +36,9 @@
 				equipment: setEquipment
 			},
 			clear: {
-				options: clearOptions
+				options: clearOptions,
+				modelColorEquipment: clearModelColorEquipment,
+				colorEquipment: clearColorEquipment
 			}
 		};
 
@@ -107,6 +110,40 @@
 
 			//Clear service scope
 			_family = _model = _color = _equipment = _steps = null;
+		}
+
+		function clearModelColorEquipment() {
+			Object.keys($sessionStorage)
+				.filter(key => !(key.includes('$') || key.includes('_')))
+				.map(val => {
+					if (!['make', 'family'].includes(val)) {
+						delete $sessionStorage[val];
+					}
+				});
+		}
+
+		function clearColorEquipment() {
+			Object.keys($sessionStorage)
+				.filter(key => !(key.includes('$') || key.includes('_')))
+				.map(val => {
+					if (!['model', 'make', 'family'].includes(val)) {
+						delete $sessionStorage[val];
+					}
+				});
+		}
+
+		function calculateCurrentPrice() {
+			var price = 0;
+
+			if (!_family) return 0;
+
+			price += (_family.Price + (_model ? _model.Price : 0) + (_color ? _color.Price : 0) + (_equipment ? _equipment.autoEquipments
+				.reduce((previous, current, idx) => {
+					return previous + current.Price
+				}, 0) : 0));
+
+			return price;
+
 		}
 
 	}

@@ -6,8 +6,12 @@
 		.component('appHeader', {
 			templateUrl: './app/components/app-header/appheader.html',
 			controller: AppHeaderCtrl,
-			require: {
-				parent: '^app'
+			bindings: {
+				theme: '@',
+				price: '@',
+				familyName: '@',
+				modelName: '@',
+				onBack: '&'
 			}
 		});
 
@@ -20,14 +24,10 @@
 			return stateName == $state.current.name
 		}
 
-		ctrl.goBack = function() {
-			delete ctrl.parent.car.family;
-			Data.clear.options();
-			$state.go('app.select-family', { makeId: $stateParams.makeId });
-		}
-
 		ctrl.$onInit = function() {};
-		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onChanges = function(changesObj) {
+			console.log(changesObj);
+		};
 		ctrl.$onDestory = function() {};
 	}
 })();

@@ -7,7 +7,9 @@
 			templateUrl: './app/components/select-options/step-three/stepthree.html',
 			controller: StepThreeCtrl,
 			bindings: {
-				onSelect: "&"
+				onSelect: "&",
+				imgPath: "@",
+				defaultImg: "@"
 			},
 		});
 
@@ -39,7 +41,13 @@
 		function getEquipment() {
 			API.options()
 				.then(resp => {
-					ctrl.equipment = resp.data;
+					ctrl.equipment = resp.data.map(val => {
+						if (!val.Photo)
+							val.Photo = Data.get.color()
+							.Photo;
+
+						return val;
+					});;
 					console.log(ctrl.equipment);
 				}, resp => {
 					console.log('Failed to get equipment', resp);

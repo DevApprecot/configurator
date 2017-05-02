@@ -6,8 +6,8 @@
 		.component('selectFamily', {
 			templateUrl: './app/components/select-family/selectfamily.html',
 			controller: SelectFamilyCtrl,
-			require: {
-				parent: '^app'
+			bindings: {
+				onSelect: '&'
 			}
 		});
 
@@ -18,8 +18,6 @@
 
 		var _getMake = getMake;
 		var _getFamilies = getFamilies;
-
-		ctrl.selectFamily = selectFamily;
 
 		ctrl.$onInit = function() {
 
@@ -62,14 +60,5 @@
 			return deferred.promise;
 		}
 
-		function selectFamily(family) {
-			ctrl.parent.car = angular.copy(angular.extend(ctrl.parent.car, { family }));
-			Data.set.family(family);
-
-			$state.go('app.select-options.step-one', {
-				makeId: $stateParams.makeId,
-				familyId: family.Code
-			})
-		}
 	}
 })();

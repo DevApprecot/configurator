@@ -1,4 +1,8 @@
-<app-header></app-header>
+<app-header family-name="{{$ctrl.car.family.ModelDescription}}"
+            model-name="{{$ctrl.car.model.ModelDescription}}"
+            price="{{$ctrl.car.price}}"
+            on-back="$ctrl.onHeaderBack()"
+            theme="{{$ctrl.theme}}"></app-header>
 
 
 <div class="body"

@@ -22,7 +22,7 @@
 		color: $audi-dark;
 	} //Steps
 	steps .steps a {
-		color: darken($audi-dark, 50);
+		color: $audi-special;
 
 		i {
 			color: $audi-special
@@ -50,7 +50,7 @@
 			&~li {
 				background-color: darken($audi-gray, 5);
 				a {
-					color: darken($audi-dark, 50);
+					color: $white;
 					i {
 						color: #efefef;
 					}
@@ -81,6 +81,4 @@
 		background-color: $audi-dark;
 		color: $white;
 	}
-
-
 }

@@ -24,6 +24,10 @@ body {
 	overflow: hidden;
 }
 
+a:focus {
+	outline:none;
+}
+
 a[disabled=disabled] {
 	pointer-events: none;
 	cursor: default;
@@ -33,6 +37,20 @@ a[disabled=disabled] {
 	.row.vertical-align {
 		display: flex;
 		align-items: center;
+	}
+}
+
+@media (max-width:767px) {
+	.rp-m-t-lg {
+		margin-top: 35px;
+	}
+
+	.rp-m-t-md {
+		margin-top: 20px;
+	}
+
+	.rp-m-t-sm {
+		margin-top: 5px;
 	}
 }
 

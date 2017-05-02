@@ -71,7 +71,7 @@
 
 			let params = {};
 
-			return http.get(params, './app/resources/options.json');
+			return http.get(params, './app/resources/colors.json');
 		}
 
 	}

@@ -3,44 +3,34 @@
 
 	angular
 		.module('configurator')
+
 		.component('stepOne', {
 			templateUrl: './app/components/select-options/step-one/stepone.html',
 			controller: StepOneCtrl,
 			bindings: {
-				onSelect: '&'
-			},
-			require: {
-				parent: '^selectOptions'
+				onSelect: '&',
+				imgPath: '@',
+				defaultImg: '@'
 			}
 		});
 
-	StepOneCtrl.$inject = ['API', 'DEFAULT_CAR_IMAGE'];
+	StepOneCtrl.$inject = ['API', 'Data'];
 
-	function StepOneCtrl(API, DEFAULT_CAR_IMAGE) {
+	function StepOneCtrl(API, Data) {
 		var ctrl = this;
-		var _families = [];
 		ctrl.models = [];
-		ctrl.default = DEFAULT_CAR_IMAGE;
 
 		ctrl.$onInit = function() {
 			API.models()
 				.then(resp => {
 
-					var temp = resp.data.filter(item => item.Family === 'TRANSPORTER T5');
-					for (var i = 0; i < temp.length; i++) {
+					ctrl.models = resp.data.map(val => {
+						if (!val.Photo)
+							val.Photo = Data.get.family()
+							.Photo;
 
-						if (!_families.map(item => item.code)
-							.includes(temp[i].Family)) {
-							_families.push({
-								code: temp[i].Family,
-								name: temp[i].ParentModelDescription
-							})
-						}
-
-					}
-
-					ctrl.family = _families[0];
-					ctrl.models = resp.data.filter(item => item.Family === 'TRANSPORTER T5');
+						return val;
+					});
 
 					console.log(ctrl.models);
 				}, resp => {
@@ -48,9 +38,13 @@
 				})
 		};
 
-		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onChanges = function(changesObj) {
+			console.log('selected Items changed');
+			console.log(changesObj);
+		};
 
 		ctrl.$onDestory = function() {};
 
 	}
+
 })();

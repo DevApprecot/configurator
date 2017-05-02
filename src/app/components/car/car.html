@@ -2,7 +2,7 @@
 	<a ng-click="$ctrl.onSelect({item:$ctrl.car})">
 		<img class="img-responsive"
 		     err-src="{{$ctrl.defaultImg}}"
-		     ng-src="{{$ctrl.car.Photo || '-'}}"
+		     ng-src="{{($ctrl.imgPath + $ctrl.car.Photo )|| '-'}}"
 		     alt="{{$ctrl.car.description}}">
 		<div class="text-center">
 			<h3 class="m-t-sm">{{$ctrl.car.ModelDescription}}</h3>

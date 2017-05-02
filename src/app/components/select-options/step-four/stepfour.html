@@ -4,13 +4,14 @@
 	<div class="row vertical-align">
 
 		<div class="col-md-4 col-md-offset-2">
-			<img src="assets/img/car-1.png"
-			     alt="">
+			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
+			     err-src="{{$ctrl.defaultImg}}"
+			     class="img-responsive">
 
 		</div>
 
 		<div class="col-md-4">
-			<div class="box">
+			<div class="box rp-m-t-md">
 				<div class="box-header">
 					<h2>  Πληροφορίες</h2>
 				</div>
@@ -29,7 +30,7 @@
 							<label>Οικογένεια</label>
 						</div>
 						<div class="col-md-8">
-							<p>{{$ctrl.make.ModelDescription}}</p>
+							<p>{{$ctrl.family.ModelDescription}}</p>
 						</div>
 					</div>
 					<div class="row m-t-md">
@@ -37,7 +38,7 @@
 							<label>Μοντέλο</label>
 						</div>
 						<div class="col-md-8">
-							<p>{{$ctrl.model.ModelDescription}}</p>
+							<p>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></p>
 						</div>
 					</div>
 					<div class="row m-t-md">
@@ -45,7 +46,7 @@
 							<label>Χρώμα</label>
 						</div>
 						<div class="col-md-8">
-							<p>{{$ctrl.color.ModelDescription}}</p>
+							<p>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></p>
 						</div>
 					</div>
 					<div class="row m-t-md">
@@ -55,20 +56,26 @@
 						<div class="col-md-8">
 							<div ng-repeat="equipment in $ctrl.equipment.autoEquipments track by $index"
 							     class="row">
-								<div class="col-md-12"><p>{{equipment.OptionCode}}</p></div>
+								<div class="col-md-12">
+									<p>{{equipment.OptionDescription}} <small class="text-muted">({{equipment.OptionCode}})</small></p>
+								</div>
 							</div>
+							<span ng-show="!$ctrl.equipment.autoEquipments.length">-</span>
 						</div>
 					</div>
 
-                    <div class="row m-t-md">
+					<div class="row m-t-md">
 						<div class="col-md-4">
 							<label>Εξοπλισμός που προστέθηκε χειροκίνητα:</label>
 						</div>
 						<div class="col-md-8">
 							<div ng-repeat="equipment in $ctrl.equipment.manualEquipments track by $index"
 							     class="row">
-								<div class="col-md-12"><p>{{equipment.code}}</p></div>
+								<div class="col-md-12">
+									<p>{{equipment.description}} <small class="text-muted">({{equipment.code}})</small></p>
+								</div>
 							</div>
+							<span ng-show="!$ctrl.equipment.manualEquipments.length">-</span>
 						</div>
 					</div>
 
@@ -76,6 +83,12 @@
 			</div>
 		</div>
 
+	</div>
+
+	<div class="row m-t-md">
+		<div class="col-md-4 col-md-offset-6">
+			<button class="pull-right btn btn-lg my-button">Υποβολή</button>
+		</div>
 	</div>
 
 

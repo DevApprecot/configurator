@@ -13,6 +13,7 @@
 			<thead>
 				<tr>
 					<th display-name="Εικόνα"
+					    display-align="center"
 					    width="10%"></th>
 
 					<th field-name="ModelDescription"
@@ -41,10 +42,10 @@
 			<tbody>
 				<tr>
 					<td>
-						<img class="img-responsive"
-						     ng-src="{{gridDisplayItem.Photo || 'undefined'}}"
-						     err-src="{{$ctrl.default.url}}"
-						     alt="{{model.ModelDescription}}">
+						{{$ctrl.imgPath + gridItem.Photo}}
+						<img ng-src="{{$ctrl.imgPath + gridItem.Photo}}"
+						     err-src="{{$ctrl.defaultImg}}"
+						     class="img-responsive">
 					</td>
 				</tr>
 			</tbody>

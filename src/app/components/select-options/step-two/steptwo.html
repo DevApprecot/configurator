@@ -1,1 +1,73 @@
-<button ng-click="$ctrl.onSelect({colorOptions:{id:'someColorCode'}})" class="btn btn-lg my-button">Επόμενο</button>
+<div class="container-fluid">
+	<div class="row">
+		<h1>{{$ctrl.family.ModelDescription}} <small class="text-muted">{{$ctrl.model.ModelDescription}}</small></h1>
+
+		<div class="table-responsive m-t-md">
+			<table tr-ng-grid=""
+			       items="$ctrl.colors"
+			       selected-items="$ctrl.selectedItems"
+			       selection-mode="SingleRow"
+			       enable-filtering="false"
+			       enable-sorting="false"
+			       class="table table-hover">
+				<thead>
+					<tr>
+
+						<th display-name="Εικόνα"
+						    display-align="center"
+						    width="10%"></th>
+
+						<th field-name="OptionCode"
+						    display-name="Κωδικός"
+						    display-align="center"
+						    width="10%"></th>
+
+						<th field-name="ModelCode"
+						    display-name="Kωδικός Μοντέλου"
+						    display-align="center"
+						    width="10%"></th>
+
+						<th field-name="OptionDescription"
+						    display-name="Περιγραφή"
+						    width="30%"></th>
+
+						<th field-name="Price"
+						    display-name="Τιμή"
+						    display-format="trNgGridCurrency:gridItem"
+						    display-align="center"
+						    width="10%">
+						</th>
+
+						<th field-name="ChangeCO2"
+						    display-name="CO2"
+						    display-align="center"
+						    width="15%"></th>
+
+						<th field-name="ItemGroup"
+						    display-name="Τύπος"
+						    display-align="center"
+						    width="15%"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>
+							<img ng-src="{{$ctrl.imgPath + gridItem.Photo}}"
+							     err-src="{{$ctrl.defaultImg}}"
+							     class="img-responsive">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+
+	<div class="row m-t-md">
+		<button ng-disabled="!$ctrl.selectedItems.length"
+		        ng-click="$ctrl.onSelect({colorOptions:$ctrl.selectedItems[0]})"
+		        class="pull-right btn btn-lg my-button">Επόμενο</button>
+	</div>
+</div>

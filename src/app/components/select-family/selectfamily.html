@@ -6,7 +6,7 @@
 	<div class="row m-t-md">
 
 		<car car="item"
-		     on-select="$ctrl.selectFamily(item)"
+		     on-select="$ctrl.onSelect({family:item})"
 		     ng-repeat="item in $ctrl.families track by $index"></car>
 
 

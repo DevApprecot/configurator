@@ -6,7 +6,10 @@
 		.component('stepFour', {
 			templateUrl: './app/components/select-options/step-four/stepfour.html',
 			controller: StepFourCtrl,
-			bindings: {},
+			bindings: {
+				imgPath: "@",
+				defaultImg: "@"
+			},
 		});
 
 	StepFourCtrl.$inject = ['Data'];
@@ -21,7 +24,7 @@
 					ctrl[val] = Data.get[val]()
 				})
 
-				console.log(ctrl);
+			console.log(ctrl);
 
 		};
 		ctrl.$onChanges = function(changesObj) {};
