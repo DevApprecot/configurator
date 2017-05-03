@@ -56,31 +56,30 @@
 			let Co2Value = model.CO2EmissionCombined +
 				aOptions.reduce((prev, curr) => prev + curr.ChangeCO2, 0);
 
-			let i = PBT_Row.map((val, idx) => {
-				if (priceBeforeTaxes >= val[0] && priceBeforeTaxes <= val[1])
-					return idx
-			}).filter(val=>!!val);
+			let i = PBT_Row.findIndex((val) => {
+				return (priceBeforeTaxes >= val[0] && priceBeforeTaxes <= val[1])
+			});
 
-			i.length ? i = i[0] : i = PBT_Row.length;
+			if (!i) i = PBT_Row.length;
 
-			let j = Co2_Row.map((val, idx) => {
-				if (Co2Value >= val[0] && Co2Value <= val[1])
-					return idx
-			}).filter(val=>!!val);
+			let j = Co2_Row.findIndex((val, idx) => {
+				return (Co2Value >= val[0] && Co2Value <= val[1])
+			});
 
-
-			j.length ? j = j[0] : j = Co2_Row.length;
+			if (!j) j = Co2_Row.length;
 
 			feePercentage = RegistrationFeePercentages[i][j];
 
-			fee.before = (priceBeforeTaxes * feePercentage).toFixed(2);
-			fee.after = (fee.before * TAX_FEE).toFixed(2);
+			fee.before = (priceBeforeTaxes * feePercentage)
+				.toFixed(2);
+			fee.after = (fee.before * TAX_FEE)
+				.toFixed(2);
 
 			console.log('priceBeforeTaxes:' + priceBeforeTaxes);
 			console.log('Co2Value:' + Co2Value);
 			console.log('feePercentage:' + feePercentage);
-            console.log('fee.beforeTax:' + fee.before);
-            console.log('fee.afterTax:' + fee.after);
+			console.log('fee.beforeTax:' + fee.before);
+			console.log('fee.afterTax:' + fee.after);
 
 			return fee;
 
