@@ -44,16 +44,16 @@
 		}
 
 		function getMake() {
-
+			let level = 0;
 			var deferred = $q.defer();
 
-			API.make()
+			API.make(level)
 				.then(resp => {
 					ctrl.make = resp.data;
 					deferred.resolve(resp.data.Code);
 					Data.set.make(resp.data);
 				}, resp => {
-					console.log('Failed to get makes');
+					console.log('Failed to get makes',resp);
 					deferred.reject({ data: 'ERROR' });
 				})
 

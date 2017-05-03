@@ -144,6 +144,9 @@ body {
 .o-hidden {
   overflow: hidden; }
 
+.p-0 {
+  padding: 0 !important; }
+
 a:focus {
   outline: none; }
 
@@ -169,6 +172,19 @@ table th {
 
 table.table.table-hover tbody tr:hover {
   cursor: pointer; }
+
+table.table-card td,
+table.table-card th {
+  margin: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px; }
+
+table.table-card {
+  border-collapse: separate;
+  border-spacing: 10px;
+  *border-collapse: expression('separate', cellSpacing='10px'); }
+
+td.va-middle {
+  vertical-align: middle; }
 
 div.body {
   min-height: 780px;

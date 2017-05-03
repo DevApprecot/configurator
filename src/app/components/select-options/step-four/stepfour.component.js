@@ -12,10 +12,15 @@
 			},
 		});
 
-	StepFourCtrl.$inject = ['Data'];
+	StepFourCtrl.$inject = ['Data', 'TAX_FEE', 'RegistrationFee'];
 
-	function StepFourCtrl(Data) {
+	function StepFourCtrl(Data, TAX_FEE, RegistrationFee) {
 		var ctrl = this;
+		ctrl.taxFee = TAX_FEE;
+
+		ctrl.calcFee = function() {
+			ctrl.regTax = RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment.manualEquipments);
+		}
 
 		ctrl.$onInit = function() {
 

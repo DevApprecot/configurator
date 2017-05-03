@@ -5,9 +5,9 @@
 		.module('configurator')
 		.service('API', API);
 
-	API.$inject = ['http'];
+	API.$inject = ['http', 'API_URL'];
 
-	function API(http) {
+	function API(http, API_URL) {
 
 		var service = {
 			make: getMake,
@@ -26,10 +26,12 @@
 				entry: "IDMS_CNF_ModelView",
 				odatastring: `Level eq ${level}`,
 				page: 1,
-				pasgeSize: 500
+				pageSize: 500
 			};
 
+			///GetData
 			return http.get(params, './app/resources/makes.json');
+			// return http.get(params, `${API_URL}/GetData`);
 		}
 
 		function getFamilies(level, makeCode) {

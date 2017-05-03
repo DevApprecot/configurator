@@ -47,14 +47,7 @@
 			let color = Data.get.color();
 			let equipment = Data.get.equipment();
 
-			ctrl.updatePrice(ctrl.car.price - (
-				ctrl.car.family.Price + // Family Price
-				(ctrl.car.model ? ctrl.car.model.Price : 0) + // Model Price
-				(color ? color.Price : 0) + // Color Price
-				((equipment && equipment.autoEquipments) ? equipment.autoEquipments.reduce((previous, current) => {
-					return previous + current.Price
-				}, 0) : 0) // Equipment Price
-			));
+			ctrl.updatePrice(0);
 
 			delete ctrl.car.family;
 			delete ctrl.car.model;

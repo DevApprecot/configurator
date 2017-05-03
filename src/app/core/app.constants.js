@@ -9,7 +9,11 @@
 		})
 
 		.constant('IMAGES_PATH', {
-			url: `https://onedealer.kosmocar.gr/Files/EntityImage/Inventory/`
-		});
+			url: `http://onedealer.kosmocar.gr/Files/EntityImage/Inventory/`
+		})
+
+		.constant('API_URL', 'https://onedealer.kosmocar.gr/external')
+
+		.constant('TAX_FEE', 1.24)
 
 })();

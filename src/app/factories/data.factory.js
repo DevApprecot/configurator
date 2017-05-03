@@ -120,6 +120,9 @@
 						delete $sessionStorage[val];
 					}
 				});
+
+			//Clear service scope
+			_model = _color = _equipment = null;
 		}
 
 		function clearColorEquipment() {
@@ -130,6 +133,9 @@
 						delete $sessionStorage[val];
 					}
 				});
+
+			//Clear service scope
+			_color = _equipment = null;
 		}
 
 		function calculateCurrentPrice() {
@@ -137,10 +143,14 @@
 
 			if (!_family) return 0;
 
-			price += (_family.Price + (_model ? _model.Price : 0) + (_color ? _color.Price : 0) + (_equipment ? _equipment.autoEquipments
-				.reduce((previous, current, idx) => {
-					return previous + current.Price
-				}, 0) : 0));
+			price += ((_model ? _model.Price : 0) +
+					(_color ? _color.Price : 0) +
+					(_equipment && _equipment.autoEquipments.length ? _equipment.autoEquipments.reduce((previous, current, idx) => {
+						return previous + current.Price
+					}, 0) : 0)) +
+				(_equipment && _equipment.manualEquipments.length ? _equipment.manualEquipments.reduce((previous, current) => {
+					return previous + current.price
+				}, 0) : 0)
 
 			return price;
 

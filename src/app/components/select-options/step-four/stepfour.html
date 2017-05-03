@@ -3,81 +3,139 @@
 
 	<div class="row vertical-align">
 
-		<div class="col-md-4 col-md-offset-2">
+		<div class="col-md-4 col-md-offset-1">
 			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
+		
 			     err-src="{{$ctrl.defaultImg}}"
 			     class="img-responsive">
 
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-5">
 			<div class="box rp-m-t-md">
 				<div class="box-header">
 					<h2>  Πληροφορίες</h2>
 				</div>
-				<div class="box-body">
+				<div class="box-body table-responsive">
 
-					<div class="row">
-						<div class="col-md-4">
-							<label>Μάρκα</label>
-						</div>
-						<div class="col-md-8">
-							<p>{{$ctrl.make.ModelDescription}}</p>
-						</div>
-					</div>
-					<div class="row m-t-md">
-						<div class="col-md-4">
-							<label>Οικογένεια</label>
-						</div>
-						<div class="col-md-8">
-							<p>{{$ctrl.family.ModelDescription}}</p>
-						</div>
-					</div>
-					<div class="row m-t-md">
-						<div class="col-md-4">
-							<label>Μοντέλο</label>
-						</div>
-						<div class="col-md-8">
-							<p>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></p>
-						</div>
-					</div>
-					<div class="row m-t-md">
-						<div class="col-md-4">
-							<label>Χρώμα</label>
-						</div>
-						<div class="col-md-8">
-							<p>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></p>
-						</div>
-					</div>
-					<div class="row m-t-md">
-						<div class="col-md-4">
-							<label>Εξοπλισμός από λίστα:</label>
-						</div>
-						<div class="col-md-8">
-							<div ng-repeat="equipment in $ctrl.equipment.autoEquipments track by $index"
-							     class="row">
-								<div class="col-md-12">
-									<p>{{equipment.OptionDescription}} <small class="text-muted">({{equipment.OptionCode}})</small></p>
-								</div>
-							</div>
-							<span ng-show="!$ctrl.equipment.autoEquipments.length">-</span>
-						</div>
-					</div>
+					<table class="table-card">
+						<tbody>
 
-					<div class="row m-t-md">
-						<div class="col-md-4">
-							<label>Εξοπλισμός που προστέθηκε χειροκίνητα:</label>
-						</div>
-						<div class="col-md-8">
-							<div ng-repeat="equipment in $ctrl.equipment.manualEquipments track by $index"
-							     class="row">
-								<div class="col-md-12">
-									<p>{{equipment.description}} <small class="text-muted">({{equipment.code}})</small></p>
+							<tr>
+								<td></td>
+								<td></td>
+								<th>Χωρίς Φ.Π.Α</th>
+								<th>Με Φ.Π.Α</th>
+							</tr>
+
+							<tr>
+								<th>Μάρκα</th>
+								<td>{{$ctrl.make.ModelDescription}}</td>
+							</tr>
+
+							<tr>
+								<th>Οικογένεια</th>
+								<td>{{$ctrl.family.ModelDescription}}</td>
+							</tr>
+
+							<tr>
+								<th>Μοντέλο</th>
+								<td>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></td>
+								<td>{{$ctrl.model.Price | currency}}</td>
+								<td>{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
+							</tr>
+
+							<tr>
+								<th>Χρώμα</th>
+								<td>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></td>
+								<td>{{$ctrl.color.Price | currency}}</td>
+								<td>{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
+							</tr>
+
+							<tr>
+								<th>Εξοπλισμός από λίστα</th>
+
+								<div ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length">
+									<td>{{$ctrl.equipment.autoEquipments[0].OptionDescription}}
+										<small class="text-muted">({{$ctrl.equipment.autoEquipments[0].OptionCode}})</small>
+									</td>
+
+									<td>{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
+
+									<td>{{$ctrl.equipment.autoEquipments[0].Price * $ctrl.taxFee | currency}}</td>
 								</div>
-							</div>
-							<span ng-show="!$ctrl.equipment.manualEquipments.length">-</span>
-						</div>
-					</div>
+
+							</tr>
+
+							<tr ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length > 1"
+							    ng-repeat="equipment in $ctrl.equipment.autoEquipments | limitTo: (1 - $ctrl.equipment.autoEquipments.length) track by $index">
+								<th></th>
+								<td>{{equipment.OptionDescription}}
+									<small class="text-muted">({{equipment.OptionCode}})</small>
+								</td>
+
+								<td>{{equipment.Price | currency}}</td>
+
+								<td>{{equipment.Price * $ctrl.taxFee | currency}}</td>
+							</tr>
+
+							<tr>
+								<th>Εξοπλισμός που προστέθηκε χειροκίνητα</th>
+
+								<td ng-show="!($ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length)">-</td>
+
+								<div ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length">
+									<td>{{$ctrl.equipment.manualEquipments[0].description}}
+										<small class="text-muted">({{$ctrl.equipment.manualEquipments[0].code}})</small>
+									</td>
+
+									<td>{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
+
+									<td>{{$ctrl.equipment.manualEquipments[0].price * $ctrl.taxFee | currency}}</td>
+								</div>
+
+							</tr>
+
+							<tr ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length > 1"
+							    ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
+								<th></th>
+								<td>{{equipment.description}}
+									<small class="text-muted">({{$ctrl.equipment.code}})</small>
+								</td>
+
+								<td>{{equipment.price | currency}}</td>
+
+								<td>{{equipment.price * $ctrl.taxFee | currency}}</td>
+							</tr>
+
+							<tr>
+								<th>Τέλος ταξινόμησης προ φόρων</th>
+								<td class="va-middle">
+									<input ng-model="$ctrl.regTax.before"
+									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
+									       type="text"
+									       class="form-control">
+								</td>
+								<td>
+									<button ng-click="$ctrl.calcFee()"
+									        class="btn btn-md my-button">Υπολογισμός</button>
+								</td>
+							</tr>
+
+							<tr>
+								<th>Τέλος ταξινόμησης μετά φόρων</th>
+								<td class="va-middle">
+									<input ng-model="$ctrl.regTax.after"
+									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
+									       type="text"
+									       class="form-control">
+								</td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
 
 				</div>
 			</div>
