@@ -22,18 +22,9 @@
 
 			return $http({
 				method: 'GET',
-				url: endpoint + '?' + $.param(params),
-				// transformRequest: function(data, headersGetter) {
-				// 	var headers = headersGetter();
-
-				// 	delete headers['Authorization'];
-
-				// 	return headers;
-				// },
-				// transformResponse: [function(data) {
-				// 	console.log(data);
-				// 	return data;
-  				// }]
+				url: endpoint,
+				params,
+				headers: { 'Content-Type': 'application/json' }
 			})
 		}
 

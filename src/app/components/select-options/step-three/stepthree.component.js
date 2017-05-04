@@ -13,9 +13,9 @@
 			},
 		});
 
-	StepThreeCtrl.$inject = ['API', 'Data'];
+	StepThreeCtrl.$inject = ['$stateParams', 'API', 'Data'];
 
-	function StepThreeCtrl(API, Data) {
+	function StepThreeCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.manualEquipments = [];
 
@@ -39,7 +39,7 @@
 		}
 
 		function getEquipment() {
-			API.options()
+			API.options($stateParams.modelId)
 				.then(resp => {
 					ctrl.equipment = resp.data.map(val => {
 						if (!val.Photo)
@@ -47,7 +47,7 @@
 							.Photo;
 
 						return val;
-					});;
+					});
 					console.log(ctrl.equipment);
 				}, resp => {
 					console.log('Failed to get equipment', resp);

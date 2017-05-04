@@ -5,9 +5,9 @@
 		.module('configurator')
 		.service('RegistrationFee', RegistrationFee);
 
-	RegistrationFee.$inject = ['TAX_FEE'];
+	RegistrationFee.$inject = [];
 
-	function RegistrationFee(TAX_FEE) {
+	function RegistrationFee() {
 
 		var service = {
 			calculate: calculateRegistrationFee
@@ -42,10 +42,7 @@
 
 		function calculateRegistrationFee(family, model, color, aOptions, mOptions) {
 
-			let fee = {
-				before: 0,
-				after: 0
-			};
+			let fee = 0;
 			let feePercentage = 0;
 
 			let priceBeforeTaxes = model.Price +
@@ -60,19 +57,18 @@
 				return (priceBeforeTaxes >= val[0] && priceBeforeTaxes <= val[1])
 			});
 
-			if (!i) i = PBT_Row.length;
+			if (i === -1) i = PBT_Row.length;
 
 			let j = Co2_Row.findIndex((val, idx) => {
 				return (Co2Value >= val[0] && Co2Value <= val[1])
 			});
 
-			if (!j) j = Co2_Row.length;
+			if (j === -1) j = Co2_Row.length;
 
 			feePercentage = RegistrationFeePercentages[i][j];
 
-			fee.before = (priceBeforeTaxes * feePercentage)
-				.toFixed(2);
-			fee.after = (fee.before * TAX_FEE)
+
+			fee = (priceBeforeTaxes * feePercentage)
 				.toFixed(2);
 
 			console.log('priceBeforeTaxes:' + priceBeforeTaxes);

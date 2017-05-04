@@ -17,9 +17,18 @@
 	function StepFourCtrl(Data, TAX_FEE, RegistrationFee) {
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
+		ctrl.finalPrice = {
+			noRegTax: 0,
+			beforeTax: 0,
+			afterTax: 0
+		};
 
 		ctrl.calcFee = function() {
-			ctrl.regTax = RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment.manualEquipments);
+			ctrl.regTax = RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
+				.manualEquipments);
+
+			ctrl.finalPrice.beforeTax = +ctrl.finalPrice.noRegTax + +ctrl.regTax;
+			ctrl.finalPrice.afterTax = (ctrl.finalPrice.beforeTax * ctrl.taxFee).toFixed(2);
 		}
 
 		ctrl.$onInit = function() {
@@ -28,6 +37,8 @@
 				.map(val => {
 					ctrl[val] = Data.get[val]()
 				})
+
+			ctrl.finalPrice.noRegTax = Data.get.currentPrice();
 
 			console.log(ctrl);
 

@@ -139,6 +139,7 @@
 		}
 
 		function calculateCurrentPrice() {
+			
 			var price = 0;
 
 			if (!_family) return 0;

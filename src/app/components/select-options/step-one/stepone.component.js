@@ -14,15 +14,17 @@
 			}
 		});
 
-	StepOneCtrl.$inject = ['API', 'Data'];
+	StepOneCtrl.$inject = ['$stateParams', 'API', 'Data'];
 
-	function StepOneCtrl(API, Data) {
+	function StepOneCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.models = [];
 
 		ctrl.$onInit = function() {
-			API.models()
+			API.models(2, $stateParams.familyId)
 				.then(resp => {
+
+					console.log(resp.data.filter(val=>val.Code=='8XFAS4'));
 
 					ctrl.models = resp.data.map(val => {
 						if (!val.Photo)

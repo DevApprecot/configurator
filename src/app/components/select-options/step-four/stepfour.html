@@ -80,7 +80,7 @@
 							</tr>
 
 							<tr>
-								<th>Εξοπλισμός που προστέθηκε χειροκίνητα</th>
+								<th>Εξοπλισμός που προστέθηκε χειροκίνητα ({{$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length}})</th>
 
 								<td ng-show="!($ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length)">-</td>
 
@@ -96,22 +96,35 @@
 
 							</tr>
 
-							<tr ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length > 1"
-							    ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
-								<th></th>
-								<td>{{equipment.description}}
-									<small class="text-muted">({{$ctrl.equipment.code}})</small>
+							<div ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length > 1">
+
+								<tr ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
+									<th></th>
+									<td>{{equipment.description}}
+										<small class="text-muted">({{$ctrl.equipment.code}})</small>
+									</td>
+
+									<td>{{equipment.price | currency}}</td>
+
+									<td>{{equipment.price * $ctrl.taxFee | currency}}</td>
+								</tr>
+
+							</div>
+
+
+							<tr>
+								<th>Σύνολο</th>
+								<td class="va-middle">
+									{{$ctrl.finalPrice.noRegTax | currency}}
 								</td>
 
-								<td>{{equipment.price | currency}}</td>
-
-								<td>{{equipment.price * $ctrl.taxFee | currency}}</td>
 							</tr>
 
 							<tr>
-								<th>Τέλος ταξινόμησης προ φόρων</th>
+								<th>Τέλος ταξινόμησης</th>
 								<td class="va-middle">
-									<input ng-model="$ctrl.regTax.before"
+									<input ng-model="$ctrl.regTax"
+									       ui-currency
 									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
 									       type="text"
 									       class="form-control">
@@ -123,9 +136,22 @@
 							</tr>
 
 							<tr>
-								<th>Τέλος ταξινόμησης μετά φόρων</th>
+								<th>Τελική τιμή χωρίς Φ.Π.Α</th>
 								<td class="va-middle">
-									<input ng-model="$ctrl.regTax.after"
+									<input ng-model="$ctrl.finalPrice.beforeTax"
+									       ui-currency
+									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
+									       type="text"
+									       class="form-control">
+								</td>
+
+							</tr>
+
+							<tr>
+								<th>Τελική τιμή με Φ.Π.Α</th>
+								<td class="va-middle">
+									<input ng-model="$ctrl.finalPrice.afterTax"
+									       ui-currency
 									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
 									       type="text"
 									       class="form-control">

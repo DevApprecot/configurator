@@ -34,8 +34,9 @@
 		ctrl.$onDestory = function() {};
 
 		function getFamilies(makeCode) {
-			API.families(makeCode)
+			API.families(1, makeCode)
 				.then(resp => {
+					console.log(resp.data.filter(val=>val.Code == '8XF'));
 					ctrl.families = resp.data;
 					console.log(ctrl.families);
 				}, resp => {
@@ -50,10 +51,10 @@
 			API.make(level)
 				.then(resp => {
 					ctrl.make = resp.data;
-					deferred.resolve(resp.data.Code);
-					Data.set.make(resp.data);
+					deferred.resolve(resp.data[0].Code);
+					Data.set.make(resp.data[0]);
 				}, resp => {
-					console.log('Failed to get makes',resp);
+					console.log('Failed to get makes', resp);
 					deferred.reject({ data: 'ERROR' });
 				})
 

@@ -81,4 +81,18 @@
 		background-color: $audi-dark;
 		color: $white;
 	}
+
+	#loading-bar .bar {
+		background: $audi-special;
+		height: 4px;
+	}
+
+	#loading-bar-spinner .spinner-icon {
+		width: 18px;
+		height: 18px;
+		border: solid 4px transparent;
+		border-top-color: $audi-special;
+		border-left-color: $audi-special;
+		border-radius: 10px;
+	}
 }

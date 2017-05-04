@@ -29,9 +29,8 @@
 				pageSize: 500
 			};
 
-			///GetData
-			return http.get(params, './app/resources/makes.json');
-			// return http.get(params, `${API_URL}/GetData`);
+			// return http.get(params, './app/resources/makes.json');
+			return http.get(params, `${API_URL}/GetData`);
 		}
 
 		function getFamilies(level, makeCode) {
@@ -40,40 +39,50 @@
 				entry: 'IDMS_CNF_ModelView',
 				odatastring: `Level eq ${level} and MakeCode eq '${makeCode}'`,
 				page: 1,
-				pasgeSize: 500
+				pageSize: 500
 			};
 
-			return http.get(params, './app/resources/families.json');
+			return http.get(params, `${API_URL}/GetData`);
 		}
 
-		function getModels(level, parentModelCode) {
+		function getModels(level, parentModelCode, page, pageSize) {
 
 			let params = {
 				entry: 'IDMS_CNF_ModelView',
 				odatastring: `Level eq ${level} and ParentModelCode eq '${parentModelCode}'`,
-				page: 1,
-				pasgeSize: 500
+				page,
+				pageSize
 			};
 
-			return http.get(params, './app/resources/models.json');
+			return http.get(params, `${API_URL}/GetData`);
 
 		}
 
 		function getVariants() {}
 
-		function getOptions(someParams) {
+		function getOptions(modelCode) {
 
-			let params = {};
+			let params = {
+				entry: 'IDMS_CNF_ModelOptionView',
+				odatastring: `ModelCode eq '${modelCode}' and ItemGroup ne 'Χρώματα'`,
+				page: 1,
+				pageSize: 500
+			};
 
-			return http.get(params, './app/resources/options.json');
+			return http.get(params, `${API_URL}/GetData`);
 
 		}
 
-		function getColors(someParams) {
+		function getColors(modelCode) {
 
-			let params = {};
+			let params = {
+				entry: 'IDMS_CNF_ModelOptionView',
+				odatastring: `ModelCode eq '${modelCode}' and ItemGroup eq 'Χρώματα' `,
+				page: 1,
+				pageSize: 10
+			};
 
-			return http.get(params, './app/resources/colors.json');
+			return http.get(params, `${API_URL}/GetData`);
 		}
 
 	}

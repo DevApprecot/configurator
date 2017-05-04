@@ -78,11 +78,9 @@
 			Data.set.equipment(equipmentOptions);
 			Data.set.steps(ctrl.completedSteps);
 
-			//Add new options price
-
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 
-			$state.go('app.select-options.step-four', { modelId: ctrl.model.Code, colorId: ctrl.color.id })
+			$state.go('app.select-options.step-four', { modelId: ctrl.model.Code, colorId: ctrl.color.OptionCode })
 		}
 
 		ctrl.$onInit = function() {

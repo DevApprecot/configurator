@@ -13,9 +13,9 @@
 			}
 		});
 
-	StepTwoCtrl.$inject = ['API', 'Data'];
+	StepTwoCtrl.$inject = ['$stateParams', 'API', 'Data'];
 
-	function StepTwoCtrl(API, Data) {
+	function StepTwoCtrl($stateParams, API, Data) {
 		var ctrl = this;
 
 		var _getColors = getColors;
@@ -27,7 +27,7 @@
 		ctrl.$onDestory = function() {};
 
 		function getColors() {
-			API.colors()
+			API.colors($stateParams.modelId)
 				.then(resp => {
 					ctrl.colors = resp.data.map(val => {
 						if (!val.Photo)

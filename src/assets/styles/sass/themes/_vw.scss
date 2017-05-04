@@ -21,9 +21,7 @@
 		color: $vw-dark;
 	} //Steps
 	steps .steps a {
-		color: $vw-special
-
-		i {
+		color: $vw-special i {
 			color: $vw-special
 		}
 	}
@@ -79,5 +77,19 @@
 	div.box div.box-header {
 		background-color: $vw-dark;
 		color: $white;
+	}
+
+	#loading-bar .bar {
+		background: $vw-special;
+		height: 4px;
+	}
+
+	#loading-bar-spinner .spinner-icon {
+		width: 18px;
+		height: 18px;
+		border: solid 4px transparent;
+		border-top-color: $vw-special;
+		border-left-color: $vw-special;
+		border-radius: 10px;
 	}
 }
