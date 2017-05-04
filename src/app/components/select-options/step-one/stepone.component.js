@@ -19,11 +19,10 @@
 	function StepOneCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.models = [];
-		ctrl.page = 1;
-		ctrl.pageSize = 5;
+
 
 		ctrl.$onInit = function() {
-			ctrl.getModels(ctrl.page);
+			ctrl.getModels();
 		};
 
 		ctrl.$onChanges = function(changesObj) {
@@ -35,20 +34,19 @@
 
 		ctrl.getModels = function(page) {
 
-			console.log(page);
-
-			API.models($stateParams.familyId, page, ctrl.pageSize)
+			API.models($stateParams.familyId)
 				.then(resp => {
 
 					console.log(resp);
 
-					ctrl.models = resp.data.map(val => {
+					ctrl.models = resp.data.listOfData.map(val => {
 						if (!val.Photo)
 							val.Photo = Data.get.family()
 							.Photo;
 
 						return val;
 					});
+
 
 					console.log(ctrl.models);
 				}, resp => {

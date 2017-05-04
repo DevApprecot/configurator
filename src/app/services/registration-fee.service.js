@@ -39,6 +39,8 @@
         ]
 
 		return service;
+		
+		//Ypolupetai to pedio pou kathorizei an einai ivridiko 'h amigws ilektriko
 
 		function calculateRegistrationFee(family, model, color, aOptions, mOptions) {
 
@@ -51,7 +53,8 @@
 				mOptions.reduce((prev, curr) => prev + curr.price, 0);
 
 			let Co2Value = model.CO2EmissionCombined +
-				aOptions.reduce((prev, curr) => prev + curr.ChangeCO2, 0);
+				aOptions.reduce((prev, curr) => prev + curr.ChangeCO2, 0) +
+				mOptions.reduce((prev, curr) => prev + curr.co2, 0)
 
 			let i = PBT_Row.findIndex((val) => {
 				return (priceBeforeTaxes >= val[0] && priceBeforeTaxes <= val[1])
@@ -66,7 +69,6 @@
 			if (j === -1) j = Co2_Row.length;
 
 			feePercentage = RegistrationFeePercentages[i][j];
-
 
 			fee = (priceBeforeTaxes * feePercentage)
 				.toFixed(2);

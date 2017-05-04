@@ -16,7 +16,7 @@
 	     alt="{{$ctrl.theme}} logo">
 
 
-	<p ng-show="!$ctrl.stateIs('app.select-family')"
+	<p ng-show="!($ctrl.stateIs('app.select-family') || $ctrl.stateIs('app.select-options.step-one'))"
 	   class="price pull-right">
 		από {{$ctrl.price | currency}}
 	</p>

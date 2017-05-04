@@ -11,9 +11,9 @@
 			}
 		});
 
-	SelectFamilyCtrl.$inject = ['$state', '$stateParams', 'API', '$q', 'Data'];
+	SelectFamilyCtrl.$inject = ['$state', '$stateParams', 'API', 'Data', '$rootScope'];
 
-	function SelectFamilyCtrl($state, $stateParams, API, $q, Data) {
+	function SelectFamilyCtrl($state, $stateParams, API, Data, $rootScope) {
 		var ctrl = this;
 
 		var _getMake = getMake;
@@ -21,12 +21,8 @@
 
 		ctrl.$onInit = function() {
 
-			_getMake($stateParams.makeId)
-				.then(makeCode => {
-					_getFamilies(makeCode);
-				}, resp => {
-					console.log(resp);
-				});
+			_getFamilies($stateParams.makeId);
+			_getMake();
 
 		};
 
@@ -34,10 +30,10 @@
 		ctrl.$onDestory = function() {};
 
 		function getFamilies(makeCode) {
-			API.families(1, makeCode)
+			API.families(makeCode)
 				.then(resp => {
-					console.log(resp.data.filter(val=>val.Code == '8XF'));
-					ctrl.families = resp.data;
+					console.log('families', resp);
+					ctrl.families = resp.data.listOfData.filter(family => !!family.Family);
 					console.log(ctrl.families);
 				}, resp => {
 					console.log('Failed to get families');
@@ -45,20 +41,17 @@
 		}
 
 		function getMake() {
-			let level = 0;
-			var deferred = $q.defer();
 
-			API.make(level)
+			API.make()
 				.then(resp => {
-					ctrl.make = resp.data;
-					deferred.resolve(resp.data[0].Code);
-					Data.set.make(resp.data[0]);
+					console.log('Make', resp);
+					ctrl.make = resp.data.listOfData.filter(make => make.MakeCode == $stateParams.makeId)[0];
+					Data.set.make(ctrl.make);
+					$rootScope.$broadcast('selectedMake', ctrl.make.Make);
 				}, resp => {
 					console.log('Failed to get makes', resp);
-					deferred.reject({ data: 'ERROR' });
 				})
 
-			return deferred.promise;
 		}
 
 	}

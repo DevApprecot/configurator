@@ -20,11 +20,11 @@
 
 		return service;
 
-		function getMake(level) {
+		function getMake() {
 
 			let params = {
 				entry: "IDMS_CNF_ModelView",
-				odatastring: `Level eq ${level}`,
+				odatastring: `Level eq 0`,
 				page: 1,
 				pageSize: 500
 			};
@@ -32,11 +32,11 @@
 			return http.get(params, `${API_URL}/GetData`);
 		}
 
-		function getFamilies(level, makeCode) {
+		function getFamilies(makeCode) {
 
 			let params = {
 				entry: 'IDMS_CNF_ModelView',
-				odatastring: `Level eq ${level} and MakeCode eq '${makeCode}'`,
+				odatastring: `Level eq 1 and MakeCode eq '${makeCode}'`,
 				page: 1,
 				pageSize: 500
 			};
@@ -44,13 +44,13 @@
 			return http.get(params, `${API_URL}/GetData`);
 		}
 
-		function getModels(parentModelCode, page, pageSize) {
+		function getModels(parentModelCode) {
 
 			let params = {
 				entry: 'IDMS_CNF_ModelView',
 				odatastring: `Level eq 2 and ParentModelCode eq '${parentModelCode}'`,
-				page,
-				pageSize
+				page:1,
+				pageSize:500
 			};
 
 			return http.get(params, `${API_URL}/GetData`);
@@ -78,7 +78,7 @@
 				entry: 'IDMS_CNF_ModelOptionView',
 				odatastring: `ModelCode eq '${modelCode}' and ItemGroup eq 'Χρώματα' `,
 				page: 1,
-				pageSize: 10
+				pageSize: 500
 			};
 
 			return http.get(params, `${API_URL}/GetData`);

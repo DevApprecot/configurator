@@ -18,17 +18,22 @@
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
 		ctrl.finalPrice = {
-			noRegTax: 0,
-			beforeTax: 0,
-			afterTax: 0
+			noRegTax: null,
+			beforeTax: null,
+			afterTax: null
 		};
 
 		ctrl.calcFee = function() {
-			ctrl.regTax = RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
+			ctrl.regTax = +RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
 				.manualEquipments);
 
+			ctrl.calcFinalPrices();
+		}
+
+		ctrl.calcFinalPrices = function() {
 			ctrl.finalPrice.beforeTax = +ctrl.finalPrice.noRegTax + +ctrl.regTax;
-			ctrl.finalPrice.afterTax = (ctrl.finalPrice.beforeTax * ctrl.taxFee).toFixed(2);
+			ctrl.finalPrice.afterTax = (ctrl.finalPrice.beforeTax * ctrl.taxFee)
+				.toFixed(2);
 		}
 
 		ctrl.$onInit = function() {

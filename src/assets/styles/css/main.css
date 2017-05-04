@@ -154,6 +154,14 @@ a[disabled=disabled] {
   pointer-events: none;
   cursor: default; }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+input[type="number"] {
+  -moz-appearance: textfield; }
+
 @media (min-width: 768px) {
   .row.vertical-align {
     display: flex;
@@ -183,8 +191,14 @@ table.table-card {
   border-spacing: 10px;
   *border-collapse: expression('separate', cellSpacing='10px'); }
 
+table.table-card td {
+  line-height: 20px; }
+
 td.va-middle {
   vertical-align: middle; }
+
+td[tr-ng-grid-footer-cell] {
+  display: none; }
 
 div.body {
   min-height: 780px;

@@ -3,15 +3,7 @@
 
 	<div class="row vertical-align">
 
-		<div class="col-md-4 col-md-offset-1">
-			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
-		
-			     err-src="{{$ctrl.defaultImg}}"
-			     class="img-responsive">
-
-		</div>
-
-		<div class="col-md-5">
+		<div class="col-md-8">
 			<div class="box rp-m-t-md">
 				<div class="box-header">
 					<h2>  Πληροφορίες</h2>
@@ -24,23 +16,17 @@
 							<tr>
 								<td></td>
 								<td></td>
+								<th class="text-center">Co2</th>
 								<th>Χωρίς Φ.Π.Α</th>
 								<th>Με Φ.Π.Α</th>
 							</tr>
 
-							<tr>
-								<th>Μάρκα</th>
-								<td>{{$ctrl.make.ModelDescription}}</td>
-							</tr>
-
-							<tr>
-								<th>Οικογένεια</th>
-								<td>{{$ctrl.family.ModelDescription}}</td>
-							</tr>
 
 							<tr>
 								<th>Μοντέλο</th>
 								<td>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></td>
+
+								<td class="text-center">{{$ctrl.model.CO2EmissionCombined}}</td>
 								<td>{{$ctrl.model.Price | currency}}</td>
 								<td>{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
 							</tr>
@@ -48,6 +34,8 @@
 							<tr>
 								<th>Χρώμα</th>
 								<td>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></td>
+
+								<td class="text-center">{{$ctrl.color.ChangeCO2}}</td>
 								<td>{{$ctrl.color.Price | currency}}</td>
 								<td>{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
 							</tr>
@@ -59,6 +47,8 @@
 									<td>{{$ctrl.equipment.autoEquipments[0].OptionDescription}}
 										<small class="text-muted">({{$ctrl.equipment.autoEquipments[0].OptionCode}})</small>
 									</td>
+
+									<td class="text-center">{{$ctrl.equipment.autoEquipments[0].ChangeCO2}}</td>
 
 									<td>{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
 
@@ -73,6 +63,8 @@
 								<td>{{equipment.OptionDescription}}
 									<small class="text-muted">({{equipment.OptionCode}})</small>
 								</td>
+
+								<td class="text-center">{{equipment.ChangeCO2}}</td>
 
 								<td>{{equipment.Price | currency}}</td>
 
@@ -89,6 +81,8 @@
 										<small class="text-muted">({{$ctrl.equipment.manualEquipments[0].code}})</small>
 									</td>
 
+									<td class="text-center">{{$ctrl.equipment.manualEquipments[0].co2}}</td>
+
 									<td>{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
 
 									<td>{{$ctrl.equipment.manualEquipments[0].price * $ctrl.taxFee | currency}}</td>
@@ -101,8 +95,10 @@
 								<tr ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
 									<th></th>
 									<td>{{equipment.description}}
-										<small class="text-muted">({{$ctrl.equipment.code}})</small>
+										<small class="text-muted">({{equipment.code}})</small>
 									</td>
+
+									<td class="text-center">{{equipment.co2}}</td>
 
 									<td>{{equipment.price | currency}}</td>
 
@@ -113,7 +109,7 @@
 
 
 							<tr>
-								<th>Σύνολο</th>
+								<th>ΑΠΛΤΠΦ</th>
 								<td class="va-middle">
 									{{$ctrl.finalPrice.noRegTax | currency}}
 								</td>
@@ -123,10 +119,11 @@
 							<tr>
 								<th>Τέλος ταξινόμησης</th>
 								<td class="va-middle">
-									<input ng-model="$ctrl.regTax"
-									       ui-currency
+									<input ng-change="$ctrl.calcFinalPrices()"
+									       ng-model="$ctrl.regTax"
+									       
 									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
-									       type="text"
+									       type="number"
 									       class="form-control">
 								</td>
 								<td>
@@ -136,7 +133,7 @@
 							</tr>
 
 							<tr>
-								<th>Τελική τιμή χωρίς Φ.Π.Α</th>
+								<th>Σύνολο χωρίς Φ.Π.Α</th>
 								<td class="va-middle">
 									<input ng-model="$ctrl.finalPrice.beforeTax"
 									       ui-currency
@@ -148,11 +145,11 @@
 							</tr>
 
 							<tr>
-								<th>Τελική τιμή με Φ.Π.Α</th>
+								<th>ΑΠΛΤ</th>
 								<td class="va-middle">
 									<input ng-model="$ctrl.finalPrice.afterTax"
 									       ui-currency
-									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
+									       placeholder="Συμπληρώστε ή υπολογίστε ΑΠΛΤ"
 									       type="text"
 									       class="form-control">
 								</td>
@@ -160,19 +157,27 @@
 							</tr>
 
 						</tbody>
+
 					</table>
 
 
 				</div>
+
+				<div class="box-footer clearfix">
+					<button class="pull-right btn btn-lg my-button">Υποβολή</button>
+				</div>
 			</div>
 		</div>
 
-	</div>
+		<div class="col-md-4">
+			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
+		
+			     err-src="{{$ctrl.defaultImg}}"
+			     class="img-responsive">
 
-	<div class="row m-t-md">
-		<div class="col-md-4 col-md-offset-6">
-			<button class="pull-right btn btn-lg my-button">Υποβολή</button>
 		</div>
+
+
 	</div>
 
 

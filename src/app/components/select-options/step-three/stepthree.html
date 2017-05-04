@@ -80,6 +80,7 @@
 					<tr>
 						<th>Κωδικός</th>
 						<th>Περιγραφή</th>
+						<th>CO2</th>
 						<th>Τιμή</th>
 						<th>Ενέργεια</th>
 					</tr>
@@ -88,6 +89,7 @@
 					<tr ng-repeat="equipment in $ctrl.manualEquipments track by $index">
 						<td>{{equipment.code}}</td>
 						<td>{{equipment.description}}</td>
+						<td>{{equipment.co2}}</td>
 						<td>{{equipment.price | currency}}</td>
 						<td><button ng-click="$ctrl.removeEquipment($index)"
 							        class="btn btn-md my-button">Αφαίρεση</button></td>

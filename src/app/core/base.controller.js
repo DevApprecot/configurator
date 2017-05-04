@@ -5,16 +5,19 @@
 		.module('configurator')
 		.controller('BaseCtrl', BaseCtrl);
 
-	BaseCtrl.$inject = ['$stateParams', '$timeout'];
+	BaseCtrl.$inject = ['$stateParams', 'Data', '$timeout', '$scope'];
 
-	function BaseCtrl($stateParams, $timeout) {
+	function BaseCtrl($stateParams, Data, $timeout, $scope) {
 		var vm = this;
 
 		activate();
 
 		function activate() {
-			$timeout(() => {
-				vm.theme = $stateParams.makeId == 60 ? "vw" : "audi"
+			let make = Data.get.make();
+			vm.theme = make ? make.Make.toLowerCase() : null;
+
+			$scope.$on('selectedMake', (event, make) => {
+				vm.theme = make.toLowerCase();
 			})
 
 		}

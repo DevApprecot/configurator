@@ -17,25 +17,26 @@
 
 	function StepTwoCtrl($stateParams, API, Data) {
 		var ctrl = this;
-
-		var _getColors = getColors;
+		
 
 		ctrl.$onInit = function() {
-			_getColors();
+			ctrl.getColors();
 		};
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
 
-		function getColors() {
+		ctrl.getColors = function getColors() {
 			API.colors($stateParams.modelId)
 				.then(resp => {
-					ctrl.colors = resp.data.map(val => {
+					console.log(resp);
+					ctrl.colors = resp.data.listOfData.map(val => {
 						if (!val.Photo)
 							val.Photo = Data.get.model()
 							.Photo;
 
 						return val;
-					});;
+					});
+
 				}, resp => {
 					console.log('Failed to get colors', resp);
 				})

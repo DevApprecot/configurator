@@ -34,8 +34,8 @@
 					ngModel.$parsers.unshift(parse);
 
 					ngModel.$render = function() {
-						console.log('viewValue', ngModel.$viewValue);
-						console.log('modelValue', ngModel.$modelValue);
+						// console.log('viewValue', ngModel.$viewValue);
+						// console.log('modelValue', ngModel.$modelValue);
 						var clean = parse(ngModel.$viewValue, true);
 						if (!clean)
 							return;
