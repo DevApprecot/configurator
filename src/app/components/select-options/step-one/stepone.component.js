@@ -19,12 +19,28 @@
 	function StepOneCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.models = [];
+		ctrl.page = 1;
+		ctrl.pageSize = 5;
 
 		ctrl.$onInit = function() {
-			API.models(2, $stateParams.familyId)
+			ctrl.getModels(ctrl.page);
+		};
+
+		ctrl.$onChanges = function(changesObj) {
+			console.log('selected Items changed');
+			console.log(changesObj);
+		};
+
+		ctrl.$onDestory = function() {};
+
+		ctrl.getModels = function(page) {
+
+			console.log(page);
+
+			API.models($stateParams.familyId, page, ctrl.pageSize)
 				.then(resp => {
 
-					console.log(resp.data.filter(val=>val.Code=='8XFAS4'));
+					console.log(resp);
 
 					ctrl.models = resp.data.map(val => {
 						if (!val.Photo)
@@ -38,14 +54,7 @@
 				}, resp => {
 					console.log('Failed to get moels', resp);
 				})
-		};
-
-		ctrl.$onChanges = function(changesObj) {
-			console.log('selected Items changed');
-			console.log(changesObj);
-		};
-
-		ctrl.$onDestory = function() {};
+		}
 
 	}
 

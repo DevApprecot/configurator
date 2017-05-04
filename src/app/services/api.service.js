@@ -29,7 +29,6 @@
 				pageSize: 500
 			};
 
-			// return http.get(params, './app/resources/makes.json');
 			return http.get(params, `${API_URL}/GetData`);
 		}
 
@@ -45,11 +44,11 @@
 			return http.get(params, `${API_URL}/GetData`);
 		}
 
-		function getModels(level, parentModelCode, page, pageSize) {
+		function getModels(parentModelCode, page, pageSize) {
 
 			let params = {
 				entry: 'IDMS_CNF_ModelView',
-				odatastring: `Level eq ${level} and ParentModelCode eq '${parentModelCode}'`,
+				odatastring: `Level eq 2 and ParentModelCode eq '${parentModelCode}'`,
 				page,
 				pageSize
 			};
