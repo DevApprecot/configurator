@@ -17,7 +17,7 @@
 
 	function StepTwoCtrl($stateParams, API, Data) {
 		var ctrl = this;
-		
+		ctrl.selectedItem = {};
 
 		ctrl.$onInit = function() {
 			ctrl.getColors();
@@ -40,6 +40,18 @@
 				}, resp => {
 					console.log('Failed to get colors', resp);
 				})
+		}
+
+		ctrl.toggleSelect = function(color) {
+
+			(ctrl.selectedItem.OptionCode == color.OptionCode) ? ctrl.selectedItem = {}: ctrl.selectedItem = color;
+
+			ctrl.onSelect({ colorOptions: ctrl.selectedItem, isNextSelected: false })
+
+		}
+
+		ctrl.isSelected = function(code) {
+			return ctrl.selectedItem.OptionCode == code;
 		}
 	}
 })();

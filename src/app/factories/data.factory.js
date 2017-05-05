@@ -25,7 +25,8 @@
 				steps: getSteps,
 				color: getColorOptions,
 				equipment: getEquipment,
-				currentPrice: calculateCurrentPrice
+				currentPrice: calculateCurrentPrice,
+				totalCo2: calculateTotalCo2
 			},
 			set: {
 				make: setMake,
@@ -139,13 +140,12 @@
 		}
 
 		function calculateCurrentPrice() {
-			
 			var price = 0;
 
 			if (!_family) return 0;
 
 			price += ((_model ? _model.Price : 0) +
-					(_color ? _color.Price : 0) +
+					(_color && _color.Price ? _color.Price : 0) +
 					(_equipment && _equipment.autoEquipments.length ? _equipment.autoEquipments.reduce((previous, current, idx) => {
 						return previous + current.Price
 					}, 0) : 0)) +
@@ -155,6 +155,20 @@
 
 			return price;
 
+		}
+
+		function calculateTotalCo2() {
+			let totalCo2 = 0;
+
+			totalCo2 += (_model ? _model.CO2EmissionCombined : 0) +
+				(_color && _color.ChangeCO2 ? _color.ChangeCO2 : 0) +
+				(_equipment && _equipment.autoEquipments.length ? _equipment.autoEquipments.reduce((prev, curr) => prev + curr.ChangeCO2,
+					0) : 0) +
+				(_equipment && _equipment.manualEquipments.length ? _equipment.manualEquipments.reduce((prev, curr) => prev + curr
+					.co2,
+					0) : 0);
+
+			return totalCo2;
 		}
 
 	}

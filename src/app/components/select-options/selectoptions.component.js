@@ -47,7 +47,7 @@
 			$state.go('app.select-options.step-two', { modelId: model.Code });
 		};
 
-		ctrl.selectColor = function(colorOptions) {
+		ctrl.selectColor = function(colorOptions, isNextSelected) {
 			if (ctrl.color && (ctrl.color.OptionCode != colorOptions.OptionCode)) {
 				console.log('I am in');
 				Data.clear.colorEquipment();
@@ -67,10 +67,11 @@
 
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 
-			$state.go('app.select-options.step-three', { modelId: ctrl.model.Code, colorId: colorOptions.OptionCode })
+			if (isNextSelected)
+				$state.go('app.select-options.step-three', { modelId: ctrl.model.Code, colorId: colorOptions.OptionCode })
 		}
 
-		ctrl.selectEquipment = function(equipmentOptions) {
+		ctrl.selectEquipment = function(equipmentOptions, isNextSelected) {
 
 			ctrl.equipment = equipmentOptions;
 			ctrl.completedSteps[2] = true;
@@ -80,7 +81,8 @@
 
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 
-			$state.go('app.select-options.step-four', { modelId: ctrl.model.Code, colorId: ctrl.color.OptionCode })
+			if (isNextSelected)
+				$state.go('app.select-options.step-four', { modelId: ctrl.model.Code, colorId: ctrl.color.OptionCode })
 		}
 
 		ctrl.$onInit = function() {

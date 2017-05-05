@@ -1,53 +1,48 @@
-<div class="container-fluid">
+<span class="padding" ng-show="!$ctrl.colors.length">Δεν βρέθηκαν διαθέσιμα χρώματα.</span>
+
+<div ng-show="$ctrl.colors.length"
+     class="container-fluid">
 	<div class="row">
 		<h1>{{$ctrl.family.ModelDescription}} <small class="text-muted">{{$ctrl.model.ModelDescription}}</small></h1>
 
 		<div class="table-responsive m-t-md">
-			<table tr-ng-grid=""
-			       items="$ctrl.colors"
-			       selected-items="$ctrl.selectedItems"
-			       selection-mode="SingleRow"
-			       enable-filtering="false"
-			       enable-sorting="false"
-			       class="table table-hover">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 
-						<th display-name="Εικόνα"
-						    display-align="center"
-						    width="10%"></th>
+						<th class="text-center"
+						    width="10%">Εικόνα</th>
 
-						<th field-name="OptionCode"
-						    display-name="Κωδικός"
-						    display-align="center"
-						    width="10%"></th>
+						<th class="text-center"
+						    width="10%">Κωδικός</th>
 
 
-						<th field-name="OptionDescription"
-						    display-name="Περιγραφή"
-						    width="30%"></th>
+						<th width="30%">Περιγραφή</th>
 
-						<th field-name="Price"
-						    display-name="Τιμή"
-						    display-format="trNgGridCurrency:gridItem"
-						    display-align="center"
-						    width="10%">
+						<th class="text-center"
+						    width="10%">Τιμή
 						</th>
 
-						<th field-name="ChangeCO2"
-						    display-name="CO2"
-						    display-align="center"
-						    width="15%"></th>
+						<th class="text-center"
+						    width="15%">CO2</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					<tr>
+					<tr ng-click="$ctrl.toggleSelect(color)"
+					    ng-class="{'active':$ctrl.isSelected(color.OptionCode)}"
+					    ng-repeat="color in $ctrl.colors track by $index">
 						<td>
-							<img ng-src="{{$ctrl.imgPath + gridItem.Photo}}"
+							<img ng-src="{{$ctrl.imgPath + color.Photo}}"
 							     err-src="{{$ctrl.defaultImg}}"
 							     class="img-responsive">
 						</td>
+
+						<td class="text-center">{{color.OptionCode}}</td>
+						<td>{{color.OptionDescription}}</td>
+						<td class="text-center">{{color.Price | currency}}</td>
+						<td class="text-center">{{color.ChangeCO2}}</td>
+
 					</tr>
 				</tbody>
 			</table>
@@ -57,8 +52,7 @@
 	</div>
 
 	<div class="row m-t-md">
-		<button ng-disabled="!$ctrl.selectedItems.length"
-		        ng-click="$ctrl.onSelect({colorOptions:$ctrl.selectedItems[0]})"
+		<button ng-click="$ctrl.onSelect({colorOptions:$ctrl.selectedItem, isNextSelected:true})"
 		        class="pull-right btn btn-lg my-button">Επόμενο</button>
 	</div>
 </div>

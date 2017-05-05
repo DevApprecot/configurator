@@ -16,7 +16,7 @@
 			})
 
 			.state('app.select-family', {
-				url: '/car/make/:makeId/family',
+				url: '/car/make/:makeId/family/',
 				template: '<select-family on-select="$ctrl.selectFamily(family)"></select-family>'
 			})
 
@@ -32,12 +32,12 @@
 
 			.state('app.select-options.step-two', {
 				url: '/model/:modelId/color',
-				template: '<step-two default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectColor(colorOptions)"></step-two>'
+				template: '<step-two default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectColor(colorOptions, isNextSelected)"></step-two>'
 			})
 
 			.state('app.select-options.step-three', {
 				url: '/model/:modelId/color/:colorId/options',
-				template: '<step-three default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectEquipment(equipment)"></step-three>'
+				template: '<step-three default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectEquipment(equipment, isNextSelected)"></step-three>'
 			})
 
 			.state('app.select-options.step-four', {
@@ -45,7 +45,7 @@
 				template: '<step-four default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}"></step-four>'
 			})
 
-		$urlRouterProvider.otherwise('/app/car/make/60/family');
+		$urlRouterProvider.otherwise('app/car/make/60/family');
 
 	}
 })();

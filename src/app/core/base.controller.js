@@ -13,8 +13,8 @@
 		activate();
 
 		function activate() {
-			let make = Data.get.make();
-			vm.theme = make ? make.Make.toLowerCase() : null;
+			
+			vm.theme = 'default';
 
 			$scope.$on('selectedMake', (event, make) => {
 				vm.theme = make.toLowerCase();

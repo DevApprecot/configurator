@@ -19,7 +19,7 @@
 	function StepOneCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.models = [];
-
+		ctrl.selectedItem = {};
 
 		ctrl.$onInit = function() {
 			ctrl.getModels();
@@ -47,11 +47,20 @@
 						return val;
 					});
 
-
 					console.log(ctrl.models);
 				}, resp => {
 					console.log('Failed to get moels', resp);
 				})
+		}
+
+		ctrl.toggleSelect = (model) => {
+
+			(ctrl.selectedItem.Code == model.Code) ? ctrl.selectedItem = {}: ctrl.selectedItem = model;
+
+		}
+
+		ctrl.isSelected = (code) => {
+			return ctrl.selectedItem.Code == code;
 		}
 
 	}

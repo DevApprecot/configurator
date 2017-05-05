@@ -1,64 +1,61 @@
-<div>
+<span class="padding"
+      ng-show="!$ctrl.models.length">Δεν βρέθηκαν μοντέλα</span>
+
+<div ng-show="$ctrl.models.length"
+     class="container-fluid">
 
 	<h1>{{$ctrl.family.name}}</h1>
 
 	<div class="table-responsive m-t-md">
-		<table tr-ng-grid=""
-		       items="$ctrl.models"
-		       selected-items="$ctrl.selectedItems"
-		       selection-mode="SingleRow"
-		       enable-filtering="false"
-		       enable-sorting="false"
-		       class="table table-hover">
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th display-name="Εικόνα"
-					    display-align="center"
-					    width="10%"></th>
+					<th class="text-center"
+					    width="10%">Εικόνα</th>
 
-					<th field-name="Code"
-					    display-name="Κωδικός"
-					    width="15%"></th>
+					<th width="15%">Κωδικός</th>
 
-					<th field-name="ModelDescription"
-					    display-name="Περιγραφή"
-					    width="30%"></th>
+					<th width="30%">Περιγραφή</th>
 
-					<th field-name="model.PowerKW"
-					    display-name="CC/PS/KW"
-					    display-format="modelInformation:gridItem"
-					    display-align="center"
-					    width="20%"></th>
+					<th class="text-center"
+					    width="20%">CC/PS/KW</th>
 
-					<th field-name="Price"
-					    display-name="Τιμή"
-					    display-align="center"
-					    display-format="trNgGridCurrency:gridItem"
-					    width="15%">
+					<th class="text-center"
+					    width="15%">Τιμή
 					</th>
 
-					<th field-name="CO2EmissionCombined"
-					    display-name="CO2"
-					    display-align="center"
-					    width="20%"></th>
+					<th class="text-center"
+					    width="20%">CO2</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr ng-click="$ctrl.toggleSelect(model)"
+				    ng-class="{'active':$ctrl.isSelected(model.Code)}"
+				    ng-repeat="model in $ctrl.models track by $index">
+
 					<td>
-						{{$ctrl.imgPath + gridItem.Photo}}
-						<img ng-src="{{$ctrl.imgPath + gridItem.Photo}}"
+						<img ng-src="{{$ctrl.imgPath + model.Photo}}"
 						     err-src="{{$ctrl.defaultImg}}"
 						     class="img-responsive">
 					</td>
+
+					<td>{{model.Code}}</td>
+
+					<td>{{model.ModelDescription || '-'}}</td>
+
+					<td class="text-center">{{(model.EngineDisplacement || '-') + ' / ' + (model.PowerKW || '-') + ' / ' +(model.PowerPS || '-')}}</td>
+
+					<td class="text-center">{{model.Price | currency}} <span ng-show="!model.Price">-</span></td>
+
+					<td class="text-center">{{model.CO2EmissionCombined || '-'}}</td>
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
 
-	<button ng-click="$ctrl.onSelect({model:$ctrl.selectedItems[0]})"
-	        ng-disabled="!$ctrl.selectedItems.length"
+	<button ng-click="$ctrl.onSelect({model:$ctrl.selectedItem})"
+	        ng-disabled="!$ctrl.selectedItem.Code"
 	        class="pull-right my-button btn btn-lg ">Επόμενο</button>
 
 

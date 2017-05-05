@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<div class="row m-t-md">
+	<div ng-show="$ctrl.make" class="row m-t-md">
 		<h1 class="text-center">Διαμορφώστε το {{$ctrl.make.Make}} σας</h1>
 	</div>
 
@@ -9,6 +9,7 @@
 		     on-select="$ctrl.onSelect({family:item})"
 		     ng-repeat="item in $ctrl.families track by $index"></car>
 
+		<span class="padding" ng-show="!$ctrl.families.length">Δεν βρέθηκαν οικογένειες</span>
 
 	</div>
 </div>

@@ -39,7 +39,7 @@
         ]
 
 		return service;
-		
+
 		//Ypolupetai to pedio pou kathorizei an einai ivridiko 'h amigws ilektriko
 
 		function calculateRegistrationFee(family, model, color, aOptions, mOptions) {
@@ -48,7 +48,7 @@
 			let feePercentage = 0;
 
 			let priceBeforeTaxes = model.Price +
-				color.Price +
+				((color && color.Price) ? color.Price : 0) +
 				aOptions.reduce((prev, curr) => prev + curr.Price, 0) +
 				mOptions.reduce((prev, curr) => prev + curr.price, 0);
 
@@ -76,8 +76,6 @@
 			console.log('priceBeforeTaxes:' + priceBeforeTaxes);
 			console.log('Co2Value:' + Co2Value);
 			console.log('feePercentage:' + feePercentage);
-			console.log('fee.beforeTax:' + fee.before);
-			console.log('fee.afterTax:' + fee.after);
 
 			return fee;
 

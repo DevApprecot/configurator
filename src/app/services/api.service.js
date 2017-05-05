@@ -15,7 +15,8 @@
 			models: getModels,
 			variants: getVariants,
 			colors: getColors,
-			options: getOptions
+			options: getOptions,
+			submit: submitOptions
 		};
 
 		return service;
@@ -49,8 +50,8 @@
 			let params = {
 				entry: 'IDMS_CNF_ModelView',
 				odatastring: `Level eq 2 and ParentModelCode eq '${parentModelCode}'`,
-				page:1,
-				pageSize:500
+				page: 1,
+				pageSize: 500
 			};
 
 			return http.get(params, `${API_URL}/GetData`);
@@ -82,6 +83,23 @@
 			};
 
 			return http.get(params, `${API_URL}/GetData`);
+		}
+
+		function submitOptions(Options, TotalBasicPrice, TotalCO2, RegistrationFee) {
+
+			let payload = {
+				Options,
+				TotalBasicPrice,
+				TotalCO2,
+				RegistrationFee
+			};
+
+			console.log(angular.toJson(payload));
+
+			return;
+
+			return http.post(payload, `${API_URL}/someService`);
+
 		}
 
 	}

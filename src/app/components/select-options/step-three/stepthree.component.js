@@ -17,9 +17,8 @@
 
 	function StepThreeCtrl($stateParams, API, Data) {
 		var ctrl = this;
+		ctrl.selectedItems = [];
 		ctrl.manualEquipments = [];
-
-
 
 		ctrl.$onInit = function() {
 			ctrl.family = Data.get.family();
@@ -32,10 +31,26 @@
 		ctrl.addEquipment = function(equipment) {
 			console.log(equipment);
 			ctrl.manualEquipments.push(equipment);
+
+			ctrl.onSelect({
+				equipment: {
+					autoEquipments: ctrl.selectedItems,
+					manualEquipments: ctrl.manualEquipments
+				},
+				isNextSelected: false
+			})
 		}
 
 		ctrl.removeEquipment = function(idx) {
 			ctrl.manualEquipments.splice(idx, 1);
+
+			ctrl.onSelect({
+				equipment: {
+					autoEquipments: ctrl.selectedItems,
+					manualEquipments: ctrl.manualEquipments
+				},
+				isNextSelected: false
+			})
 		}
 
 		ctrl.getEquipment = function() {
@@ -53,6 +68,30 @@
 				}, resp => {
 					console.log('Failed to get equipment', resp);
 				})
+		}
+
+		ctrl.toggleSelect = function(equipment) {
+
+			let idx = ctrl.selectedItems.findIndex(item => item.OptionCode == equipment.OptionCode);
+
+			if (idx !== -1)
+				ctrl.selectedItems.splice(idx, 1)
+
+			else
+				ctrl.selectedItems.push(equipment);
+
+			ctrl.onSelect({
+				equipment: {
+					autoEquipments: ctrl.selectedItems,
+					manualEquipments: ctrl.manualEquipments
+				},
+				isNextSelected: false
+			})
+		}
+
+		ctrl.isSelected = function(OptionCode) {
+			return ctrl.selectedItems.filter(item => item.OptionCode == OptionCode)
+				.length;
 		}
 	}
 })();

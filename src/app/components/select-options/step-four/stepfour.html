@@ -8,170 +8,226 @@
 				<div class="box-header">
 					<h2>  Πληροφορίες</h2>
 				</div>
-				<div class="box-body table-responsive">
 
-					<table class="table-card">
-						<tbody>
+				<form name="submitOptionsForm"
+				      ng-submit="$ctrl.submitOptions()">
 
-							<tr>
-								<td></td>
-								<td></td>
-								<th class="text-center">Co2</th>
-								<th>Χωρίς Φ.Π.Α</th>
-								<th>Με Φ.Π.Α</th>
-							</tr>
+					<div class="box-body table-responsive">
 
+						<table class="table-card">
+							<tbody>
 
-							<tr>
-								<th>Μοντέλο</th>
-								<td>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></td>
-
-								<td class="text-center">{{$ctrl.model.CO2EmissionCombined}}</td>
-								<td>{{$ctrl.model.Price | currency}}</td>
-								<td>{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
-							</tr>
-
-							<tr>
-								<th>Χρώμα</th>
-								<td>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></td>
-
-								<td class="text-center">{{$ctrl.color.ChangeCO2}}</td>
-								<td>{{$ctrl.color.Price | currency}}</td>
-								<td>{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
-							</tr>
-
-							<tr>
-								<th>Εξοπλισμός από λίστα</th>
-
-								<div ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length">
-									<td>{{$ctrl.equipment.autoEquipments[0].OptionDescription}}
-										<small class="text-muted">({{$ctrl.equipment.autoEquipments[0].OptionCode}})</small>
-									</td>
-
-									<td class="text-center">{{$ctrl.equipment.autoEquipments[0].ChangeCO2}}</td>
-
-									<td>{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
-
-									<td>{{$ctrl.equipment.autoEquipments[0].Price * $ctrl.taxFee | currency}}</td>
-								</div>
-
-							</tr>
-
-							<tr ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length > 1"
-							    ng-repeat="equipment in $ctrl.equipment.autoEquipments | limitTo: (1 - $ctrl.equipment.autoEquipments.length) track by $index">
-								<th></th>
-								<td>{{equipment.OptionDescription}}
-									<small class="text-muted">({{equipment.OptionCode}})</small>
-								</td>
-
-								<td class="text-center">{{equipment.ChangeCO2}}</td>
-
-								<td>{{equipment.Price | currency}}</td>
-
-								<td>{{equipment.Price * $ctrl.taxFee | currency}}</td>
-							</tr>
-
-							<tr>
-								<th>Εξοπλισμός που προστέθηκε χειροκίνητα</th>
-
-								<td ng-show="!($ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length)">-</td>
-
-								<div ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length">
-									<td>{{$ctrl.equipment.manualEquipments[0].description}}
-										<small class="text-muted">({{$ctrl.equipment.manualEquipments[0].code}})</small>
-									</td>
-
-									<td class="text-center">{{$ctrl.equipment.manualEquipments[0].co2}}</td>
-
-									<td>{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
-
-									<td>{{$ctrl.equipment.manualEquipments[0].price * $ctrl.taxFee | currency}}</td>
-								</div>
-
-							</tr>
-
-							<div ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length > 1">
-
-								<tr ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
-									<th></th>
-									<td>{{equipment.description}}
-										<small class="text-muted">({{equipment.code}})</small>
-									</td>
-
-									<td class="text-center">{{equipment.co2}}</td>
-
-									<td>{{equipment.price | currency}}</td>
-
-									<td>{{equipment.price * $ctrl.taxFee | currency}}</td>
+								<tr>
+									<td></td>
+									<td></td>
+									<th class="text-center">CO2</th>
+									<th>Χωρίς Φ.Π.Α</th>
+									<th>Με Φ.Π.Α</th>
 								</tr>
 
-							</div>
 
+								<tr>
+									<th>Μοντέλο</th>
+									<td>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></td>
 
-							<tr>
-								<th>ΑΠΛΤΠΦ</th>
-								<td class="va-middle">
-									{{$ctrl.finalPrice.noRegTax | currency}}
-								</td>
+									<td class="text-center">{{$ctrl.model.CO2EmissionCombined}}</td>
+									<td>{{$ctrl.model.Price | currency}}</td>
+									<td>{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
+								</tr>
 
-							</tr>
+								<tr ng-show="$ctrl.color.Price">
+									<th>Χρώμα</th>
+									<td>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></td>
 
-							<tr>
-								<th>Τέλος ταξινόμησης</th>
-								<td class="va-middle">
-									<input ng-change="$ctrl.calcFinalPrices()"
-									       ng-model="$ctrl.regTax"
-									       
-									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
-									       type="number"
-									       class="form-control">
-								</td>
-								<td>
-									<button ng-click="$ctrl.calcFee()"
-									        class="btn btn-md my-button">Υπολογισμός</button>
-								</td>
-							</tr>
+									<td class="text-center">{{$ctrl.color.ChangeCO2}}</td>
+									<td>{{$ctrl.color.Price | currency}}</td>
+									<td>{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
+								</tr>
 
-							<tr>
-								<th>Σύνολο χωρίς Φ.Π.Α</th>
-								<td class="va-middle">
-									<input ng-model="$ctrl.finalPrice.beforeTax"
-									       ui-currency
-									       placeholder="Συμπληρώστε ή υπολογίστε το τέλος ταξινόμησης"
-									       type="text"
-									       class="form-control">
-								</td>
+								<tr ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length">
+									<th>Εξοπλισμός από λίστα</th>
 
-							</tr>
+									<div>
+										<td>{{$ctrl.equipment.autoEquipments[0].OptionDescription}}
+											<small class="text-muted">({{$ctrl.equipment.autoEquipments[0].OptionCode}})</small>
+										</td>
 
-							<tr>
-								<th>ΑΠΛΤ</th>
-								<td class="va-middle">
-									<input ng-model="$ctrl.finalPrice.afterTax"
-									       ui-currency
-									       placeholder="Συμπληρώστε ή υπολογίστε ΑΠΛΤ"
-									       type="text"
-									       class="form-control">
-								</td>
+										<td class="text-center">{{$ctrl.equipment.autoEquipments[0].ChangeCO2}}</td>
 
-							</tr>
+										<td>{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
 
-						</tbody>
+										<td>{{$ctrl.equipment.autoEquipments[0].Price * $ctrl.taxFee | currency}}</td>
+									</div>
 
-					</table>
+								</tr>
 
+								<tr ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length > 1"
+								    ng-repeat="equipment in $ctrl.equipment.autoEquipments | limitTo: (1 - $ctrl.equipment.autoEquipments.length) track by $index">
+									<th></th>
+									<td>{{equipment.OptionDescription}}
+										<small class="text-muted">({{equipment.OptionCode}})</small>
+									</td>
 
-				</div>
+									<td class="text-center">{{equipment.ChangeCO2}}</td>
 
-				<div class="box-footer clearfix">
-					<button class="pull-right btn btn-lg my-button">Υποβολή</button>
-				</div>
+									<td>{{equipment.Price | currency}}</td>
+
+									<td>{{equipment.Price * $ctrl.taxFee | currency}}</td>
+								</tr>
+
+								<tr ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length">
+									<th>Εξοπλισμός που προστέθηκε χειροκίνητα</th>
+
+									<div>
+										<td>{{$ctrl.equipment.manualEquipments[0].description}}
+											<small class="text-muted">({{$ctrl.equipment.manualEquipments[0].code}})</small>
+										</td>
+
+										<td class="text-center">{{$ctrl.equipment.manualEquipments[0].co2}}</td>
+
+										<td>{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
+
+										<td>{{$ctrl.equipment.manualEquipments[0].price * $ctrl.taxFee | currency}}</td>
+									</div>
+
+								</tr>
+
+								<div ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length > 1">
+
+									<tr ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
+										<th></th>
+										<td>{{equipment.description}}
+											<small class="text-muted">({{equipment.code}})</small>
+										</td>
+
+										<td class="text-center">{{equipment.co2}}</td>
+
+										<td>{{equipment.price | currency}}</td>
+
+										<td>{{equipment.price * $ctrl.taxFee | currency}}</td>
+									</tr>
+
+								</div>
+
+								<tr class="row-border">
+									<td colspan="5"></td>
+								</tr>
+
+								<tr>
+									<th>ΑΠΛΤΠΦ</th>
+
+									<td></td>
+									<td></td>
+									<td></td>
+
+									<td class="va-middle">
+										{{$ctrl.finalPrice.noRegTax | currency}}
+									</td>
+
+								</tr>
+
+								<tr>
+									<th>Τέλος ταξινόμησης</th>
+
+									<td></td>
+
+									<td>
+										<button type="button"
+										        ng-click="$ctrl.calcFee()"
+										        class="btn btn-md my-button">Υπολογισμός</button>
+									</td>
+
+									<td colspan="2"
+									    class="va-middle">
+										<div class="input-icon input-icon-right">
+
+											<i>€</i>
+
+											<input required
+											       ng-change="$ctrl.calcFinalPrices()"
+											       ng-model="$ctrl.regTax"
+											       placeholder="Συμπληρώστε ή υπολογίστε"
+											       type="number"
+											       step="0.01"
+											       class="form-control">
+										</div>
+									</td>
+
+								</tr>
+
+								<tr>
+									<th>Σύνολο χωρίς Φ.Π.Α</th>
+
+									<td></td>
+									<td></td>
+
+									<td colspan="2"
+									    class="va-middle">
+										<div class="input-icon input-icon-right">
+
+											<i>€</i>
+
+											<input required
+											       ng-model="$ctrl.finalPrice.beforeTax"
+											       placeholder="Συμπληρώστε ή υπολογίστε"
+											       type="number"
+											       step="0.01"
+											       class="form-control input-symbol-euro">
+
+										</div>
+									</td>
+
+								</tr>
+
+								<tr>
+									<th>ΑΠΛΤ</th>
+
+									<td></td>
+									<td></td>
+
+									<td colspan="2"
+									    class="va-middle">
+
+										<div class="input-icon input-icon-right">
+
+											<i>€</i>
+
+											<input required
+											       ng-model="$ctrl.finalPrice.afterTax"
+											       placeholder="Συμπληρώστε ή υπολογίστε"
+											       type="number"
+											       step="0.01"
+											       class="form-control input-symbol-euro">
+
+										</div>
+
+									</td>
+
+								</tr>
+
+							</tbody>
+
+						</table>
+
+					</div>
+					<div class="box-footer clearfix">
+						<button ng-disabled="submitOptionsForm.$invalid"
+						        type="submit"
+						        class="pull-right btn btn-lg my-button">Υποβολή</button>
+					</div>
+
+				</form>
 			</div>
+
+			<div uib-alert
+			     ng-show="$ctrl.alert.isShown"
+			     class="{{$ctrl.alert.class}} m-t-md"
+			     close="$ctrl.alert.hide()">{{$ctrl.alert.msg}}</div>
+
 		</div>
 
 		<div class="col-md-4">
 			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
-		
 			     err-src="{{$ctrl.defaultImg}}"
 			     class="img-responsive">
 

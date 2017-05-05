@@ -3,7 +3,7 @@
 	<a ng-show="!$ctrl.stateIs('app.select-family')"
 	   href
 	   ng-click="$ctrl.onBack()"
-	   class="previous pull-left">
+	   class="hidden-xs previous pull-left">
 		<h2 class="text-center">
 			<strong><i class="fa fa-angle-double-left"></i> {{$ctrl.familyName}}</strong>
 			<small class="text-muted">{{$ctrl.modelName}}</small>
@@ -17,8 +17,8 @@
 
 
 	<p ng-show="!($ctrl.stateIs('app.select-family') || $ctrl.stateIs('app.select-options.step-one'))"
-	   class="price pull-right">
-		από {{$ctrl.price | currency}}
+	   class="hidden-xs price pull-right">
+		{{$ctrl.price | currency}}
 	</p>
 
 </div>

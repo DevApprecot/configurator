@@ -33,7 +33,7 @@
 			API.families(makeCode)
 				.then(resp => {
 					console.log('families', resp);
-					ctrl.families = resp.data.listOfData.filter(family => !!family.Family);
+					ctrl.families = resp.data.listOfData;
 					console.log(ctrl.families);
 				}, resp => {
 					console.log('Failed to get families');
@@ -46,8 +46,11 @@
 				.then(resp => {
 					console.log('Make', resp);
 					ctrl.make = resp.data.listOfData.filter(make => make.MakeCode == $stateParams.makeId)[0];
-					Data.set.make(ctrl.make);
-					$rootScope.$broadcast('selectedMake', ctrl.make.Make);
+					if (ctrl.make) {
+						Data.set.make(ctrl.make);
+						$rootScope.$broadcast('selectedMake', ctrl.make.Make);
+					}
+
 				}, resp => {
 					console.log('Failed to get makes', resp);
 				})

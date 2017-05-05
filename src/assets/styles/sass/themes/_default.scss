@@ -1,0 +1,95 @@
+.default {
+	//Header
+	app-header {
+		background-color: $default-dark;
+
+		a.previous {
+
+			&:hover i {
+				color: darken($default-special, 10)
+			}
+
+			i {
+				color: $default-special
+			}
+		}
+	} //Footer
+	app-footer {
+		background-color: $default-gray;
+	} //Car component
+	car p {
+		color: $default-dark;
+	} //Steps
+	steps .steps a {
+		color: $default-special i {
+			color: $default-special
+		}
+	}
+
+	steps li {
+		background-color: darken($default-gray, 5);
+
+		&:not(:last-child)::after {
+			border-left-color: darken($default-gray, 5);
+		}
+
+		&.current {
+			background-color: lighten($default-gray, 5);
+			a,
+			a>i {
+				color: $default-special;
+			}
+
+			&::after {
+				border-left-color: lighten($default-gray, 5);
+			}
+
+			&~li {
+				background-color: darken($default-gray, 5);
+				a {
+					color: $white;
+					i {
+						color: #efefef;
+					}
+				}
+
+				&::after {
+					border-left-color: darken($default-gray, 5);
+				}
+			}
+		}
+
+		&:hover {
+			background-color: darken($default-gray, 10);
+
+			&::after {
+				border-left-color: darken($default-gray, 10)
+			}
+		} //Button
+	}
+
+	button {
+		&.my-button {
+			background-color: $default-special;
+			color: $white
+		}
+	} //Box
+	div.box div.box-header {
+		background-color: $default-dark;
+		color: $white;
+	}
+
+	#loading-bar .bar {
+		background: $default-special;
+		height: 4px;
+	}
+
+	#loading-bar-spinner .spinner-icon {
+		width: 18px;
+		height: 18px;
+		border: solid 4px transparent;
+		border-top-color: $default-special;
+		border-left-color: $default-special;
+		border-radius: 10px;
+	}
+}

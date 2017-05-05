@@ -1,5 +1,5 @@
 (function() {
 	'use strict';
 
-	angular.module('configurator', ['ui.router', 'trNgGrid', 'ngStorage', 'angular-loading-bar']);
+	angular.module('configurator', ['ui.router', 'ngStorage', 'angular-loading-bar', 'ui.bootstrap']);
 })();

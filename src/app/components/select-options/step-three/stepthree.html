@@ -1,62 +1,59 @@
-<div class="container-fluid">
+<span class="padding"
+      ng-show="!$ctrl.equipment.length">Δεν βρέθηκε διαθέσιμος εξοπλισμός</span>
+
+<div ng-show="$ctrl.equipment.length"
+     class="container-fluid">
 
 	<div class="row">
 		<h1>Εξοπλισμοί από λίστα</h1>
 
 		<div class="table-responsive m-t-md">
-			<table tr-ng-grid=""
-			       items="$ctrl.equipment"
-			       selected-items="$ctrl.selectedItems"
-			       selection-mode="MultiRow"
-			       enable-filtering="false"
-			       enable-sorting="false"
-			       class="table table-hover">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 
-						<th display-name="Εικόνα"
-						    display-align="center"
-						    width="10%"></th>
+						<th class="text-center"
+						    width="10%">Εικόνα</th>
 
-						<th field-name="OptionCode"
-						    display-name="Κωδικός"
-						    display-align="center"
-						    width="10%"></th>
+						<th class="text-center"
+						    width="10%">Κωδικός</th>
 
-						<th field-name="ModelCode"
-						    display-name="Kωδικός Μοντέλου"
-						    display-align="center"
-						    width="10%"></th>
+						<th width="30%">Περιγραφή</th>
 
-						<th field-name="OptionDescription"
-						    display-name="Περιγραφή"
-						    width="30%"></th>
+						<th class="text-center"
+						    width="15%">CO2</th>
 
-						<th field-name="Price"
-						    display-name="Τιμή"
-						    display-format="trNgGridCurrency:gridItem"
-						    display-align="center"
+						<th class="text-center"
 						    width="10%">
+							Τιμή
 						</th>
 
-						<th field-name="ChangeCO2"
-						    display-name="CO2"
-						    display-align="center"
-						    width="15%"></th>
 
-						<th field-name="ItemGroup"
-						    display-name="Τύπος"
-						    display-align="center"
-						    width="15%"></th>
+						<th class="text-center"
+						    width="15%">Τύπος</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr ng-class="{'active':$ctrl.isSelected(equipment.OptionCode)}"
+					    ng-click="$ctrl.toggleSelect(equipment)"
+					    ng-repeat="equipment in $ctrl.equipment track by $index">
+
 						<td>
-							<img ng-src="{{$ctrl.imgPath + gridItem.Photo}}"
+							<img ng-src="{{$ctrl.imgPath + equipment.Photo}}"
 							     err-src="{{$ctrl.defaultImg}}"
 							     class="img-responsive">
 						</td>
+
+						<td class="text-center">{{equipment.OptionCode}}</td>
+
+						<td>{{equipment.OptionDescription}}</td>
+
+						<td class="text-center">{{equipment.ChangeCO2}}</td>
+
+						<td class="text-center">{{equipment.Price | currency}}</td>
+
+
+						<td class="text-center">{{equipment.ItemGroup}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -99,19 +96,21 @@
 		</div>
 	</div>
 
+
+	<manual-equipment-form on-select="$ctrl.addEquipment(equipment)"></manual-equipment-form>
+
+
 	<div class="row m-t-md">
-		<button ng-click="$ctrl.onSelect({equipment: 
+		<button ng-click="$ctrl.onSelect({
+			equipment: 
 			{
                 autoEquipments:$ctrl.selectedItems,
                 manualEquipments:$ctrl.manualEquipments
-            }
+            },
+			isNextSelected:true
             })"
-		        ng-disabled="!($ctrl.selectedItems.length || $ctrl.manualEquipments.length)"
 		        class="pull-right my-button btn btn-lg ">Επόμενο</button>
 	</div>
-
-
-	<manual-equipment-form on-select="$ctrl.addEquipment(equipment)"></manual-equipment-form>
 
 
 </div>
