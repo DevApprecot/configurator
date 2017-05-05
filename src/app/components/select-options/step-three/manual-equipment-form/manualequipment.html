@@ -58,12 +58,17 @@
 			       class="col-md-1">Τιμή:</label>
 
 			<div class="col-md-8">
-				<input ng-model="$ctrl.equipment.price"
-				       required
-				       type="number"
-				       step="0.01"
-				       class="form-control"
-				       placeholder="Συμπληρώστε την τιμή του εξοπλισμού">
+				<div class="input-icon input-icon-right">
+
+					<i>€</i>
+					
+					<input ng-model="$ctrl.equipment.price"
+					       required
+					       type="number"
+					       step="0.01"
+					       class="form-control"
+					       placeholder="Συμπληρώστε την τιμή του εξοπλισμού">
+				</div>
 			</div>
 
 		</div>
