@@ -45,7 +45,7 @@
 				template: '<step-four default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}"></step-four>'
 			})
 
-		$urlRouterProvider.otherwise('app/car/make/60/family');
+		$urlRouterProvider.otherwise('app/car/make/60/family/');
 
 	}
 })();
