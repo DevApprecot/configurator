@@ -37,7 +37,7 @@
 			return $http({
 				method: 'POST',
 				url: endpoint,
-				params: payload,
+				data: payload,
 				headers: { 'Content-Type': 'application/json' }
 			})
 		}

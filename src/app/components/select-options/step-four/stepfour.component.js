@@ -28,6 +28,8 @@
 			ctrl.regTax = +RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
 				.manualEquipments);
 
+			console.log(typeof(ctrl.regTax))
+
 			ctrl.calcFinalPrices();
 		}
 
@@ -37,9 +39,12 @@
 				ctrl.regTax = 0;
 			}
 
-			ctrl.finalPrice.beforeTax = +ctrl.finalPrice.noRegTax + +ctrl.regTax;
-			ctrl.finalPrice.afterTax = +(ctrl.finalPrice.beforeTax * ctrl.taxFee)
-				.toFixed(2);
+			ctrl.finalPrice.beforeTax = Number((Number(ctrl.finalPrice.noRegTax) + Number(ctrl.regTax))
+				.toFixed(2));
+			ctrl.finalPrice.afterTax = Number((Number(ctrl.finalPrice.beforeTax) * Number(ctrl.taxFee))
+				.toFixed(2))
+
+			console.log(ctrl.finalPrice)
 		}
 
 		ctrl.$onInit = function() {
@@ -98,7 +103,7 @@
 					console.log("Submitted successfully", resp)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
-					$window.location.href = REDIRECT_URL + resp.data.code;
+					// $window.location.href = REDIRECT_URL + resp.data.code;
 
 				}, resp => {
 					console.log("Failed to submit", resp);

@@ -144,6 +144,7 @@
 											<i>€</i>
 
 											<input required
+											       name="regTax"
 											       ng-change="$ctrl.calcFinalPrices()"
 											       ng-model="$ctrl.regTax"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
@@ -168,6 +169,7 @@
 											<i>€</i>
 
 											<input required
+											       name="beforeTax"
 											       ng-model="$ctrl.finalPrice.beforeTax"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
 											       type="number"
@@ -193,6 +195,7 @@
 											<i>€</i>
 
 											<input required
+											       name="afterTax"
 											       ng-model="$ctrl.finalPrice.afterTax"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
 											       type="number"
@@ -210,6 +213,10 @@
 						</table>
 
 					</div>
+
+					<!--{{submitOptionsForm.regTax.$invalid}}
+					{{submitOptionsForm.beforeTax.$invalid}}
+					{{submitOptionsForm.afterTax.$invalid}}-->
 					<div class="box-footer clearfix">
 						<button ng-disabled="submitOptionsForm.$invalid"
 						        type="submit"
@@ -228,6 +235,7 @@
 
 		<div class="col-md-4">
 			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
+		
 			     err-src="{{$ctrl.defaultImg}}"
 			     class="img-responsive">
 
