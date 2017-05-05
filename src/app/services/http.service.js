@@ -29,10 +29,15 @@
 		}
 
 		function postRequest(payload, endpoint) {
+
+			console.log(payload);
+
+			console.log(endpoint);
+
 			return $http({
 				method: 'POST',
 				url: endpoint,
-				data: angular.toJson(payload),
+				params: payload,
 				headers: { 'Content-Type': 'application/json' }
 			})
 		}

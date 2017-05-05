@@ -12,7 +12,9 @@
 			url: `http://onedealer.kosmocar.gr/Files/EntityImage/Inventory/`
 		})
 
-		.constant('API_URL', 'https://onedealer.kosmocar.gr/external')
+		.constant('API_URL', 'https://onedealer.kosmocar.gr')
+
+		.constant('REDIRECT_URL', 'https://onedealer.kosmocar.gr/iframeredirect/index?conf=')
 
 		.constant('TAX_FEE', 1.24)
 

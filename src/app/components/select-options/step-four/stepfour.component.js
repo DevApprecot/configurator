@@ -12,9 +12,10 @@
 			},
 		});
 
-	StepFourCtrl.$inject = ['Data', 'API', 'Option', 'SubmitAlert', 'TAX_FEE', 'RegistrationFee'];
+	StepFourCtrl.$inject = ['$window', 'Data', 'API', 'Option', 'SubmitAlert', 'TAX_FEE', 'REDIRECT_URL',
+		'RegistrationFee'];
 
-	function StepFourCtrl(Data, API, Option, SubmitAlert, TAX_FEE, RegistrationFee) {
+	function StepFourCtrl($window, Data, API, Option, SubmitAlert, TAX_FEE, REDIRECT_URL, RegistrationFee) {
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
 		ctrl.finalPrice = {
@@ -62,9 +63,9 @@
 			let registrationFee = 0;
 
 			let availableOptionTypes = {
-				model: 'Model',
-				option: 'ModelOption',
-				manualOption: 'ExtraOption'
+				model: 0,
+				option: 1,
+				manualOption: 2
 			};
 
 			function prepareData() {
@@ -97,11 +98,12 @@
 					console.log("Submitted successfully", resp)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
+					$window.location.href = REDIRECT_URL + resp.data.code;
 
 				}, resp => {
-					console.log("Failed to submit");
+					console.log("Failed to submit", resp);
 
-					trl.alert = new SubmitAlert(0, 'Κάτι συνέβει και οι αλλαγές σας δεν καταχωρήθηκαν.');
+					ctrl.alert = new SubmitAlert(0, 'Κάτι συνέβει και οι αλλαγές σας δεν καταχωρήθηκαν.');
 				})
 				.then(() => ctrl.alert.show())
 

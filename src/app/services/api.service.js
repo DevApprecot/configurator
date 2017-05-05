@@ -30,7 +30,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/GetData`);
+			return http.get(params, `${API_URL}/external/GetData`);
 		}
 
 		function getFamilies(makeCode) {
@@ -42,7 +42,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/GetData`);
+			return http.get(params, `${API_URL}/external/GetData`);
 		}
 
 		function getModels(parentModelCode) {
@@ -54,7 +54,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/GetData`);
+			return http.get(params, `${API_URL}/external/GetData`);
 
 		}
 
@@ -69,7 +69,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/GetData`);
+			return http.get(params, `${API_URL}/external/GetData`);
 
 		}
 
@@ -82,23 +82,21 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/GetData`);
+			return http.get(params, `${API_URL}/external/GetData`);
 		}
 
 		function submitOptions(Options, TotalBasicPrice, TotalCO2, RegistrationFee) {
 
 			let payload = {
-				Options,
-				TotalBasicPrice,
-				TotalCO2,
-				RegistrationFee
+				configuration: {
+					Options,
+					TotalBasicPrice,
+					TotalCO2,
+					RegistrationFee
+				}
 			};
 
-			console.log(angular.toJson(payload));
-
-			return;
-
-			return http.post(payload, `${API_URL}/someService`);
+			return http.post(payload, `${API_URL}/kosmocar/SaveConfigurationForLead`);
 
 		}
 
