@@ -9,7 +9,7 @@
 		})
 
 		.constant('IMAGES_PATH', {
-			url: `http://onedealer.kosmocar.gr/Files/EntityImage/Inventory/`
+			url: `https://onedealer.kosmocar.gr/Files/EntityImage/Inventory/`
 		})
 
 		.constant('API_URL', 'https://onedealer.kosmocar.gr')

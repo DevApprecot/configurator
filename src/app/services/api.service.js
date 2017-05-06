@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	'use strict';
 
 	angular
@@ -96,7 +96,7 @@
 				}
 			};
 
-			return http.post(payload, `${API_URL}/kosmocar/SaveConfigurationForLead`);
+			return http.jsonp(payload, `${API_URL}/kosmocar/SaveConfigurationForLead`);
 
 		}
 

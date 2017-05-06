@@ -1,17 +1,18 @@
-(function() {
+(function () {
 	'use strict';
 
 	angular
 		.module('configurator')
 		.service('http', http);
 
-	http.$inject = ['$http'];
+	http.$inject = ['$http', '$q'];
 
-	function http($http) {
+	function http($http, $q) {
 
 		var service = {
 			get: getRequest,
-			post: postRequest
+			post: postRequest,
+			jsonp: jsonpRequest
 		};
 
 		return service;
@@ -24,7 +25,9 @@
 				method: 'GET',
 				url: endpoint,
 				params,
-				headers: { 'Content-Type': 'application/json' }
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			})
 		}
 
@@ -38,9 +41,34 @@
 				method: 'POST',
 				url: endpoint,
 				data: payload,
-				headers: { 'Content-Type': 'application/json' }
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			})
 		}
 
+		function jsonpRequest(payload, endpoint) {
+
+			var deferred = $q.defer();
+
+			console.log(payload);
+
+			console.log(endpoint);
+
+			$.ajax({
+				url: endpoint,
+				type: "POST",
+				data: payload,
+				jsonp: 'callback',
+				success: function (status) {
+					deferred.resolve(status);
+				},
+				error: function (status) {
+					deferred.reject(status)
+				}
+			});
+
+			return deferred.promise;
+		}
 	}
 })();
