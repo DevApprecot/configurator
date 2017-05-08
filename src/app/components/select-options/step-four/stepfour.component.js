@@ -104,13 +104,18 @@
 					console.log("Submitted successfully", resp)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
-					$window.location.href = decodeURIComponent($stateParams.redirectUrl) + resp.data.code;
+					$window.location.href = decodeURIComponent($stateParams.redirectUrl) + '?conf=' + resp.data.code;
 
 				}, resp => {
 					console.log("Failed to submit", resp);
 
 					if (resp.responseText) {
-						$window.location.href = decodeURIComponent($stateParams.redirectUrl) + angular.fromJson(resp.responseText.slice(1, -1))
+						let url = $stateParams.redirectUrl;
+						url = url.replace(/\*/g, '/');
+
+						// console.log(url + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1)).code);
+						// return;
+						$window.location.href = url + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
 							.code;
 						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
 					} else {
