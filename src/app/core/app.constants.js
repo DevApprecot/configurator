@@ -14,8 +14,6 @@
 
 		.constant('API_URL', 'https://onedealer.kosmocar.gr')
 
-		.constant('REDIRECT_URL', 'https://onedealer.kosmocar.gr/iframeredirect/index?conf=')
-
 		.constant('TAX_FEE', 1.24)
 
 })();

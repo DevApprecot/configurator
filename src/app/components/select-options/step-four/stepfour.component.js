@@ -1,4 +1,4 @@
-(function () {
+(function() {
 	'use strict';
 
 	angular
@@ -12,11 +12,11 @@
 			},
 		});
 
-	StepFourCtrl.$inject = ['$window', 'Data', 'API', 'Option', 'SubmitAlert', 'TAX_FEE', 'REDIRECT_URL',
+	StepFourCtrl.$inject = ['$window', '$stateParams', 'Data', 'API', 'Option', 'SubmitAlert', 'TAX_FEE',
 		'RegistrationFee'
 	];
 
-	function StepFourCtrl($window, Data, API, Option, SubmitAlert, TAX_FEE, REDIRECT_URL, RegistrationFee) {
+	function StepFourCtrl($window, $stateParams, Data, API, Option, SubmitAlert, TAX_FEE, RegistrationFee) {
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
 		ctrl.finalPrice = {
@@ -25,16 +25,16 @@
 			afterTax: null
 		};
 
-		ctrl.calcFee = function () {
+		ctrl.calcFee = function() {
 			ctrl.regTax = +RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
 				.manualEquipments);
 
-			console.log(typeof (ctrl.regTax))
+			console.log(typeof(ctrl.regTax))
 
 			ctrl.calcFinalPrices();
 		}
 
-		ctrl.calcFinalPrices = function () {
+		ctrl.calcFinalPrices = function() {
 
 			if (isNaN(ctrl.regTax) || !ctrl.regTax) {
 				ctrl.regTax = 0;
@@ -48,7 +48,7 @@
 			console.log(ctrl.finalPrice)
 		}
 
-		ctrl.$onInit = function () {
+		ctrl.$onInit = function() {
 
 			Object.keys(Data.get)
 				.map(val => {
@@ -104,25 +104,25 @@
 					console.log("Submitted successfully", resp)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
-					$window.location.href = REDIRECT_URL + resp.data.code;
+					$window.location.href = decodeURIComponent($stateParams.redirectUrl) + resp.data.code;
 
 				}, resp => {
 					console.log("Failed to submit", resp);
 
 					if (resp.responseText) {
-						$window.location.href = REDIRECT_URL + angular.fromJson(resp.responseText.slice(1, -1)).code;
+						$window.location.href = decodeURIComponent($stateParams.redirectUrl) + angular.fromJson(resp.responseText.slice(1, -1))
+							.code;
 						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
 					} else {
 						ctrl.alert = new SubmitAlert(0, 'Κάτι συνέβει και οι αλλαγές σας δεν καταχωρήθηκαν.');
 					}
-
 
 				})
 				.then(() => ctrl.alert.show())
 
 		}
 
-		ctrl.$onChanges = function (changesObj) {};
-		ctrl.$onDestory = function () {};
+		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onDestory = function() {};
 	}
 })();

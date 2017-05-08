@@ -11,7 +11,7 @@
 		$stateProvider
 
 			.state('app', {
-				url: '/app',
+				url: '/app/submit-param={redirectUrl:string}',
 				template: '<app theme="{{base.theme}}"></app>'
 			})
 
@@ -45,7 +45,13 @@
 				template: '<step-four default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}"></step-four>'
 			})
 
-		$urlRouterProvider.otherwise('app/car/make/60/family/');
+		$urlRouterProvider.otherwise(function($injector, $location) {
+			$injector.invoke(['$state', function($state) {
+				$state.go('app.select-family', {redirectUrl:encodeURIComponent('https://onedealer.kosmocar.gr/iframeredirect/index'), makeId:60});
+ 			 }]);
+		});
+
+
 
 	}
 })();

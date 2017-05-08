@@ -20,7 +20,6 @@
 		var _getFamilies = getFamilies;
 
 		ctrl.$onInit = function() {
-
 			_getFamilies($stateParams.makeId);
 			_getMake();
 

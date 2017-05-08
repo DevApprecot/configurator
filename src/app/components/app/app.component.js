@@ -23,7 +23,6 @@
 			price: Data.get.currentPrice()
 		};
 
-		console.log('CAAR', ctrl.car);
 
 		ctrl.selectFamily = function(family) {
 			ctrl.car.family = family;
@@ -61,7 +60,10 @@
 			ctrl.car.price = price;
 		}
 
-		ctrl.$onInit = function() {};
+		ctrl.$onInit = function() {
+						console.log("hi")
+
+		};
 
 		ctrl.$onChanges = function(changesObj) {
 			console.log('app changes', changesObj);
