@@ -500,6 +500,67 @@ div.box {
   border-left-color: #0099da;
   border-radius: 10px; }
 
+.vw_lcv app-header {
+  background-color: #dee1e3; }
+  .vw_lcv app-header a.previous:hover i {
+    color: #0075a7; }
+  .vw_lcv app-header a.previous i {
+    color: #0099da; }
+
+.vw_lcv app-footer {
+  background-color: #2f3638; }
+
+.vw_lcv car p {
+  color: #dee1e3; }
+
+.vw_lcv steps .steps a {
+  color: #0099da i;
+    color-color: #0099da; }
+
+.vw_lcv steps li {
+  background-color: #23292a; }
+  .vw_lcv steps li:not(:last-child)::after {
+    border-left-color: #23292a; }
+  .vw_lcv steps li.current {
+    background-color: #3b4346; }
+    .vw_lcv steps li.current a,
+    .vw_lcv steps li.current a > i {
+      color: #0099da; }
+    .vw_lcv steps li.current::after {
+      border-left-color: #3b4346; }
+    .vw_lcv steps li.current ~ li {
+      background-color: #23292a; }
+      .vw_lcv steps li.current ~ li a {
+        color: #fff; }
+        .vw_lcv steps li.current ~ li a i {
+          color: #efefef; }
+      .vw_lcv steps li.current ~ li::after {
+        border-left-color: #23292a; }
+  .vw_lcv steps li:hover {
+    background-color: #181b1c; }
+    .vw_lcv steps li:hover::after {
+      border-left-color: #181b1c; }
+
+.vw_lcv button.my-button {
+  background-color: #0099da;
+  color: #fff; }
+
+.vw_lcv div.box div.box-header {
+  background-color: #dee1e3;
+  color: #fff; }
+
+.vw_lcv #loading-bar .bar {
+  background: #0099da;
+  height: 4px; }
+
+.vw_lcv #loading-bar-spinner .spinner-icon {
+  width: 18px;
+  height: 18px;
+  border: solid 4px transparent;
+  border-top-color: #0099da;
+  border-left-color: #0099da;
+  border-radius: 10px; }
+
 .audi app-header {
   background-color: #2b2e34; }
   .audi app-header a.previous:hover i {

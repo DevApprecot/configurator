@@ -47,7 +47,7 @@
 					ctrl.make = resp.data.listOfData.filter(make => make.MakeCode == $stateParams.makeId)[0];
 					if (ctrl.make) {
 						Data.set.make(ctrl.make);
-						$rootScope.$broadcast('selectedMake', ctrl.make.Make);
+						$rootScope.$broadcast('selectedMake', ctrl.make.Code);
 					}
 
 				}, resp => {

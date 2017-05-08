@@ -16,4 +16,10 @@
 
 		.constant('TAX_FEE', 1.24)
 
+		.constant('THEMES', {
+			'60':'audi',
+			'52':'vw',
+			'61':'vw_lcv'
+		})
+
 })();

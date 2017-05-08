@@ -5,19 +5,23 @@
 		.module('configurator')
 		.controller('BaseCtrl', BaseCtrl);
 
-	BaseCtrl.$inject = ['$stateParams', 'Data', '$timeout', '$scope'];
+	BaseCtrl.$inject = ['$stateParams', 'THEMES', '$timeout', '$scope'];
 
-	function BaseCtrl($stateParams, Data, $timeout, $scope) {
+	function BaseCtrl($stateParams, THEMES, $timeout, $scope) {
 		var vm = this;
 
 		activate();
 
 		function activate() {
-			let make = Data.get.make();
-			vm.theme = make ? make.Make.toLowerCase() : 'default';
 
-			$scope.$on('selectedMake', (event, make) => {
-				vm.theme = make.toLowerCase();
+			$timeout(() => {
+				vm.theme = THEMES[parseInt($stateParams.makeId)];
+				console.log(vm.theme);
+				console.log($stateParams);
+			})
+
+			$scope.$on('selectedMake', (event, makeCode) => {
+				vm.theme = THEMES[makeCode];
 			})
 
 		}

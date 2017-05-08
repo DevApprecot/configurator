@@ -1,0 +1,95 @@
+.vw_lcv {
+	//Header
+	app-header {
+		background-color: $vw_lcv-dark;
+
+		a.previous {
+
+			&:hover i {
+				color: darken($vw_lcv-special, 10)
+			}
+
+			i {
+				color: $vw_lcv-special
+			}
+		}
+	} //Footer
+	app-footer {
+		background-color: $vw_lcv-gray;
+	} //Car component
+	car p {
+		color: $vw_lcv-dark;
+	} //Steps
+	steps .steps a {
+		color: $vw_lcv-special i {
+			color: $vw_lcv-special
+		}
+	}
+
+	steps li {
+		background-color: darken($vw_lcv-gray, 5);
+
+		&:not(:last-child)::after {
+			border-left-color: darken($vw_lcv-gray, 5);
+		}
+
+		&.current {
+			background-color: lighten($vw_lcv-gray, 5);
+			a,
+			a>i {
+				color: $vw_lcv-special;
+			}
+
+			&::after {
+				border-left-color: lighten($vw_lcv-gray, 5);
+			}
+
+			&~li {
+				background-color: darken($vw_lcv-gray, 5);
+				a {
+					color: $white;
+					i {
+						color: #efefef;
+					}
+				}
+
+				&::after {
+					border-left-color: darken($vw_lcv-gray, 5);
+				}
+			}
+		}
+
+		&:hover {
+			background-color: darken($vw_lcv-gray, 10);
+
+			&::after {
+				border-left-color: darken($vw_lcv-gray, 10)
+			}
+		} //Button
+	}
+
+	button {
+		&.my-button {
+			background-color: $vw_lcv-special;
+			color: $white
+		}
+	} //Box
+	div.box div.box-header {
+		background-color: $vw_lcv-dark;
+		color: $white;
+	}
+
+	#loading-bar .bar {
+		background: $vw_lcv-special;
+		height: 4px;
+	}
+
+	#loading-bar-spinner .spinner-icon {
+		width: 18px;
+		height: 18px;
+		border: solid 4px transparent;
+		border-top-color: $vw_lcv-special;
+		border-left-color: $vw_lcv-special;
+		border-radius: 10px;
+	}
+}
