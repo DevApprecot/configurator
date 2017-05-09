@@ -9,7 +9,9 @@
 			bindings: {
 				stepsFlag: "<",
 				model: "<",
-				color: "<"
+				color: "<",
+				hasColors: '<',
+				hasEquipments: '<'
 			},
 		});
 

@@ -1,13 +1,18 @@
-<span class="padding"
-      ng-show="!$ctrl.equipment.length">Δεν βρέθηκε διαθέσιμος εξοπλισμός</span>
+<div class="container-fluid">
 
-<div ng-show="$ctrl.equipment.length"
-     class="container-fluid">
 
 	<div class="row">
 		<h1>Εξοπλισμοί από λίστα</h1>
 
-		<div class="table-responsive m-t-md">
+
+		<div class="m-t-md"
+		     ng-show="!$ctrl.equipment.length">
+			<small class="text-muted">Δεν βρέθηκε διαθέσιμος εξοπλισμός</small>
+		</div>
+
+
+		<div ng-show="$ctrl.equipment.length"
+		     class="table-responsive m-t-md">
 			<table class="table table-hover">
 				<thead>
 					<tr>

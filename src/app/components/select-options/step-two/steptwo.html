@@ -1,11 +1,16 @@
-<span class="padding" ng-show="!$ctrl.colors.length">Δεν βρέθηκαν διαθέσιμα χρώματα.</span>
-
-<div ng-show="$ctrl.colors.length"
-     class="container-fluid">
+<div class="container-fluid">
 	<div class="row">
 		<h1>{{$ctrl.family.ModelDescription}} <small class="text-muted">{{$ctrl.model.ModelDescription}}</small></h1>
 
-		<div class="table-responsive m-t-md">
+
+		<div class="m-t-md"
+		     ng-show="!$ctrl.colors.length">
+			<small class="text-muted">Δεν βρέθηκαν διαθέσιμα χρώματα.</small>
+		</div>
+
+
+		<div ng-show="$ctrl.colors.length"
+		     class="table-responsive m-t-md">
 			<table class="table table-hover">
 				<thead>
 					<tr>

@@ -20,7 +20,10 @@
 		ctrl.selectedItem = {};
 
 		ctrl.$onInit = function() {
-			ctrl.getColors();
+			if (!$stateParams.colors.length)
+				ctrl.getColors();
+			else
+				ctrl.colors = $stateParams.colors;
 		};
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};

@@ -6,7 +6,8 @@
 			<span class="hidden-xs ">Μοντελο</span>
 		</a>
 	</li>
-	<li ui-sref-active="current">
+	<li ng-if="$ctrl.hasColors"
+	    ui-sref-active="current">
 		<a ng-disabled="!$ctrl.stepsFlag[0]"
 		   ui-sref="app.select-options.step-two ({ modelId: $ctrl.model.Code})">
 			<i class="fa"
@@ -14,7 +15,8 @@
 			<span class="hidden-xs ">Χρώμα </span>
 		</a>
 	</li>
-	<li ui-sref-active="current">
+	<li ng-if="$ctrl.hasEquipments"
+	    ui-sref-active="current">
 		<a ng-disabled="!$ctrl.stepsFlag[1]"
 		   ui-sref="app.select-options.step-three ({modelId: $ctrl.model.Code , colorId: $ctrl.color.OptionCode})">
 			<i class="fa"

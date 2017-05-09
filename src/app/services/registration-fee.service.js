@@ -13,6 +13,23 @@
 			calculate: calculateRegistrationFee
 		}
 
+		/* FuelTypes
+			0=Petrol
+			1=Diesel
+			2=Electric
+			3=Hybrid (petrol/electric)
+			4=Hybrid (diesel/electric)
+			5=Autogas (LPG)
+			6=Hydrogen
+			7=Other
+		*/
+
+		const exceptions = {
+			2: 0,
+			3: -0.5,
+			4: -0.5,
+		};
+
 		const RegistrationFeePercentages = [
             [0.038, 0.04, 0.044, 0.048, 0.052, 0.056, 0.064, 0.08],
             [0.076, 0.08, 0.088, 0.096, 0.104, 0.112, 0.128, 0.16],
@@ -39,8 +56,6 @@
         ]
 
 		return service;
-
-		//Ypolupetai to pedio pou kathorizei an einai ivridiko 'h amigws ilektriko
 
 		function calculateRegistrationFee(family, model, color, aOptions, mOptions) {
 
@@ -72,6 +87,13 @@
 
 			fee = (priceBeforeTaxes * feePercentage)
 				.toFixed(2);
+
+			//Check fuel type
+
+			if(Object.keys(exceptions).includes(model.FuelType)) {
+				console.log('Im in fuel type');
+				fee *= exceptions(model.FuelType);
+			}
 
 			console.log('priceBeforeTaxes:' + priceBeforeTaxes);
 			console.log('Co2Value:' + Co2Value);

@@ -13,12 +13,19 @@
 			},
 		});
 
-	SelectOptionsCtrl.$inject = ['$state', '$timeout', 'Data', 'IMAGES_PATH', 'DEFAULT_CAR_IMAGE'];
+	SelectOptionsCtrl.$inject = ['$state', '$stateParams', 'HAS_COLORS', 'HAS_EQUIPMENTS', '$timeout', 'API', 'Data',
+		'IMAGES_PATH',
+		'DEFAULT_CAR_IMAGE'];
 
-	function SelectOptionsCtrl($state, $timeout, Data, IMAGES_PATH, DEFAULT_CAR_IMAGE) {
+	function SelectOptionsCtrl($state, $stateParams, HAS_COLORS, HAS_EQUIPMENTS, $timeout, API, Data, IMAGES_PATH,
+		DEFAULT_CAR_IMAGE) {
 		var ctrl = this;
 		ctrl.imgPath = IMAGES_PATH.url;
 		ctrl.defaultImg = DEFAULT_CAR_IMAGE.url;
+
+		ctrl.hasColors = HAS_COLORS.includes(parseInt($stateParams.makeId));
+		ctrl.hasEquipments = HAS_EQUIPMENTS.includes(parseInt($stateParams.makeId));
+
 		console.log(ctrl.imgPath);
 
 		ctrl.selectModel = function(model) {
@@ -44,7 +51,30 @@
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 			ctrl.onModelSelect();
 
-			$state.go('app.select-options.step-two', { modelId: model.Code });
+			API.colors(ctrl.model.Code)
+				.then(resp => {
+					console.log(resp);
+					ctrl.availableColors = resp.data.listOfData.map(val => {
+						if (!val.Photo)
+							val.Photo = Data.get.model()
+							.Photo;
+
+						return val;
+					});
+
+				}, resp => {
+					console.log('Failed to get colors', resp);
+				})
+				.then(() => {
+
+					if (ctrl.hasColors) {
+						$state.go('app.select-options.step-two', { modelId: model.Code, colors: ctrl.availableColors });
+					} else {
+						ctrl.selectColor({}, true)
+					}
+
+				})
+
 		};
 
 		ctrl.selectColor = function(colorOptions, isNextSelected) {
@@ -60,29 +90,39 @@
 			}
 
 			ctrl.color = colorOptions;
-			ctrl.completedSteps[1] = true;
 
 			Data.set.color(colorOptions);
 			Data.set.steps(ctrl.completedSteps);
 
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 
-			if (isNextSelected)
-				$state.go('app.select-options.step-three', { modelId: ctrl.model.Code, colorId: colorOptions.OptionCode })
+			if (isNextSelected) {
+
+				ctrl.completedSteps[1] = true;
+
+				if (ctrl.hasEquipments) {
+					$state.go('app.select-options.step-three', { modelId: ctrl.model.Code, colorId: colorOptions.OptionCode });
+				} else {
+					ctrl.selectEquipment({ autoEquipments: [], manualEquipments: [] }, true)
+				}
+			}
+
 		}
 
 		ctrl.selectEquipment = function(equipmentOptions, isNextSelected) {
 
 			ctrl.equipment = equipmentOptions;
-			ctrl.completedSteps[2] = true;
 
 			Data.set.equipment(equipmentOptions);
 			Data.set.steps(ctrl.completedSteps);
 
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 
-			if (isNextSelected)
+			if (isNextSelected) {
 				$state.go('app.select-options.step-four', { modelId: ctrl.model.Code, colorId: ctrl.color.OptionCode })
+				ctrl.completedSteps[2] = true;
+			}
+
 		}
 
 		ctrl.$onInit = function() {

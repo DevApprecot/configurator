@@ -46,6 +46,9 @@
 
 			.state('app.select-options.step-two', {
 				url: '/model/:modelId/color',
+				params: {
+					colors: []
+				},
 				template: '<step-two default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectColor(colorOptions, isNextSelected)"></step-two>'
 			})
 

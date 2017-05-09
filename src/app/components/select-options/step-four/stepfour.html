@@ -18,8 +18,9 @@
 							<tbody>
 
 								<tr>
-									<td></td>
-									<td></td>
+									<th></th>
+									<th></th>
+									<th class="text-center">Presentation Code/Fee</th>
 									<th class="text-center">CO2</th>
 									<th>Χωρίς Φ.Π.Α</th>
 									<th>Με Φ.Π.Α</th>
@@ -29,7 +30,7 @@
 								<tr>
 									<th>Μοντέλο</th>
 									<td>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></td>
-
+									<td class="text-center">{{$ctrl.model.PresentationCode || '-'}}</td>
 									<td class="text-center">{{$ctrl.model.CO2EmissionCombined}}</td>
 									<td>{{$ctrl.model.Price | currency}}</td>
 									<td>{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
@@ -38,8 +39,8 @@
 								<tr ng-show="$ctrl.color.Price">
 									<th>Χρώμα</th>
 									<td>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></td>
-
-									<td class="text-center">{{$ctrl.color.ChangeCO2}}</td>
+									<td class="text-center">{{$ctrl.color.PresentationFee || '-'}}</td>
+									<td class="text-center">{{$ctrl.color.ChangeCO2 || '-'}}</td>
 									<td>{{$ctrl.color.Price | currency}}</td>
 									<td>{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
 								</tr>
@@ -52,7 +53,9 @@
 											<small class="text-muted">({{$ctrl.equipment.autoEquipments[0].OptionCode}})</small>
 										</td>
 
-										<td class="text-center">{{$ctrl.equipment.autoEquipments[0].ChangeCO2}}</td>
+										<td class="text-center">{{$ctrl.equipment.autoEquipments[0].PresentationFee || '-'}}</td>
+
+										<td class="text-center">{{$ctrl.equipment.autoEquipments[0].ChangeCO2 || '-'}}</td>
 
 										<td>{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
 
@@ -68,7 +71,9 @@
 										<small class="text-muted">({{equipment.OptionCode}})</small>
 									</td>
 
-									<td class="text-center">{{equipment.ChangeCO2}}</td>
+									<td class="text-center">{{equipment.PresentationFee || '-'}}</td>
+
+									<td class="text-center">{{equipment.ChangeCO2 || '-'}}</td>
 
 									<td>{{equipment.Price | currency}}</td>
 
@@ -83,6 +88,8 @@
 											<small class="text-muted">({{$ctrl.equipment.manualEquipments[0].code}})</small>
 										</td>
 
+										<td class="text-center">-</td>
+
 										<td class="text-center">{{$ctrl.equipment.manualEquipments[0].co2}}</td>
 
 										<td>{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
@@ -96,9 +103,12 @@
 
 									<tr ng-repeat="equipment in $ctrl.equipment.manualEquipments | limitTo: (1 - $ctrl.equipment.manualEquipments.length) track by $index">
 										<th></th>
+
 										<td>{{equipment.description}}
 											<small class="text-muted">({{equipment.code}})</small>
 										</td>
+
+										<td class="text-center">-</td>
 
 										<td class="text-center">{{equipment.co2}}</td>
 
@@ -110,7 +120,7 @@
 								</div>
 
 								<tr class="row-border">
-									<td colspan="5"></td>
+									<td colspan="6"></td>
 								</tr>
 
 								<tr>
