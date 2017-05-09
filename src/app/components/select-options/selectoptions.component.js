@@ -51,29 +51,11 @@
 			ctrl.onPriceUpdate({ price: Data.get.currentPrice() });
 			ctrl.onModelSelect();
 
-			API.colors(ctrl.model.Code)
-				.then(resp => {
-					console.log(resp);
-					ctrl.availableColors = resp.data.listOfData.map(val => {
-						if (!val.Photo)
-							val.Photo = Data.get.model()
-							.Photo;
-
-						return val;
-					});
-
-				}, resp => {
-					console.log('Failed to get colors', resp);
-				})
-				.then(() => {
-
-					if (ctrl.hasColors) {
-						$state.go('app.select-options.step-two', { modelId: model.Code, colors: ctrl.availableColors });
-					} else {
-						ctrl.selectColor({}, true)
-					}
-
-				})
+			if (ctrl.hasColors) {
+				$state.go('app.select-options.step-two', { modelId: model.Code, colors: ctrl.availableColors });
+			} else {
+				ctrl.selectColor({}, true)
+			}
 
 		};
 

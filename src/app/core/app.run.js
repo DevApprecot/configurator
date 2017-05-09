@@ -1,22 +1,21 @@
-// (function() {
-// 	'use strict';
+(function() {
+	'use strict';
 
-// 	angular
-// 		.module('configurator')
+	angular
+		.module('configurator')
 
-// 		.run(RunFunction);
+		.run(RunFunction);
 
-// 	RunFunction.$inject = ['$urlMatcherFactoryProvider'];
+	RunFunction.$inject = ['$rootScope', '$anchorScroll'];
 
-// 	function RunFunction( $urlMatcherFactoryProvider) {
-// 		 $urlMatcherFactoryProvider.type("uri", {
-// 			encode: function(val) {
-// 				return encodeURIComponent(val);
-// 			},
-// 			decode: function(){
-//                 return decodeURIComponent(val)
-//             }
-// 		});
-// 	}
+	function RunFunction($rootScope, $anchorScroll) {
 
-// })();
+
+        $rootScope.$on('$stateChangeSuccess',(e) => {
+            $anchorScroll();
+        })
+
+
+	}
+
+})();
