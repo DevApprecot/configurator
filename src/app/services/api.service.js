@@ -5,9 +5,9 @@
 		.module('configurator')
 		.service('API', API);
 
-	API.$inject = ['http', 'API_URL'];
+	API.$inject = ['http', 'ApiUrl'];
 
-	function API(http, API_URL) {
+	function API(http, ApiUrl) {
 
 		var service = {
 			make: getMake,
@@ -30,7 +30,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/external/GetData`);
+			return http.get(params, `${ApiUrl()}/external/GetData`);
 		}
 
 		function getFamilies(makeCode) {
@@ -42,7 +42,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/external/GetData`);
+			return http.get(params, `${ApiUrl()}/external/GetData`);
 		}
 
 		function getModels(parentModelCode) {
@@ -54,7 +54,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/external/GetData`);
+			return http.get(params, `${ApiUrl()}/external/GetData`);
 
 		}
 
@@ -69,7 +69,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/external/GetData`);
+			return http.get(params, `${ApiUrl()}/external/GetData`);
 
 		}
 
@@ -82,7 +82,7 @@
 				pageSize: 500
 			};
 
-			return http.get(params, `${API_URL}/external/GetData`);
+			return http.get(params, `${ApiUrl()}/external/GetData`);
 		}
 
 		function submitOptions(Options, TotalBasicPrice, TotalCO2, RegistrationFee) {
@@ -96,7 +96,7 @@
 				}
 			};
 
-			return http.jsonp(payload, `${API_URL}/kosmocar/SaveConfigurationForLead`);
+			return http.jsonp(payload, `${ApiUrl()}/kosmocar/SaveConfigurationForLead`);
 
 		}
 

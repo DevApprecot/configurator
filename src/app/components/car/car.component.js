@@ -12,12 +12,12 @@
 			},
 		});
 
-	CarCtrl.$inject = ['DEFAULT_CAR_IMAGE', 'IMAGES_PATH'];
+	CarCtrl.$inject = ['DEFAULT_CAR_IMAGE', 'ApiUrl', 'IMAGES_PATH'];
 
-	function CarCtrl(DEFAULT_CAR_IMAGE, IMAGES_PATH) {
+	function CarCtrl(DEFAULT_CAR_IMAGE, ApiUrl, IMAGES_PATH) {
 		var ctrl = this;
 		ctrl.defaultImg = DEFAULT_CAR_IMAGE.url;
-		ctrl.imgPath = IMAGES_PATH.url;
+		ctrl.imgPath = ApiUrl() + IMAGES_PATH;
 
 		ctrl.$onInit = function() {};
 		ctrl.$onChanges = function(changesObj) {};

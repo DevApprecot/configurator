@@ -8,11 +8,7 @@
 			url: `./assets/img/no-vehicle-sm.png`
 		})
 
-		.constant('IMAGES_PATH', {
-			url: `https://onedealer.kosmocar.gr/Files/EntityImage/Inventory/`
-		})
-
-		.constant('API_URL', 'https://onedealer.kosmocar.gr')
+		.constant('IMAGES_PATH', `/Files/EntityImage/Inventory/`)
 
 		.constant('TAX_FEE', 1.24)
 

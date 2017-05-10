@@ -12,11 +12,13 @@
 			},
 		});
 
-	StepFourCtrl.$inject = ['$window', '$stateParams', 'Data', 'API', 'Option', 'SubmitAlert', 'TAX_FEE',
+	StepFourCtrl.$inject = ['$window', '$stateParams', 'Data', 'API', 'ApiUrl', 'RedirectPath', 'Option', 'SubmitAlert',
+		'TAX_FEE',
 		'RegistrationFee'
 	];
 
-	function StepFourCtrl($window, $stateParams, Data, API, Option, SubmitAlert, TAX_FEE, RegistrationFee) {
+	function StepFourCtrl($window, $stateParams, Data, API, ApiUrl, RedirectPath, Option, SubmitAlert, TAX_FEE,
+		RegistrationFee) {
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
 		ctrl.finalPrice = {
@@ -104,18 +106,15 @@
 					console.log("Submitted successfully", resp)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
-					$window.location.href = decodeURIComponent($stateParams.redirectUrl) + '?conf=' + resp.data.code;
+					$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
+						.code;
 
 				}, resp => {
 					console.log("Failed to submit", resp);
 
 					if (resp.responseText) {
-						let url = $stateParams.redirectUrl;
-						url = url.replace(/\*/g, '/');
 
-						// console.log(url + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1)).code);
-						// return;
-						$window.location.href = url + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
+						$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
 							.code;
 						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
 					} else {

@@ -14,13 +14,14 @@
 		});
 
 	SelectOptionsCtrl.$inject = ['$state', '$stateParams', 'HAS_COLORS', 'HAS_EQUIPMENTS', '$timeout', 'API', 'Data',
+		'ApiUrl',
 		'IMAGES_PATH',
 		'DEFAULT_CAR_IMAGE'];
 
-	function SelectOptionsCtrl($state, $stateParams, HAS_COLORS, HAS_EQUIPMENTS, $timeout, API, Data, IMAGES_PATH,
+	function SelectOptionsCtrl($state, $stateParams, HAS_COLORS, HAS_EQUIPMENTS, $timeout, API, Data, ApiUrl, IMAGES_PATH,
 		DEFAULT_CAR_IMAGE) {
 		var ctrl = this;
-		ctrl.imgPath = IMAGES_PATH.url;
+		ctrl.imgPath = ApiUrl() + IMAGES_PATH;
 		ctrl.defaultImg = DEFAULT_CAR_IMAGE.url;
 
 		ctrl.hasColors = HAS_COLORS.includes(parseInt($stateParams.makeId));

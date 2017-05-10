@@ -8,24 +8,10 @@
 
 	function config($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
 
-		// function myEncode(val) {
-		// 	return val !== null ? encodeURIComponent(val.toString()) : val;
-		// }
-
-		// function myDecode(val) {
-		// 	return val !== null ? decodeURIComponent(val.toString()) : val;
-		// }
-
-		// $urlMatcherFactoryProvider.type("uri", {
-		// 	encode: myEncode,
-		// 	decode: myDecode,
-		// 	is: function() { return true; }
-		// });
-
 		$stateProvider
 
 			.state('app', {
-				url: '/app/submit-param={redirectUrl}',
+				url: '/app/endpoint={apiUrl}&redirectionPath={redirectPath}',
 				template: '<app theme="{{base.theme}}"></app>'
 			})
 
@@ -64,7 +50,7 @@
 
 		$urlRouterProvider.otherwise(function($injector, $location) {
 			$injector.invoke(['$state', function($state) {
-				$state.go('app.select-family', { redirectUrl: 'missing', makeId: 60 });
+				$state.go('app.select-family', { apiUrl: 'apiMissing', redirectPath:'redirectPathMissing', makeId: 60 });
  			 }]);
 		});
 
