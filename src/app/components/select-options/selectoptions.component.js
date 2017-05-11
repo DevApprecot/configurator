@@ -23,6 +23,7 @@
 		var ctrl = this;
 		ctrl.imgPath = ApiUrl() + IMAGES_PATH;
 		ctrl.defaultImg = DEFAULT_CAR_IMAGE.url;
+		ctrl.state = $state;
 
 		ctrl.hasColors = HAS_COLORS.includes(parseInt($stateParams.makeId));
 		ctrl.hasEquipments = HAS_EQUIPMENTS.includes(parseInt($stateParams.makeId));
@@ -42,8 +43,13 @@
 				1: () => {
 					ctrl.completedSteps[1] = true;
 
-					if (!ctrl.color) {
+					console.log(ctrl.color);
+
+					if (!ctrl.color || !Object.keys(ctrl.color)
+						.length) {
 						ctrl.selectColor({});
+					} else {
+						ctrl.selectColor(ctrl.color);
 					}
 
 					if (ctrl.hasEquipments) {
@@ -62,6 +68,8 @@
 							autoEquipments: [],
 							manualEquipments: []
 						})
+					} else {
+						ctrl.selectEquipment(ctrl.equipment)
 					}
 
 					$state.go('app.select-options.step-four', { modelId: ctrl.model.Code, colorId: ctrl.color.OptionCode })

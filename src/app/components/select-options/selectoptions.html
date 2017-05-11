@@ -8,5 +8,6 @@
      ui-view>
 </div>
 
-<options-footer model="$ctrl.model"
+<options-footer ng-hide="$ctrl.state.includes('app.select-options.step-four')"
+                model="$ctrl.model"
                 on-next="$ctrl.next(step)"></options-footer>
