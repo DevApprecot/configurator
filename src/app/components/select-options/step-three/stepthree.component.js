@@ -29,7 +29,6 @@
 		ctrl.$onDestory = function() {};
 
 		ctrl.addEquipment = function(equipment) {
-			console.log(equipment);
 			ctrl.manualEquipments.push(equipment);
 
 			ctrl.onSelect({

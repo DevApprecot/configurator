@@ -16,8 +16,6 @@
 
 			$timeout(() => {
 				vm.theme = THEMES[parseInt($stateParams.makeId)];
-				console.log(vm.theme);
-				console.log($stateParams);
 			})
 
 			$scope.$on('selectedMake', (event, makeCode) => {

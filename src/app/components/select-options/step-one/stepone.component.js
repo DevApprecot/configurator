@@ -25,10 +25,7 @@
 			ctrl.getModels();
 		};
 
-		ctrl.$onChanges = function(changesObj) {
-			console.log('selected Items changed');
-			console.log(changesObj);
-		};
+		ctrl.$onChanges = function(changesObj) {};
 
 		ctrl.$onDestory = function() {};
 
@@ -56,6 +53,7 @@
 		ctrl.toggleSelect = (model) => {
 
 			(ctrl.selectedItem.Code == model.Code) ? ctrl.selectedItem = {}: ctrl.selectedItem = model;
+			ctrl.onSelect({ model: ctrl.selectedItem });
 
 		}
 

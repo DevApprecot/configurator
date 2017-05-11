@@ -35,12 +35,12 @@
 				params: {
 					colors: []
 				},
-				template: '<step-two default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectColor(colorOptions, isNextSelected)"></step-two>'
+				template: '<step-two default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectColor(colorOptions)"></step-two>'
 			})
 
 			.state('app.select-options.step-three', {
 				url: '/model/:modelId/color/:colorId/options',
-				template: '<step-three default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectEquipment(equipment, isNextSelected)"></step-three>'
+				template: '<step-three default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}" on-select="$ctrl.selectEquipment(equipment)"></step-three>'
 			})
 
 			.state('app.select-options.step-four', {
@@ -50,7 +50,7 @@
 
 		$urlRouterProvider.otherwise(function($injector, $location) {
 			$injector.invoke(['$state', function($state) {
-				$state.go('app.select-family', { apiUrl: 'apiMissing', redirectPath:'redirectPathMissing', makeId: 60 });
+				$state.go('app.select-family', { apiUrl: 'apiMissing', redirectPath: 'redirectPathMissing', makeId: 60 });
  			 }]);
 		});
 

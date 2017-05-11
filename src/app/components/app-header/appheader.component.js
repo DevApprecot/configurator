@@ -25,9 +25,7 @@
 		}
 
 		ctrl.$onInit = function() {};
-		ctrl.$onChanges = function(changesObj) {
-			console.log(changesObj);
-		};
+		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
 	}
 })();

@@ -1,0 +1,8 @@
+<div class="container-fluid">
+
+	<button ng-click="$ctrl.onNext({step:$ctrl.getCurrentStep($ctrl.state.current.name)})"
+	        ng-disabled="$ctrl.isDisabled()"
+	        ng-hide="$ctrl.state.includes('app.select-options.step-four')"
+	        class="btn btn-lg my-button pull-right">Επόμενο</button>
+
+</div>

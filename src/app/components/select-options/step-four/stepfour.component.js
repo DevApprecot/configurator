@@ -31,8 +31,6 @@
 			ctrl.regTax = +RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
 				.manualEquipments);
 
-			console.log(typeof(ctrl.regTax))
-
 			ctrl.calcFinalPrices();
 		}
 
@@ -47,7 +45,6 @@
 			ctrl.finalPrice.afterTax = Number((Number(ctrl.finalPrice.beforeTax) * Number(ctrl.taxFee))
 				.toFixed(2))
 
-			console.log(ctrl.finalPrice)
 		}
 
 		ctrl.$onInit = function() {
@@ -59,7 +56,6 @@
 
 			ctrl.finalPrice.noRegTax = Data.get.currentPrice();
 
-			console.log(ctrl);
 
 		};
 

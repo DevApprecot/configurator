@@ -33,7 +33,6 @@
 				.then(resp => {
 					console.log('families', resp);
 					ctrl.families = resp.data.listOfData;
-					console.log(ctrl.families);
 				}, resp => {
 					console.log('Failed to get families');
 				})
