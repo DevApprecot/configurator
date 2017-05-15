@@ -2,11 +2,12 @@
 	<div class="row">
 		<h1>{{$ctrl.family.ModelDescription}} <small class="text-muted">{{$ctrl.model.ModelDescription}}</small></h1>
 
+		<span class="padding"
+		      ng-show="!$ctrl.colors.length && $ctrl.gotColors">Δεν βρέθηκαν διαθέσιμα χρώματα.</span>
 
-		<div class="m-t-md"
-		     ng-show="!$ctrl.colors.length">
-			<small class="text-muted">Δεν βρέθηκαν διαθέσιμα χρώματα.</small>
-		</div>
+
+		<span class="padding"
+		      ng-show="!$ctrl.colors.length && !$ctrl.gotColors">Παρακαλώ περιμένετε...</span>
 
 
 		<div ng-show="$ctrl.colors.length"
@@ -19,17 +20,16 @@
 						    width="10%">Εικόνα</th>
 
 						<th class="text-center"
-						    width="10%">Κωδικός</th>
+						    width="15%">Κωδικός</th>
 
 
-						<th width="30%">Περιγραφή</th>
+						<th width="65%">Περιγραφή</th>
 
 						<th class="text-center"
 						    width="10%">Τιμή
 						</th>
 
-						<th class="text-center"
-						    width="15%">CO2</th>
+
 					</tr>
 				</thead>
 
@@ -46,7 +46,6 @@
 						<td class="text-center">{{color.OptionCode}}</td>
 						<td>{{color.OptionDescription}}</td>
 						<td class="text-center">{{color.Price | currency}}</td>
-						<td class="text-center">{{color.ChangeCO2}}</td>
 
 					</tr>
 				</tbody>
@@ -56,5 +55,5 @@
 
 	</div>
 
-	
+
 </div>

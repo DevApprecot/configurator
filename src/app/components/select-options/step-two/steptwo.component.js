@@ -18,6 +18,7 @@
 	function StepTwoCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.selectedItem = {};
+		ctrl.gotColors = false;
 
 		ctrl.$onInit = function() {
 			ctrl.getColors();
@@ -40,6 +41,7 @@
 				}, resp => {
 					console.log('Failed to get colors', resp);
 				})
+				.then(() => { ctrl.gotColors = true });
 		}
 
 		ctrl.toggleSelect = function(color) {

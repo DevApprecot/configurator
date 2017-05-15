@@ -5,9 +5,9 @@
 
 		<div class="col-md-8">
 			<div class="box rp-m-t-md">
-				<div class="box-header">
+				<!--<div class="box-header">
 					<h2>  Πληροφορίες</h2>
-				</div>
+				</div>-->
 
 				<form name="submitOptionsForm"
 				      ng-submit="$ctrl.submitOptions()">
@@ -20,7 +20,7 @@
 								<tr>
 									<th></th>
 									<th></th>
-									<th class="text-center">Presentation Code/Fee</th>
+									<th class="text-center">Κωδικός</th>
 									<th class="text-center">CO2</th>
 									<th>Χωρίς Φ.Π.Α</th>
 									<th>Με Φ.Π.Α</th>
@@ -46,7 +46,7 @@
 								</tr>
 
 								<tr ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length">
-									<th>Εξοπλισμός από λίστα</th>
+									<th>Πρόσθετος εξοπλισμός</th>
 
 									<div>
 										<td>{{$ctrl.equipment.autoEquipments[0].OptionDescription}}
@@ -244,8 +244,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img ng-src="{{$ctrl.imgPath + ($ctrl.equipment.autoEquipments.lenght ? $ctrl.equipment.autoEquipments[0].Photo : $ctrl.color.Photo)}}"
-		
+			<img ng-src="{{$ctrl.carImg}}"
 			     err-src="{{$ctrl.defaultImg}}"
 			     class="img-responsive">
 

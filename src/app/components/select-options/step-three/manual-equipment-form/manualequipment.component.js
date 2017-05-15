@@ -16,8 +16,13 @@
 	function ManualEquipmentFormCtrl() {
 		var ctrl = this;
 		ctrl.equipment = {};
-		ctrl.clearForm = function() {
+
+		ctrl.submitForm = (form, equipment) => {
+			if (form.$invalid) return;
+
+			ctrl.onSelect({ equipment });
 			ctrl.equipment = null;
+			form.$setPristine();
 		}
 
 		ctrl.$onInit = function() {};

@@ -19,6 +19,8 @@
 		var _getMake = getMake;
 		var _getFamilies = getFamilies;
 
+		ctrl.gotFamilies = false;
+
 		ctrl.$onInit = function() {
 			_getFamilies($stateParams.makeId);
 			_getMake();
@@ -33,8 +35,12 @@
 				.then(resp => {
 					console.log('families', resp);
 					ctrl.families = resp.data.listOfData;
+
 				}, resp => {
 					console.log('Failed to get families');
+				})
+				.then(() => {
+					ctrl.gotFamilies = true;
 				})
 		}
 

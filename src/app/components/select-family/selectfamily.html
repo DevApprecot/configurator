@@ -9,7 +9,9 @@
 		     on-select="$ctrl.onSelect({family:item})"
 		     ng-repeat="item in $ctrl.families track by $index"></car>
 
-		<span class="padding" ng-show="!$ctrl.families.length">Δεν βρέθηκαν οικογένειες</span>
+		<span class="padding" ng-show="!$ctrl.families.length && $ctrl.gotFamilies">Δεν βρέθηκαν οικογένειες</span>
+		<span class="padding" ng-show="!$ctrl.gotFamilies && !$ctrl.families.length">Παρακαλώ περιμένετε...</span>
+		
 
 	</div>
 </div>

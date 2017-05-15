@@ -334,6 +334,9 @@ car a:focus {
   cursor: pointer;
   text-decoration: none; }
 
+car p {
+  color: #1a1a1a; }
+
 steps {
   /* remove extra padding on the first object since it doesn't have an arrow to the left */
   /* white arrow to the left to "erase" background (starting from the 2nd object) */
@@ -454,9 +457,6 @@ div.box {
 .vw options-footer {
   background-color: #dee1e3; }
 
-.vw car p {
-  color: #2f3638; }
-
 .vw steps .steps a {
   color: #0099da i;
     color-color: #0099da; }
@@ -514,9 +514,6 @@ div.box {
 
 .vw_lcv options-footer {
   background-color: #2f3638; }
-
-.vw_lcv car p {
-  color: #dee1e3; }
 
 .vw_lcv steps .steps a {
   color: #0099da i;
@@ -576,9 +573,6 @@ div.box {
 .audi options-footer {
   background-color: #a4b3bb; }
 
-.audi car p {
-  color: #2b2e34; }
-
 .audi steps .steps a {
   color: #f72b2e; }
   .audi steps .steps a i {
@@ -637,9 +631,6 @@ div.box {
 
 .default options-footer {
   background-color: #fdfdff; }
-
-.default car p {
-  color: #363537; }
 
 .default steps .steps a {
   color: #eae0d5 i;

@@ -26,6 +26,7 @@
 			beforeTax: null,
 			afterTax: null
 		};
+		ctrl.carImg = ``;
 
 		ctrl.calcFee = function() {
 			ctrl.regTax = +RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
@@ -42,7 +43,7 @@
 
 			ctrl.finalPrice.beforeTax = Number((Number(ctrl.finalPrice.noRegTax) + Number(ctrl.regTax))
 				.toFixed(2));
-			ctrl.finalPrice.afterTax = Number((Number(ctrl.finalPrice.beforeTax) * Number(ctrl.taxFee))
+			ctrl.finalPrice.afterTax = Number(((Number(ctrl.finalPrice.noRegTax) * Number(ctrl.taxFee)) + Number(ctrl.regTax))
 				.toFixed(2))
 
 		}
@@ -56,8 +57,36 @@
 
 			ctrl.finalPrice.noRegTax = Data.get.currentPrice();
 
+			ctrl.carImg = ctrl.imgPath + findImage();
+			console.log(ctrl.carImg);
 
 		};
+
+		function findImage() {
+
+			function notInEquipment() {
+				if (!ctrl.color.Photo) {
+					if (!ctrl.model.Photo) {
+						return ctrl.family.Photo;
+					} else {
+						return ctrl.model.Photo;
+					}
+				} else {
+					return ctrl.color.Photo;
+				}
+			}
+
+			if (ctrl.equipment.autoEquipments.length) {
+				let idx = ctrl.equipment.autoEquipments.findIndex(e => e.Photo);
+				if (idx === -1) {
+					return notInEquipment();
+				} else {
+					return ctrl.equipment.autoEquipments[idx].Photo;
+				}
+			} else {
+				return notInEquipment();
+			}
+		}
 
 		ctrl.submitOptions = () => {
 

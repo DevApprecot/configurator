@@ -5,10 +5,12 @@
 		<h1>Εξοπλισμοί από λίστα</h1>
 
 
-		<div class="m-t-md"
-		     ng-show="!$ctrl.equipment.length">
-			<small class="text-muted">Δεν βρέθηκε διαθέσιμος εξοπλισμός</small>
-		</div>
+
+		<div class="padding"
+		      ng-show="!$ctrl.equipment.length && $ctrl.gotEquipments">Δεν βρέθηκε διαθέσιμος εξοπλισμός.</div>
+
+		<div class="padding"
+		      ng-show="!$ctrl.colors.length && !$ctrl.gotEquipments">Παρακαλώ περιμένετε...</div>
 
 
 		<div ng-show="$ctrl.equipment.length"
@@ -41,7 +43,7 @@
 				<tbody>
 					<tr ng-class="{'active':$ctrl.isSelected(equipment.OptionCode)}"
 					    ng-click="$ctrl.toggleSelect(equipment)"
-					    ng-repeat="equipment in $ctrl.equipment track by $index">
+					    ng-repeat="equipment in $ctrl.equipment | orderBy:'ItemGroup' track by $index">
 
 						<td>
 							<img ng-src="{{$ctrl.imgPath + equipment.Photo}}"

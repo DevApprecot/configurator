@@ -4,8 +4,10 @@
 
 <div class="row m-t-md">
 
-	<form name="addEquipmentForm"
-	      ng-submit="$ctrl.onSelect({equipment:$ctrl.equipment}); $ctrl.clearForm()">
+	<form novalidate
+	      name="addEquipmentForm"
+	      ng-submit="$ctrl.submitForm(addEquipmentForm, $ctrl.equipment)">
+
 
 		<div class="row form-group">
 
@@ -16,8 +18,12 @@
 				<input ng-model="$ctrl.equipment.code"
 				       required
 				       type="text"
+				       name="code"
 				       class="form-control"
 				       placeholder="Συμπληρώστε τον κωδικού του εξοπλισμού">
+
+				<div ng-show="addEquipmentForm.code.$error.required && (addEquipmentForm.code.$dirty || addEquipmentForm.$submitted)"
+				     class="text-danger m-t-sm">Παρακαλώ συμπληρώστε το πεδίο</div>
 			</div>
 
 		</div>
@@ -30,9 +36,14 @@
 			<div class="col-md-8">
 				<input ng-model="$ctrl.equipment.description"
 				       required
+				       name="description"
 				       type="text"
 				       class="form-control"
 				       placeholder="Συμπληρώστε την περιγραφή του εξοπλισμού">
+
+
+				<div ng-show="addEquipmentForm.description.$error.required && (addEquipmentForm.description.$dirty || addEquipmentForm.$submitted)"
+				     class="text-danger m-t-sm">Παρακαλώ συμπληρώστε το πεδίο</div>
 			</div>
 
 		</div>
@@ -45,9 +56,16 @@
 			<div class="col-md-8">
 				<input ng-model="$ctrl.equipment.co2"
 				       required
+				       name="co2"
 				       type="number"
 				       class="form-control"
 				       placeholder="Συμπληρώστε το CO2">
+
+				<div ng-show="addEquipmentForm.co2.$error.number && (addEquipmentForm.co2.$dirty || addEquipmentForm.$submitted)"
+				     class="text-danger m-t-sm">Το πεδίο δεν είναι έγκυρο</div>
+
+				<div ng-show="addEquipmentForm.co2.$error.required && (addEquipmentForm.co2.$dirty || addEquipmentForm.$submitted)"
+				     class="text-danger m-t-sm">Παρακαλώ συμπληρώστε το πεδίο</div>
 			</div>
 
 		</div>
@@ -61,14 +79,23 @@
 				<div class="input-icon input-icon-right">
 
 					<i>€</i>
-					
+
 					<input ng-model="$ctrl.equipment.price"
 					       required
-					       type="number"
-					       step="0.01"
+					       type="string"
+					       name="price"
+					       ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
 					       class="form-control"
 					       placeholder="Συμπληρώστε την τιμή του εξοπλισμού">
+
+
 				</div>
+
+				<div ng-show="addEquipmentForm.price.$error.pattern && (addEquipmentForm.price.$dirty || addEquipmentForm.$submitted)"
+				     class="text-danger m-t-sm">Το πεδίο δεν είναι έγκυρο</div>
+
+				<div ng-show="addEquipmentForm.price.$error.required && (addEquipmentForm.price.$dirty || addEquipmentForm.$submitted)"
+				     class="text-danger m-t-sm">Παρακαλώ συμπληρώστε το πεδίο</div>
 			</div>
 
 		</div>

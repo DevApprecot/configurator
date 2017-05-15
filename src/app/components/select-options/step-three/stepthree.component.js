@@ -20,6 +20,8 @@
 		ctrl.selectedItems = [];
 		ctrl.manualEquipments = [];
 
+		ctrl.gotEquipments = false;
+
 		ctrl.$onInit = function() {
 			ctrl.family = Data.get.family();
 			ctrl.model = Data.get.model();
@@ -29,6 +31,8 @@
 		ctrl.$onDestory = function() {};
 
 		ctrl.addEquipment = function(equipment) {
+			equipment.price = equipment.price.replace(`,`, `.`);
+			equipment.price = parseFloat(equipment.price);
 			ctrl.manualEquipments.push(equipment);
 
 			ctrl.onSelect({
@@ -67,6 +71,7 @@
 				}, resp => {
 					console.log('Failed to get equipment', resp);
 				})
+				.then(() => { ctrl.gotEquipments = true });
 		}
 
 		ctrl.toggleSelect = function(equipment) {

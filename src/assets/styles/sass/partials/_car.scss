@@ -1,11 +1,11 @@
 car {
 
 	a {
-		width:100%;
-		height:200px;
-		padding:50px;
+		width: 100%;
+		height: 200px;
+		padding: 50px;
 		display: block;
-		text-align:center;
+		text-align: center;
 	}
 
 	a:hover,
@@ -14,5 +14,7 @@ car {
 		text-decoration: none;
 	}
 
-	
+	p {
+		color: $black;
+	}
 }

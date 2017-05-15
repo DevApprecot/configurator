@@ -20,6 +20,7 @@
 		var ctrl = this;
 		ctrl.models = [];
 		ctrl.selectedItem = {};
+		ctrl.gotModels = false;
 
 		ctrl.$onInit = function() {
 			ctrl.getModels();
@@ -48,6 +49,7 @@
 				}, resp => {
 					console.log('Failed to get moels', resp);
 				})
+				.then(() => { ctrl.gotModels = true; })
 		}
 
 		ctrl.toggleSelect = (model) => {

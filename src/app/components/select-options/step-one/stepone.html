@@ -1,5 +1,8 @@
 <span class="padding"
-      ng-show="!$ctrl.models.length">Δεν βρέθηκαν μοντέλα</span>
+      ng-show="!$ctrl.models.length && $ctrl.gotModels">Δεν βρέθηκαν μοντέλα</span>
+
+<span class="padding"
+      ng-show="!$ctrl.models.length && !$ctrl.gotModels">Παρακαλώ περιμένετε...</span>
 
 <div ng-show="$ctrl.models.length"
      class="container-fluid">
@@ -39,7 +42,7 @@
 						     class="img-responsive">
 					</td>
 
-					<td>{{model.Code}}</td>
+					<td>{{model.PresentationCode}}</td>
 
 					<td>{{model.ModelDescription || '-'}}</td>
 
@@ -53,7 +56,6 @@
 		</table>
 
 	</div>
-
 
 
 </div>
