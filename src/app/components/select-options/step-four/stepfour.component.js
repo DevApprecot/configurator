@@ -37,10 +37,6 @@
 		}
 
 		ctrl.calcFinalPrices = function() {
-			if (typeof(ctrl.regTax) == `String` && ctrl.regTax.includes(`,`))
-				ctrl.regTax = ctrl.regTax.replace(`,`, `.`);
-
-			ctrl.regTax = parseFloat(ctrl.regTax);
 
 			if (isNaN(ctrl.regTax) || !ctrl.regTax) {
 				return;

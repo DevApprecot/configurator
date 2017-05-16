@@ -31,8 +31,6 @@
 		ctrl.$onDestory = function() {};
 
 		ctrl.addEquipment = function(equipment) {
-			equipment.price = equipment.price.replace(`,`, `.`);
-			equipment.price = parseFloat(equipment.price);
 			ctrl.manualEquipments.push(equipment);
 
 			ctrl.onSelect({
