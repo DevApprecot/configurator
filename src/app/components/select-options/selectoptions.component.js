@@ -25,6 +25,9 @@
 		ctrl.defaultImg = DEFAULT_CAR_IMAGE.url;
 		ctrl.state = $state;
 
+		ctrl.isSubmitted = false;
+		ctrl.isFormValid = false;
+
 		ctrl.hasColors = HAS_COLORS.includes(parseInt($stateParams.makeId));
 		ctrl.hasEquipments = HAS_EQUIPMENTS.includes(parseInt($stateParams.makeId));
 
@@ -137,6 +140,10 @@
 
 		}
 
+		ctrl.submit = () => {
+			ctrl.isSubmitted = true;
+		}
+
 		ctrl.$onInit = function() {
 			ctrl.model = Data.get.model() || null;
 			ctrl.color = Data.get.color() || null;
@@ -145,5 +152,6 @@
 
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
+
 	}
 })();

@@ -45,7 +45,7 @@
 
 			.state('app.select-options.step-four', {
 				url: '/model/:modelId/color/:colorId/options=selected/synopsis',
-				template: '<step-four default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}"></step-four>'
+				template: '<step-four is-submitted="{{$ctrl.isSubmitted}}" default-img="{{$ctrl.defaultImg}}" img-path="{{$ctrl.imgPath}}"></step-four>'
 			})
 
 		$urlRouterProvider.otherwise(function($injector, $location) {

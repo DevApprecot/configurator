@@ -12,7 +12,8 @@
 				<form name="submitOptionsForm"
 				      ng-submit="$ctrl.submitOptions()">
 
-					<div class="box-body table-responsive">
+					<div ng-init="$ctrl.setFormValidity(submitOptionsForm)"
+					     class="box-body table-responsive">
 
 						<table class="table-card">
 							<tbody>
@@ -22,8 +23,8 @@
 									<th></th>
 									<th class="text-center">Κωδικός</th>
 									<th class="text-center">CO2</th>
-									<th>Χωρίς Φ.Π.Α</th>
-									<th>Με Φ.Π.Α</th>
+									<th class="text-right">Χωρίς Φ.Π.Α</th>
+									<th class="text-right">Με Φ.Π.Α</th>
 								</tr>
 
 
@@ -32,8 +33,8 @@
 									<td>{{$ctrl.model.ModelDescription}} <small class="text-muted">({{$ctrl.model.Code}})</small></td>
 									<td class="text-center">{{$ctrl.model.PresentationCode || '-'}}</td>
 									<td class="text-center">{{$ctrl.model.CO2EmissionCombined}}</td>
-									<td>{{$ctrl.model.Price | currency}}</td>
-									<td>{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
+									<td class="text-right">{{$ctrl.model.Price | currency}}</td>
+									<td class="text-right">{{$ctrl.model.Price * $ctrl.taxFee| currency}}</td>
 								</tr>
 
 								<tr ng-show="$ctrl.color.Price">
@@ -41,8 +42,8 @@
 									<td>{{$ctrl.color.OptionDescription}} <small class="text-muted">({{$ctrl.color.OptionCode}})</small></td>
 									<td class="text-center">{{$ctrl.color.PresentationFee || '-'}}</td>
 									<td class="text-center">{{$ctrl.color.ChangeCO2 || '-'}}</td>
-									<td>{{$ctrl.color.Price | currency}}</td>
-									<td>{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
+									<td class="text-right">{{$ctrl.color.Price | currency}}</td>
+									<td class="text-right">{{$ctrl.color.Price * $ctrl.taxFee| currency}}</td>
 								</tr>
 
 								<tr ng-show="$ctrl.equipment.autoEquipments && $ctrl.equipment.autoEquipments.length">
@@ -57,9 +58,9 @@
 
 										<td class="text-center">{{$ctrl.equipment.autoEquipments[0].ChangeCO2 || '-'}}</td>
 
-										<td>{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
+										<td class="text-right">{{$ctrl.equipment.autoEquipments[0].Price | currency}}</td>
 
-										<td>{{$ctrl.equipment.autoEquipments[0].Price * $ctrl.taxFee | currency}}</td>
+										<td class="text-right">{{$ctrl.equipment.autoEquipments[0].Price * $ctrl.taxFee | currency}}</td>
 									</div>
 
 								</tr>
@@ -75,9 +76,9 @@
 
 									<td class="text-center">{{equipment.ChangeCO2 || '-'}}</td>
 
-									<td>{{equipment.Price | currency}}</td>
+									<td class="text-right">{{equipment.Price | currency}}</td>
 
-									<td>{{equipment.Price * $ctrl.taxFee | currency}}</td>
+									<td class="text-right">{{equipment.Price * $ctrl.taxFee | currency}}</td>
 								</tr>
 
 								<tr ng-show="$ctrl.equipment.manualEquipments && $ctrl.equipment.manualEquipments.length">
@@ -92,9 +93,9 @@
 
 										<td class="text-center">{{$ctrl.equipment.manualEquipments[0].co2}}</td>
 
-										<td>{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
+										<td class="text-right">{{$ctrl.equipment.manualEquipments[0].price | currency}}</td>
 
-										<td>{{$ctrl.equipment.manualEquipments[0].price * $ctrl.taxFee | currency}}</td>
+										<td class="text-right"> {{$ctrl.equipment.manualEquipments[0].price * $ctrl.taxFee | currency}}</td>
 									</div>
 
 								</tr>
@@ -112,9 +113,9 @@
 
 										<td class="text-center">{{equipment.co2}}</td>
 
-										<td>{{equipment.price | currency}}</td>
+										<td class="text-right">{{equipment.price | currency}}</td>
 
-										<td>{{equipment.price * $ctrl.taxFee | currency}}</td>
+										<td class="text-right">{{equipment.price * $ctrl.taxFee | currency}}</td>
 									</tr>
 
 								</div>
@@ -130,7 +131,7 @@
 									<td></td>
 									<td></td>
 
-									<td class="va-middle">
+									<td class="va-middle text-right">
 										{{$ctrl.finalPrice.noRegTax | currency}}
 									</td>
 
@@ -143,7 +144,7 @@
 
 									<td>
 										<button type="button"
-										        ng-click="$ctrl.calcFee()"
+										        ng-click="$ctrl.calcFee(); $ctrl.setFormValidity(submitOptionsForm)"
 										        class="btn btn-md my-button">Υπολογισμός</button>
 									</td>
 
@@ -153,14 +154,17 @@
 
 											<i>€</i>
 
+
 											<input required
 											       name="regTax"
-											       ng-change="$ctrl.calcFinalPrices()"
+											       ng-change="$ctrl.calcFinalPrices(); $ctrl.setFormValidity(submitOptionsForm);"
 											       ng-model="$ctrl.regTax"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
-											       type="number"
-											       step="0.01"
+											       type="text"
+											       ui-number-mask="2"
+											       lang="el"
 											       class="form-control">
+
 										</div>
 									</td>
 
@@ -182,8 +186,9 @@
 											       name="beforeTax"
 											       ng-model="$ctrl.finalPrice.beforeTax"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
-											       type="number"
-											       step="0.01"
+											       ng-change="$ctrl.setFormValidity(submitOptionsForm)"
+											       type="text"
+											       ui-number-mask="2"
 											       class="form-control input-symbol-euro">
 
 										</div>
@@ -208,9 +213,10 @@
 											       name="afterTax"
 											       ng-model="$ctrl.finalPrice.afterTax"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
-											       type="number"
-											       step="0.01"
+											       type="text"
+											       ui-number-mask="2"
 											       class="form-control input-symbol-euro">
+
 
 										</div>
 
@@ -227,11 +233,11 @@
 					<!--{{submitOptionsForm.regTax.$invalid}}
 					{{submitOptionsForm.beforeTax.$invalid}}
 					{{submitOptionsForm.afterTax.$invalid}}-->
-					<div class="box-footer clearfix">
+					<!--<div class="box-footer clearfix">
 						<button ng-disabled="submitOptionsForm.$invalid"
 						        type="submit"
 						        class="pull-right btn btn-lg my-button">Υποβολή</button>
-					</div>
+					</div>-->
 
 				</form>
 			</div>

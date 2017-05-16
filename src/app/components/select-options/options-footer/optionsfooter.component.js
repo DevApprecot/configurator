@@ -8,21 +8,27 @@
 			controller: OptionsFooterCtrl,
 			bindings: {
 				model: '<',
-				onNext: '&'
+				onNext: '&',
+				onSubmit: '&'
 			}
 		});
 
-	OptionsFooterCtrl.$inject = ['$state'];
+	OptionsFooterCtrl.$inject = ['$state', '$scope', '$rootScope'];
 
-	function OptionsFooterCtrl($state) {
+	function OptionsFooterCtrl($state, $scope, $rootScope) {
 		var ctrl = this;
 		ctrl.state = $state;
+		ctrl.isFormValid = false;
 
-		ctrl.$onInit = function() {};
+		ctrl.$onInit = function() {
+			console.log(typeof(ctrl.isFormValid));
+			console.log(ctrl.isFormValid);
+		};
 		ctrl.$onChanges = function(changesObj) {
 			if (changesObj.model && ctrl.model) {
 				ctrl.model = changesObj.model.currentValue;
 			}
+
 		};
 		ctrl.$onDestory = function() {};
 
@@ -49,6 +55,10 @@
 			return current[state];
 
 		}
+
+		$scope.$on('formChanged', (event, isFormValid) => {
+			ctrl.isFormValid = isFormValid;
+		})
 
 	}
 

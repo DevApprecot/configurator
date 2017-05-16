@@ -24,11 +24,11 @@
 					    width="20%">CC/PS/KW</th>
 
 					<th class="text-center"
+					    width="20%">CO2</th>
+
+					<th class="text-right"
 					    width="15%">Τιμή
 					</th>
-
-					<th class="text-center"
-					    width="20%">CO2</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,9 +48,10 @@
 
 					<td class="text-center">{{(model.EngineDisplacement || '-') + ' / ' + (model.PowerKW || '-') + ' / ' +(model.PowerPS || '-')}}</td>
 
-					<td class="text-center">{{model.Price | currency}} <span ng-show="!model.Price">-</span></td>
 
 					<td class="text-center">{{model.CO2EmissionCombined || '-'}}</td>
+
+					<td class="text-right">{{model.Price | currency}} <span ng-show="!model.Price">-</span></td>
 				</tr>
 			</tbody>
 		</table>

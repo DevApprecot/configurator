@@ -5,12 +5,11 @@
 		<h1>Εξοπλισμοί από λίστα</h1>
 
 
+		<div class="padding"
+		     ng-show="!$ctrl.equipment.length && $ctrl.gotEquipments">Δεν βρέθηκε διαθέσιμος εξοπλισμός.</div>
 
 		<div class="padding"
-		      ng-show="!$ctrl.equipment.length && $ctrl.gotEquipments">Δεν βρέθηκε διαθέσιμος εξοπλισμός.</div>
-
-		<div class="padding"
-		      ng-show="!$ctrl.colors.length && !$ctrl.gotEquipments">Παρακαλώ περιμένετε...</div>
+		     ng-show="!$ctrl.colors.length && !$ctrl.gotEquipments">Παρακαλώ περιμένετε...</div>
 
 
 		<div ng-show="$ctrl.equipment.length"
@@ -31,13 +30,12 @@
 						    width="15%">CO2</th>
 
 						<th class="text-center"
+						    width="15%">Τύπος</th>
+
+						<th class="text-right"
 						    width="10%">
 							Τιμή
 						</th>
-
-
-						<th class="text-center"
-						    width="15%">Τύπος</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,16 +49,15 @@
 							     class="img-responsive">
 						</td>
 
-						<td class="text-center">{{equipment.OptionCode}}</td>
+						<td class="text-center">{{equipment.PresentationFee}}</td>
 
 						<td>{{equipment.OptionDescription}}</td>
 
 						<td class="text-center">{{equipment.ChangeCO2}}</td>
 
-						<td class="text-center">{{equipment.Price | currency}}</td>
-
-
 						<td class="text-center">{{equipment.ItemGroup}}</td>
+
+						<td class="text-right">{{equipment.Price | currency}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -82,11 +79,11 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Κωδικός</th>
-						<th>Περιγραφή</th>
-						<th>CO2</th>
-						<th>Τιμή</th>
-						<th>Ενέργεια</th>
+						<th width="30%">Κωδικός</th>
+						<th width="30%">Περιγραφή</th>
+						<th width="15%">CO2</th>
+						<th width="15%" class="text-right">Τιμή</th>
+						<th width="10%" class="text-center">Ενέργεια</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,9 +91,10 @@
 						<td>{{equipment.code}}</td>
 						<td>{{equipment.description}}</td>
 						<td>{{equipment.co2}}</td>
-						<td>{{equipment.price | currency}}</td>
-						<td><button ng-click="$ctrl.removeEquipment($index)"
+						<td class="text-right">{{equipment.price | currency}}</td>
+						<td class="text-center"><button ng-click="$ctrl.removeEquipment($index)"
 							        class="btn btn-md my-button">Αφαίρεση</button></td>
+
 					</tr>
 				</tbody>
 			</table>

@@ -5,4 +5,9 @@
 	        ng-hide="$ctrl.state.includes('app.select-options.step-four')"
 	        class="btn btn-lg my-button pull-right">Επόμενο</button>
 
+	<button ng-click="$ctrl.onSubmit()"
+	        ng-disabled="!$ctrl.isFormValid"
+		ng-show="$ctrl.state.includes('app.select-options.step-four')"
+	        class="btn btn-lg my-button pull-right">Υποβολή</button>
+
 </div>

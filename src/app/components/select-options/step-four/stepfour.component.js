@@ -8,17 +8,18 @@
 			controller: StepFourCtrl,
 			bindings: {
 				imgPath: "@",
-				defaultImg: "@"
+				defaultImg: "@",
+				isSubmitted: '@'
 			},
 		});
 
 	StepFourCtrl.$inject = ['$window', '$stateParams', 'Data', 'API', 'ApiUrl', 'RedirectPath', 'Option', 'SubmitAlert',
 		'TAX_FEE',
-		'RegistrationFee'
+		'RegistrationFee', '$rootScope', '$timeout'
 	];
 
 	function StepFourCtrl($window, $stateParams, Data, API, ApiUrl, RedirectPath, Option, SubmitAlert, TAX_FEE,
-		RegistrationFee) {
+		RegistrationFee, $rootScope, $timeout) {
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
 		ctrl.finalPrice = {
@@ -36,9 +37,13 @@
 		}
 
 		ctrl.calcFinalPrices = function() {
+			if (typeof(ctrl.regTax) == `String` && ctrl.regTax.includes(`,`))
+				ctrl.regTax = ctrl.regTax.replace(`,`, `.`);
+
+			ctrl.regTax = parseFloat(ctrl.regTax);
 
 			if (isNaN(ctrl.regTax) || !ctrl.regTax) {
-				ctrl.regTax = 0;
+				return;
 			}
 
 			ctrl.finalPrice.beforeTax = Number((Number(ctrl.finalPrice.noRegTax) + Number(ctrl.regTax))
@@ -151,7 +156,17 @@
 
 		}
 
-		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onChanges = function(changesObj) {
+			if (changesObj.isSubmitted.currentValue === 'true') {
+				ctrl.submitOptions();
+			}
+		};
 		ctrl.$onDestory = function() {};
+
+		ctrl.setFormValidity = (form) => {
+			$timeout(() => {
+				$rootScope.$broadcast('formChanged', form.$valid);
+			})
+		}
 	}
 })();

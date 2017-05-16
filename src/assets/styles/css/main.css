@@ -181,6 +181,16 @@ table th {
 table.table.table-hover tbody tr:hover {
   cursor: pointer; }
 
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th,
+.table-hover tbody tr.active:hover td,
+.table-hover tbody tr.active:hover th {
+  background-color: #efefef; }
+
+.table-hover tbody tr.active td,
+.table-hover tbody tr.active th {
+  background-color: #efefef; }
+
 table.table-card td,
 table.table-card th {
   margin: 8px 8px 8px 8px;
@@ -239,6 +249,12 @@ div.body {
   padding-left: 12px;
   padding-right: 30px;
   text-align: right; }
+
+label > input {
+  display: none; }
+
+label input:focus {
+  display: block; }
 
 body {
   font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; }
