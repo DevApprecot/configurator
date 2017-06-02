@@ -59,7 +59,6 @@
 			ctrl.finalPrice.noRegTax = Data.get.currentPrice();
 
 			ctrl.carImg = ctrl.imgPath + findImage();
-			console.log(ctrl.carImg);
 
 		};
 
