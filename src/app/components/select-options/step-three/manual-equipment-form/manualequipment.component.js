@@ -20,6 +20,8 @@
 		ctrl.submitForm = (form, equipment) => {
 			if (form.$invalid) return;
 
+			if (!equipment.co2) equipment.co2 = 0;
+
 			ctrl.onSelect({ equipment });
 			ctrl.equipment = null;
 			form.$setPristine();

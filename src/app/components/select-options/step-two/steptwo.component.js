@@ -17,7 +17,7 @@
 
 	function StepTwoCtrl($stateParams, API, Data) {
 		var ctrl = this;
-		ctrl.selectedItem = {};
+		ctrl.selectedItem = Data.get.color() || {};
 		ctrl.gotColors = false;
 
 		ctrl.$onInit = function() {

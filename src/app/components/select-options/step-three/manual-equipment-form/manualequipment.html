@@ -55,7 +55,6 @@
 
 			<div class="col-md-8">
 				<input ng-model="$ctrl.equipment.co2"
-				       required
 				       name="co2"
 				       type="number"
 				       class="form-control"
@@ -64,8 +63,6 @@
 				<div ng-show="addEquipmentForm.co2.$error.number && (addEquipmentForm.co2.$dirty || addEquipmentForm.$submitted)"
 				     class="text-danger m-t-sm">Το πεδίο δεν είναι έγκυρο</div>
 
-				<div ng-show="addEquipmentForm.co2.$error.required && (addEquipmentForm.co2.$dirty || addEquipmentForm.$submitted)"
-				     class="text-danger m-t-sm">Παρακαλώ συμπληρώστε το πεδίο</div>
 			</div>
 
 		</div>

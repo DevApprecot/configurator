@@ -463,6 +463,24 @@ div.box {
   div.box div.box-footer {
     padding: 20px 30px; }
 
+#loading-bar {
+  pointer-events: all;
+  z-index: 99999;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: wait; }
+
+#loading-bar,
+#loading-bar-spinner .spinner-icon {
+  z-index: 9999; }
+
 .vw app-header {
   background-color: #2f3638; }
   .vw app-header a.previous:hover i {
@@ -522,11 +540,14 @@ div.box {
   border-radius: 10px; }
 
 .vw_lcv app-header {
-  background-color: #dee1e3; }
-  .vw_lcv app-header a.previous:hover i {
-    color: #0075a7; }
-  .vw_lcv app-header a.previous i {
-    color: #0099da; }
+  background-color: #dee1e3;
+  color: #4d4d4d; }
+  .vw_lcv app-header a.previous {
+    color: #4d4d4d; }
+    .vw_lcv app-header a.previous:hover i {
+      color: #0075a7; }
+    .vw_lcv app-header a.previous i {
+      color: #0099da; }
 
 .vw_lcv options-footer {
   background-color: #2f3638; }

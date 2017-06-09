@@ -17,6 +17,11 @@
 
 		var _steps = $sessionStorage.steps || null;
 
+		var _isSubmitted = $sessionStorage.submitted || false;
+
+		var _endpoint = $sessionStorage.endpoint || null;
+		var _redirectionPath = $sessionStorage.redirectionPath || null;
+
 		var service = {
 			get: {
 				make: getMake,
@@ -26,7 +31,10 @@
 				color: getColorOptions,
 				equipment: getEquipment,
 				currentPrice: calculateCurrentPrice,
-				totalCo2: calculateTotalCo2
+				totalCo2: calculateTotalCo2,
+				submitted: getSubmitted,
+				endpoint: getEndpoint,
+				redirectionPath: getRedirectionPath
 			},
 			set: {
 				make: setMake,
@@ -34,7 +42,10 @@
 				model: setModel,
 				steps: setSteps,
 				color: setColorOptions,
-				equipment: setEquipment
+				equipment: setEquipment,
+				submitted: setSubmitted,
+				endpoint: setEndpoint,
+				redirectionPath: setRedirectionPath
 			},
 			clear: {
 				options: clearOptions,
@@ -69,6 +80,18 @@
 			return _equipment;
 		}
 
+		function getSubmitted() {
+			return _isSubmitted;
+		}
+
+		function getEndpoint() {
+			return _endpoint;
+		}
+
+		function getRedirectionPath() {
+			return _redirectionPath;
+		}
+
 		function setMake(make) {
 			$sessionStorage.make = make;
 			_make = make;
@@ -99,12 +122,27 @@
 			_equipment = equipment;
 		}
 
+		function setSubmitted(flag) {
+			$sessionStorage.submitted = flag;
+			_isSubmitted = flag;
+		}
+
+		function setEndpoint(endpoint) {
+			$sessionStorage.endpoint = endpoint;
+			_endpoint = endpoint;
+		}
+
+		function setRedirectionPath(path) {
+			$sessionStorage.redirectionPath = path;
+			_redirectionPath = path;
+		}
+
 		function clearOptions() {
-			//Clear from sessionStorage all but make
+			//Clear from sessionStorage all but make, endpoint, redirectionPath
 			Object.keys($sessionStorage)
 				.filter(key => !(key.includes('$') || key.includes('_')))
 				.map(val => {
-					if (!['make'].includes(val)) {
+					if (!['make', 'endpoint', 'redirectionPath'].includes(val)) {
 						delete $sessionStorage[val];
 					}
 				});

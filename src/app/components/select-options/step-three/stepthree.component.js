@@ -17,8 +17,10 @@
 
 	function StepThreeCtrl($stateParams, API, Data) {
 		var ctrl = this;
-		ctrl.selectedItems = [];
-		ctrl.manualEquipments = [];
+		ctrl.selectedItems = Data.get.equipment() ? Data.get.equipment()
+			.autoEquipments : [];
+		ctrl.manualEquipments = Data.get.equipment() ? Data.get.equipment()
+			.manualEquipments : [];
 
 		ctrl.gotEquipments = false;
 

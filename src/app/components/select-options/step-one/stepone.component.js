@@ -19,7 +19,7 @@
 	function StepOneCtrl($stateParams, API, Data) {
 		var ctrl = this;
 		ctrl.models = [];
-		ctrl.selectedItem = {};
+		ctrl.selectedItem = Data.get.model() || {};
 		ctrl.gotModels = false;
 
 		ctrl.$onInit = function() {

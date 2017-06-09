@@ -22,6 +22,7 @@
 		ctrl.gotFamilies = false;
 
 		ctrl.$onInit = function() {
+			_saveUrlData();
 			_getFamilies($stateParams.makeId);
 			_getMake();
 
@@ -29,6 +30,11 @@
 
 		ctrl.$onChanges = function(changesObj) {};
 		ctrl.$onDestory = function() {};
+
+		function _saveUrlData() {
+			Data.set.endpoint($stateParams.apiUrl);
+			Data.set.redirectionPath($stateParams.redirectPath);
+		}
 
 		function getFamilies(makeCode) {
 			API.families(makeCode)

@@ -57,7 +57,7 @@
 
 		return service;
 
-		function calculateRegistrationFee(family, model, color, aOptions, mOptions) {
+		function calculateRegistrationFee(model, color, aOptions, mOptions) {
 
 			let fee = 0;
 			let feePercentage = 0;
@@ -92,7 +92,7 @@
 
 			if(Object.keys(exceptions).includes(model.FuelType)) {
 				console.log('Im in fuel type');
-				fee *= exceptions(model.FuelType);
+				fee *= exceptions[model.FuelType];
 			}
 
 			console.log('priceBeforeTaxes:' + priceBeforeTaxes);

@@ -15,11 +15,11 @@
 
 	StepFourCtrl.$inject = ['$window', '$stateParams', 'Data', 'API', 'ApiUrl', 'RedirectPath', 'Option', 'SubmitAlert',
 		'TAX_FEE',
-		'RegistrationFee', '$rootScope', '$timeout'
+		'RegistrationFee', 'TrafficCharge', '$rootScope', '$timeout', 'cfpLoadingBar'
 	];
 
 	function StepFourCtrl($window, $stateParams, Data, API, ApiUrl, RedirectPath, Option, SubmitAlert, TAX_FEE,
-		RegistrationFee, $rootScope, $timeout) {
+		RegistrationFee, TrafficCharge, $rootScope, $timeout, cfpLoadingBar) {
 		var ctrl = this;
 		ctrl.taxFee = TAX_FEE;
 		ctrl.finalPrice = {
@@ -29,8 +29,13 @@
 		};
 		ctrl.carImg = ``;
 
+		ctrl.calcTrafficCharge = () => {
+			ctrl.trafficCharge = TrafficCharge.calculate(ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
+				.manualEquipments);
+		}
+
 		ctrl.calcFee = function() {
-			ctrl.regTax = +RegistrationFee.calculate(ctrl.family, ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
+			ctrl.regTax = +RegistrationFee.calculate(ctrl.model, ctrl.color, ctrl.equipment.autoEquipments, ctrl.equipment
 				.manualEquipments);
 
 			ctrl.calcFinalPrices();
@@ -90,6 +95,8 @@
 
 		ctrl.submitOptions = () => {
 
+			cfpLoadingBar.start();
+
 			let options = [];
 			let totalBasicPrice = 0;
 			let totalCo2 = 0;
@@ -128,7 +135,7 @@
 			API.submit(options, totalBasicPrice, totalCo2, registrationFee)
 				.then(resp => {
 
-					console.log("Submitted successfully", resp)
+					console.log("Submitted successfully1", resp)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
 					$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
@@ -139,15 +146,25 @@
 
 					if (resp.responseText) {
 
+						console.log("Submitted successfully2", resp)
+
+						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
+
+						Data.clear.options();
+						Data.set.submitted(true);
+
 						$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
 							.code;
-						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
+
 					} else {
 						ctrl.alert = new SubmitAlert(0, 'Κάτι συνέβει και οι αλλαγές σας δεν καταχωρήθηκαν.');
 					}
 
 				})
-				.then(() => ctrl.alert.show())
+				.then(() => {
+					cfpLoadingBar.complete();
+					ctrl.alert.show()
+				})
 
 		}
 
