@@ -50,13 +50,19 @@
 
 		$urlRouterProvider.otherwise(function($injector, $location) {
 			$injector.invoke(['$state', function($state) {
-				$state.go('app.select-family', { apiUrl: 'apiMissing', redirectPath: 'redirectPathMissing', makeId: 60 });
+				$state.go('app.select-family', {
+					apiUrl: 'apiMissing',
+					redirectPath: 'redirectPathMissing',
+					makeId: 60
+				});
  			 }]);
 		});
 
-		// $urlMatcherFactory.type('url', {
-		// 	encode:
-		// })
+		/**
+		 * Dev access:
+		 * 
+		 * redirectPath: https:**karenta-onedealer.kosmocar.gr*
+		 */
 
 	}
 })();
