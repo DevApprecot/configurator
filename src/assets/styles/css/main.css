@@ -481,6 +481,9 @@ div.box {
 #loading-bar-spinner .spinner-icon {
   z-index: 9999; }
 
+.modal-content {
+  border-radius: 0; }
+
 .vw app-header {
   background-color: #2f3638; }
   .vw app-header a.previous:hover i {

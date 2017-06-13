@@ -55,12 +55,14 @@
 		}
 
 		ctrl.$onInit = function() {
-
+			let data = {};
 			Object.keys(Data.get)
 				.map(val => {
 					ctrl[val] = Data.get[val]()
+					data[val] = Data.get[val]();
 				})
 
+				console.log(angular.toJson(data));
 			ctrl.finalPrice.noRegTax = Data.get.currentPrice();
 
 			ctrl.carImg = ctrl.imgPath + findImage();
@@ -146,7 +148,7 @@
 
 					if (resp.responseText) {
 
-						console.log("Submitted successfully2", resp)
+						console.log("Submitted successfully", resp)
 
 						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
 

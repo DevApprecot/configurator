@@ -26,7 +26,8 @@
 			ctrl.getModels();
 		};
 
-		ctrl.$onChanges = function(changesObj) {};
+		ctrl.$onChanges = function(changesObj) {
+		};
 
 		ctrl.$onDestory = function() {};
 
@@ -61,7 +62,7 @@
 
 		ctrl.isSelected = (code) => {
 			return ctrl.selectedItem.Code == code;
-		}
+		};
 
 	}
 

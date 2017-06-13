@@ -6,15 +6,16 @@
 
 		.run(RunFunction);
 
-	RunFunction.$inject = ['$rootScope', '$state', 'Data', '$anchorScroll'];
+	RunFunction.$inject = ['$rootScope', '$state', 'Data', 'API', '$anchorScroll', 'ParseEditId'];
 
-	function RunFunction($rootScope, $state, Data, $anchorScroll) {
+	function RunFunction($rootScope, $state, Data, API, $anchorScroll, ParseEditId) {
 
 		activate();
 
 		function activate() {
 			onStateChangeScrollTop();
 			checkStates();
+			checkMode();
 		}
 
 		function onStateChangeScrollTop() {
@@ -39,9 +40,26 @@
 				Data.set.submitted(false);
 				$state.go(homeState, {
 					apiUrl: Data.get.endpoint(),
-					makeId: Data.get.make().Code,
+					makeId: Data.get.make()
+						.Code,
 					redirectPath: Data.get.redirectionPath()
 				});
+			})
+
+		}
+
+		function checkMode() {
+
+			$rootScope.$on('$stateChangeStart', (e, toState, toParams) => {
+				if (toParams.editId && !Data.gotEditData) {
+					let editId = ParseEditId(toParams.editId);
+					API.getEditData(editId)
+						.then(resp => {
+							Data.setEditData(resp.data);
+						}, resp => {
+							console.log('Failed to get editdata');
+						})
+				}
 			})
 
 		}

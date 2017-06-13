@@ -11,7 +11,7 @@
 		$stateProvider
 
 			.state('app', {
-				url: '/app/endpoint={apiUrl}&redirectionPath={redirectPath}',
+				url: '/app/{editId}endpoint={apiUrl}&redirectionPath={redirectPath}',
 				template: '<app theme="{{base.theme}}"></app>'
 			})
 
@@ -51,6 +51,7 @@
 		$urlRouterProvider.otherwise(function($injector, $location) {
 			$injector.invoke(['$state', function($state) {
 				$state.go('app.select-family', {
+					editId:'',
 					apiUrl: 'apiMissing',
 					redirectPath: 'redirectPathMissing',
 					makeId: 60
@@ -61,7 +62,7 @@
 		/**
 		 * Dev access:
 		 * 
-		 * redirectPath: https:**karenta-onedealer.kosmocar.gr*
+		 * apiUrl: https:**karenta-onedealer.kosmocar.gr*
 		 */
 
 	}

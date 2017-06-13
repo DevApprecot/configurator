@@ -1,4 +1,4 @@
-(function () {
+(function() {
 	'use strict';
 
 	angular
@@ -16,7 +16,8 @@
 			variants: getVariants,
 			colors: getColors,
 			options: getOptions,
-			submit: submitOptions
+			submit: submitOptions,
+			getEditData: getEditData
 		};
 
 		return service;
@@ -98,6 +99,11 @@
 
 			return http.jsonp(payload, `${ApiUrl()}/kosmocar/SaveConfigurationForLead`);
 
+		}
+
+		function getEditData(editId) {
+			const params = {};
+			return http.get(params, `./app/resources/editData.json`);
 		}
 
 	}

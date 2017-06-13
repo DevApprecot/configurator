@@ -51,7 +51,9 @@
 				options: clearOptions,
 				modelColorEquipment: clearModelColorEquipment,
 				colorEquipment: clearColorEquipment
-			}
+			},
+			gotEditData: false,
+			setEditData: setEditData
 		};
 
 		return service;
@@ -207,6 +209,17 @@
 					0) : 0);
 
 			return totalCo2;
+		}
+
+		function setEditData(jsonData) {
+			angular.forEach(Object.keys(jsonData), (key, idx) => {
+				if (!['currentPrice', 'totalCo2'].includes(key)) {
+					service.set[key](jsonData[key]);
+				}
+			});
+
+			service.gotEditData = true;
+
 		}
 
 	}
