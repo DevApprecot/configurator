@@ -6,13 +6,18 @@ const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const templateCache = require('gulp-angular-templatecache');
+const embedTemplates = require('gulp-angular-embed-templates');
 const cleanCSS = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
+const replace = require('gulp-replace');
 
 const destination = `./dist/`;
 const devAppCssDestination = `./src/app/`
 const sassFiles = `./src/assets/styles/sass/**/*.scss`;
-const assetScripts = `./src/assets/js/*.js`;
+const assetScripts = `./src/assets/js/!(bootstrap.min | jquery.min | angular.min)*.js`;
+const bootstrapScript = `./src/assets/js/bootstrap.min.js`
+const jqueryScript = `./src/assets/js/jquery.min.js`;
+const angularScript = `./src/assets/js/angular.min.js`
 const assetStyles = `./src/assets/styles/css/*.css`
 const appScripts = `./src/app/**/**/!(app.module)*.js`;
 const appModule = `./src/app/core/app.module.js`
@@ -36,33 +41,39 @@ gulp.task('serve', () => {
 
 /** Concat assets js */
 gulp.task('assets-scripts', function() {
-	return gulp.src(assetScripts)
-		.pipe(concat('assets.js'))
+	return gulp.src([jqueryScript, bootstrapScript, angularScript, assetScripts])
+		.pipe(concat('assets.min.js'))
 		.pipe(gulp.dest(destination));
 });
 
 /**Concat and minify app js */
 gulp.task('app-scripts', () => {
-	return gulp.src([appModule,appScripts])
+	return gulp.src([appModule, appScripts])
+		.pipe(embedTemplates({
+			'basePath': './src/'
+		}))
 		.pipe(babel({
 			presets: ['es2015']
 		}))
-		.pipe(concat('app.js'))
+		.pipe(concat('app.min.js'))
 		.pipe(uglify())
+		.pipe(replace('./assets/', './'))
 		.pipe(gulp.dest(destination));
 })
 
 /**Concat all templates and export as templates.js */
 gulp.task('templates', () => {
 	return gulp.src(appTemplates)
-		.pipe(templateCache())
+		.pipe(templateCache('templates.js', {
+			module: 'configurator'
+		}))
 		.pipe(gulp.dest(destination))
 })
 
 /**Concat and minify assets styles */
 gulp.task('assets-styles', () => {
 	return gulp.src(assetStyles)
-		.pipe(concat('assets.css'))
+		.pipe(concat('assets.min.css'))
 		.pipe(gulp.dest(destination));
 })
 
@@ -83,5 +94,15 @@ gulp.task('app-images', () => {
 gulp.task('app-styles', ['styles'], () => {
 	return gulp.src(appCss)
 		.pipe(cleanCSS())
+		.pipe(rename('app.min.css'))
 		.pipe(gulp.dest(destination));
 })
+
+/**Build production version */
+gulp.task('build', [
+'assets-scripts',
+'app-scripts',
+'assets-styles',
+'copy-fonts',
+'app-images',
+'app-styles'])
