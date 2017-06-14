@@ -19,7 +19,8 @@ const bootstrapScript = `./src/assets/js/bootstrap.min.js`
 const jqueryScript = `./src/assets/js/jquery.min.js`;
 const angularScript = `./src/assets/js/angular.min.js`
 const assetStyles = `./src/assets/styles/css/*.css`
-const appScripts = `./src/app/**/**/!(app.module)*.js`;
+const appScripts = `./src/app/**/!(app.module)*.js`;
+const specFiles = `./src/app/**/*.spec.js`;
 const appModule = `./src/app/core/app.module.js`
 const appCss = `./src/app/app.css`;
 const appTemplates = `./src/app/components/**/**/*.html`;
@@ -48,7 +49,7 @@ gulp.task('assets-scripts', function() {
 
 /**Concat and minify app js */
 gulp.task('app-scripts', () => {
-	return gulp.src([appModule, appScripts])
+	return gulp.src([appModule, appScripts, `!${specFiles}`])
 		.pipe(embedTemplates({
 			'basePath': './src/'
 		}))
@@ -56,7 +57,11 @@ gulp.task('app-scripts', () => {
 			presets: ['es2015']
 		}))
 		.pipe(concat('app.min.js'))
-		.pipe(uglify())
+		.pipe(uglify({
+			compress: {
+				drop_console: true
+			}
+		}))
 		.pipe(replace('./assets/', './'))
 		.pipe(gulp.dest(destination));
 })

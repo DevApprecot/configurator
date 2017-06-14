@@ -11,7 +11,8 @@
 	</a>
 
 
-	<img class="logo"
+	<img ng-if="$ctrl.theme"
+	     class="logo"
 	     ng-src="./assets/img/{{$ctrl.theme}}-logo.png"
 	     alt="{{$ctrl.theme}} logo">
 

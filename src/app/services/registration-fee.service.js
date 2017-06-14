@@ -99,7 +99,7 @@
 			console.log('Co2Value:' + Co2Value);
 			console.log('feePercentage:' + feePercentage);
 
-			return fee;
+			return Number(fee);
 
 		}
 

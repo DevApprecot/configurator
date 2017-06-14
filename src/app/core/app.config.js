@@ -62,7 +62,7 @@
 		/**
 		 * Dev access:
 		 * 
-		 * apiUrl: https:**karenta-onedealer.kosmocar.gr*
+		 * apiUrl: https:**karenta-onedealer.kosmocar.gr
 		 */
 
 	}

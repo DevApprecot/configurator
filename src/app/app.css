@@ -151,7 +151,10 @@ a:focus {
 
 a[disabled=disabled] {
   pointer-events: none;
-  cursor: default; }
+  cursor: default !important; }
+
+a:hover {
+  cursor: pointer !important; }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
