@@ -1,16 +1,16 @@
 describe('RegistratioFee', () => {
 
-	var RegistratioFee;
+	var TrafficCharge;
 
 	beforeEach(angular.mock.module('configurator'));
 
-	beforeEach(inject((_RegistrationFee_) => {
-		RegistratioFee = _RegistrationFee_;
+	beforeEach(inject((_TrafficCharge_) => {
+		TrafficCharge = _TrafficCharge_;
 	}))
 
 	/**Checks if Service Exists */
 	it('should exist', () => {
-		expect(RegistratioFee)
+		expect(TrafficCharge)
 			.toBeDefined();
 	})
 
@@ -19,7 +19,7 @@ describe('RegistratioFee', () => {
 		/**Checks if method exists */
 
 		it('should exist', () => {
-			expect(RegistratioFee.calculate)
+			expect(TrafficCharge.calculate)
 				.toBeDefined();
 		})
 
@@ -28,9 +28,9 @@ describe('RegistratioFee', () => {
 
 			const editData = readJSON('src/app/unit-test-data/edit-data.json');
 
-			expect(RegistratioFee.calculate(editData.model, editData.color, editData.equipment.autoEquipments, editData.equipment
+			expect(TrafficCharge.calculate(editData.model, editData.color, editData.equipment.autoEquipments, editData.equipment
 					.manualEquipments))
-				.toEqual(311.87)
+				.toEqual(115.64)
 		})
 	})
 })

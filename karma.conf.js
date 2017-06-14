@@ -23,11 +23,16 @@ const test1 = [
   `./src/app/services/registration-fee.service.spec.js`
 ]
 
+const test2 = [
+  `./src/app/services/traffic-charge.service.js`,
+  `./src/app/services/traffic-charge.service.spec.js`
+]
+
 const karmaReadJson = [`./node_modules/karma-read-json/karma-read-json.js`];
 
 const jsonFiles = [{ pattern: 'src/app/unit-test-data/*.json', watched: true, served: true, included: false }]
 
-const includedFiles = libraries.concat(core, karmaReadJson, jsonFiles, test1);
+const includedFiles = libraries.concat(core, karmaReadJson, jsonFiles, test1, test2);
 
 module.exports = function(config) {
 	config.set({

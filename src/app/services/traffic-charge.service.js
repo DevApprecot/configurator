@@ -72,6 +72,8 @@
 				autoEquipments.reduce((prev, curr) => prev + curr.ChangeCO2, 0) +
 				manualEquipments.reduce((prev, curr) => prev + curr.co2, 0)
 
+			console.log('Co2: ' + Co2Value);
+
 			quota = Number(Object.keys(co2Limits)
 				.filter(k => {
 					return (Co2Value >= co2Limits[k][0] && Co2Value <= co2Limits[k][1])
