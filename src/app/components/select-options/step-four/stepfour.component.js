@@ -62,7 +62,7 @@
 					data[val] = Data.get[val]();
 				})
 
-				console.log(angular.toJson(data));
+			console.log(angular.toJson(data));
 			ctrl.finalPrice.noRegTax = Data.get.currentPrice();
 
 			ctrl.carImg = ctrl.imgPath + findImage();
@@ -135,35 +135,24 @@
 			prepareData();
 
 			API.submit(options, totalBasicPrice, totalCo2, registrationFee)
-				.then(resp => {
+				.then(responseText => {
 
-					console.log("Submitted successfully1", resp)
+					console.log("Submitted successfully", responseText)
 
 					ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
-					$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
+
+					cfpLoadingBar.complete();
+					ctrl.alert.show()
+
+					Data.clear.options();
+					Data.set.submitted(true);
+
+					$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(responseText.slice(1, -1))
 						.code;
 
 				}, resp => {
 					console.log("Failed to submit", resp);
-
-					if (resp.responseText) {
-
-						console.log("Submitted successfully", resp)
-
-						ctrl.alert = new SubmitAlert(1, 'Οι επιλογές σας καταχωρήθηκαν επιτυχώς.');
-
-						Data.clear.options();
-						Data.set.submitted(true);
-
-						$window.location.href = ApiUrl() + RedirectPath() + '?conf=' + angular.fromJson(resp.responseText.slice(1, -1))
-							.code;
-
-					} else {
-						ctrl.alert = new SubmitAlert(0, 'Κάτι συνέβει και οι αλλαγές σας δεν καταχωρήθηκαν.');
-					}
-
-				})
-				.then(() => {
+					ctrl.alert = new SubmitAlert(0, 'Κάτι συνέβει και οι αλλαγές σας δεν καταχωρήθηκαν.');
 					cfpLoadingBar.complete();
 					ctrl.alert.show()
 				})

@@ -82,8 +82,10 @@
 			charge = quota * Co2Value;
 
 			if (isHybrid(model.FuelType)) {
-				charge *= (1 + hybridEngineLimitFeePercentage)
+				charge *= hybridEngineLimitFeePercentage
 			}
+
+			charge = Number(charge.toFixed(2))
 
 			return charge;
 		}

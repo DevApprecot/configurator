@@ -1,4 +1,4 @@
-(function () {
+(function() {
 	'use strict';
 
 	angular
@@ -60,11 +60,15 @@
 				type: "POST",
 				data: payload,
 				jsonp: 'callback',
-				success: function (status) {
+				success: function(status) {
 					deferred.resolve(status);
 				},
-				error: function (status) {
-					deferred.reject(status)
+				error: function(status) {
+					if (status.responseText) {
+						deferred.resolve(status.responseText)
+					} else {
+						deferred.reject(status)
+					}
 				}
 			});
 

@@ -26,8 +26,8 @@
 
 		const exceptions = {
 			2: 0,
-			3: -0.5,
-			4: -0.5,
+			3: 0.5,
+			4: 0.5,
 		};
 
 		const RegistrationFeePercentages = [
@@ -90,7 +90,7 @@
 
 			//Check fuel type
 
-			if(Object.keys(exceptions).includes(model.FuelType)) {
+			if(Object.keys(exceptions).includes(String(model.FuelType))) {
 				console.log('Im in fuel type');
 				fee *= exceptions[model.FuelType];
 			}
