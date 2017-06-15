@@ -98,6 +98,9 @@
 
 			}
 
+			if (angular.equals({}, model))
+				ctrl.completedSteps[0] = false;
+
 			ctrl.model = model;
 
 			Data.set.model(model);
@@ -119,6 +122,7 @@
 					}
 				})
 			}
+
 
 			ctrl.color = colorOptions;
 

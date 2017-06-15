@@ -229,6 +229,7 @@
 											       name="regTax"
 											       ng-model="$ctrl.trafficCharge"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
+												   ng-change="$ctrl.setFormValidity(submitOptionsForm)"
 											       type="text"
 											       ui-number-mask="2"
 											       class="form-control">

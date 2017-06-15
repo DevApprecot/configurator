@@ -157,7 +157,7 @@
 			Object.keys($sessionStorage)
 				.filter(key => !(key.includes('$') || key.includes('_')))
 				.map(val => {
-					if (!['make', 'family'].includes(val)) {
+					if (!['make', 'family', 'endpoint', 'redirectionPath'].includes(val)) {
 						delete $sessionStorage[val];
 					}
 				});
@@ -170,7 +170,7 @@
 			Object.keys($sessionStorage)
 				.filter(key => !(key.includes('$') || key.includes('_')))
 				.map(val => {
-					if (!['model', 'make', 'family'].includes(val)) {
+					if (!['model', 'make', 'family', 'endpoint', 'redirectionPath'].includes(val)) {
 						delete $sessionStorage[val];
 					}
 				});
