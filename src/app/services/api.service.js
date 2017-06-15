@@ -86,14 +86,15 @@
 			return http.get(params, `${ApiUrl()}/external/GetData`);
 		}
 
-		function submitOptions(Options, TotalBasicPrice, TotalCO2, RegistrationFee) {
+		function submitOptions(Options, TotalBasicPrice, TotalCO2, RegistrationFee, AnnualRoadTaxes) {
 
 			let payload = {
 				configuration: {
 					Options,
 					TotalBasicPrice,
 					TotalCO2,
-					RegistrationFee
+					RegistrationFee,
+					AnnualRoadTaxes
 				}
 			};
 

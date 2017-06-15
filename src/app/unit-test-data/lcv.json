@@ -1,0 +1,27 @@
+{
+	"make": { "Code": "61", "ModelDescription": null, "MakeCode": "52", "Make": "Volkswagen", "EngineDisplacement": null, "PowerPS": null, "PowerKW": null, "CombinedFuelConsumption": 0, "CO2EmissionCombined": 0, "Family": null, "ParentModelCode": "", "ParentModelDescription": null, "VAT": 0, "PriceBeforeTaxes": 0, "RegistrationTax": 0, "Price": null, "Photo": ".png", "Level": 0, "PresentationCode": "", "FuelType": null, "ROW": 1 },
+
+	"family": { "Code": "12252", "ModelDescription": null, "MakeCode": "52", "Make": "Volkswagen", "EngineDisplacement": null, "PowerPS": null, "PowerKW": null, "CombinedFuelConsumption": 0, "CO2EmissionCombined": 0, "Family": "up!", "ParentModelCode": "52", "ParentModelDescription": null, "VAT": 0, "PriceBeforeTaxes": 0, "RegistrationTax": 0, "Price": null, "Photo": "12252.png", "Level": 1, "PresentationCode": "122", "FuelType": null, "ROW": 1 },
+
+	"model": { "Code": "1222AVU01", "ModelDescription": "Νέο take up! 1.0 60PS Bluemotion Technology 3D", "MakeCode": "61", "Make": "Volkswagen", "EngineDisplacement": "999", "PowerPS": 60, "PowerKW": 44, "CombinedFuelConsumption": 4.1, "CO2EmissionCombined": 96, "Family": "up!", "ParentModelCode": "12252", "ParentModelDescription": null, "VAT": 0, "PriceBeforeTaxes": 0, "RegistrationTax": 0.32, "Price": 7527, "Photo": "12252.png", "Level": 2, "PresentationCode": "1222AV", "FuelType": null, "ROW": 1 },
+
+	"steps": [
+		true, true, true, false],
+
+	"color": { "OptionCode": "1222AVU01G2G2", "OptionName": "1222AVU01-5", "ModelCode": "1222AVU01", "ChangeCO2": null, "Photo": "12252.png", "OptionDescription": "Κόκκινο απλό", "ItemGroup": "Χρώματα", "VAT": null, "Price": 17, "PresentationFee": "G2G2" },
+
+	"equipment": {
+		"autoEquipments": [
+			{ "OptionCode": "1222AVU01S0E", "OptionName": "1222AVU01-2", "ModelCode": "1222AVU01", "ChangeCO2": null, "Photo": "12252.png", "OptionDescription": "Εργοστασιακός κωδικός", "ItemGroup": "Επιπρόσθετα", "VAT": null, "Price": 0, "PresentationFee": "S0E" },
+			{ "OptionCode": "1222AVU01RFY", "OptionName": "1222AVU01-1", "ModelCode": "1222AVU01", "ChangeCO2": null, "Photo": "12252.png", "OptionDescription": "Ηχοσύστημα  \"composition\" με CD Player, SD Card , 2 Χ 20 Watt, 2 ηχεία & θύρα Aux In", "ItemGroup": "Ηχοσυστήματα", "VAT": null, "Price": 228, "PresentationFee": "RFY" }
+			],
+
+		"manualEquipments": [{ "code": "GGG", "description": "TEst", "price": 12.44, "co2": 0 }, { "code": "tet", "description": "123", "co2": 22, "price": 12.33 }]
+	},
+
+	"currentPrice": 7796.77,
+	"totalCo2": 118,
+	"submitted": false,
+	"endpoint": "https:**karenta-onedealer.kosmocar.gr",
+	"redirectionPath": "redirectPathMissing"
+}

@@ -24,11 +24,20 @@
 			7=Other
 		*/
 
-		const exceptions = {
-			2: 0,
-			3: 0.5,
-			4: 0.5,
-		};
+		function isLCV(makeCode) {
+			return makeCode === '61';
+		}
+
+		function isHybrid(code) {
+			return [3, 4].indexOf(code) > -1;
+		}
+
+		function isElectric(code) {
+			return code == 2;
+		}
+
+		const hybridPtg = 0.5;
+		const electricPtg = 0;
 
 		const RegistrationFeePercentages = [
             [0.038, 0.04, 0.044, 0.048, 0.052, 0.056, 0.064, 0.08],
@@ -67,6 +76,14 @@
 				aOptions.reduce((prev, curr) => prev + curr.Price, 0) +
 				mOptions.reduce((prev, curr) => prev + curr.price, 0);
 
+			/**If is VW LCV then return the tax percentage from service * priceBeforeTaxes */
+			if (isLCV(model.MakeCode)) {
+				console.log('priceBeforeTaxes: ' + priceBeforeTaxes);
+				console.log('regTax: ' + model.RegistrationTax);
+				fee = Number((priceBeforeTaxes * Number(model.RegistrationTax)).toFixed(2));
+				return fee
+			};
+
 			let Co2Value = model.CO2EmissionCombined +
 				aOptions.reduce((prev, curr) => prev + curr.ChangeCO2, 0) +
 				mOptions.reduce((prev, curr) => prev + curr.co2, 0)
@@ -90,14 +107,15 @@
 
 			//Check fuel type
 
-			if(Object.keys(exceptions).includes(String(model.FuelType))) {
-				console.log('Im in fuel type');
-				fee *= exceptions[model.FuelType];
+			if (isHybrid(model.FuelType)) {
+				fee *= hybridPtg;
+			} else if (isElectric(model.FuelType)) {
+				fee *= electricPtg;
 			}
 
-			console.log('priceBeforeTaxes:' + priceBeforeTaxes);
-			console.log('Co2Value:' + Co2Value);
-			console.log('feePercentage:' + feePercentage);
+			// console.log('priceBeforeTaxes:' + priceBeforeTaxes);
+			// console.log('Co2Value:' + Co2Value);
+			// console.log('feePercentage:' + feePercentage);
 
 			return Number(fee);
 

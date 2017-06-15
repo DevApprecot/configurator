@@ -39,6 +39,10 @@
 			'3.72': [251, Infinity]
 		}
 
+		function isLCV(makeCode) {
+			return makeCode === '61';
+		}
+
 		function isHybrid(code) {
 			return [3, 4].indexOf(code) > -1;
 		}
@@ -59,7 +63,7 @@
 			 * If it is not passenger car OR if it's electric OR if it's hybrid with engine displacement lower than the accepted limit then charge is zero.
 			 */
 			if (
-				model.MakeCode === '61' ||
+				isLCV(model.MakeCode) ||
 				isElectric(model.FuelType) ||
 				(isHybrid(model.FuelType) && commaStringToNumber(model.EngineDisplacement) < hybridEngineLimit)
 			) return 0;

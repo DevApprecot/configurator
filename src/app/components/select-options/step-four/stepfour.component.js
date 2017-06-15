@@ -103,6 +103,7 @@
 			let totalBasicPrice = 0;
 			let totalCo2 = 0;
 			let registrationFee = 0;
+			let trafficCharge = 0;
 
 			let availableOptionTypes = {
 				model: 0,
@@ -130,11 +131,12 @@
 				totalBasicPrice = ctrl.finalPrice.noRegTax.toString();
 				totalCo2 = Data.get.totalCo2();
 				registrationFee = ctrl.regTax;
+				trafficCharge = ctrl.trafficCharge;
 			}
 
 			prepareData();
 
-			API.submit(options, totalBasicPrice, totalCo2, registrationFee)
+			API.submit(options, totalBasicPrice, totalCo2, registrationFee, trafficCharge)
 				.then(responseText => {
 
 					console.log("Submitted successfully", responseText)

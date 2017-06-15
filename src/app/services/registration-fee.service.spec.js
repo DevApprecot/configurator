@@ -58,5 +58,17 @@ describe('RegistratioFee', () => {
 					.manualEquipments))
 				.toEqual(0)
 		})
+
+
+		/**Checks if reg fee is calculated correctly */
+		it('should calculate registration fee correctly for VW LCV', () => {
+
+			const lcv = readJSON('src/app/unit-test-data/lcv.json');
+
+			expect(RegistratioFee.calculate(lcv.model, lcv.color, lcv.equipment.autoEquipments,
+					lcv.equipment
+					.manualEquipments))
+				.toEqual(2494.97)
+		})
 	})
 })
