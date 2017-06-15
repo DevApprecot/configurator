@@ -132,7 +132,8 @@
 									<td></td>
 
 									<td>
-										<button type="button"
+										<button id="calc"
+										        type="button"
 										        ng-click="$ctrl.calcFee(); $ctrl.calcTrafficCharge(); $ctrl.setFormValidity(submitOptionsForm)"
 										        class="btn btn-md my-button">Υπολογισμός</button>
 									</td>
@@ -229,7 +230,7 @@
 											       name="regTax"
 											       ng-model="$ctrl.trafficCharge"
 											       placeholder="Συμπληρώστε ή υπολογίστε"
-												   ng-change="$ctrl.setFormValidity(submitOptionsForm)"
+											       ng-change="$ctrl.setFormValidity(submitOptionsForm)"
 											       type="text"
 											       ui-number-mask="2"
 											       class="form-control">

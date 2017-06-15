@@ -1,4 +1,11 @@
+let delayed = false;
+
 module.exports = (delayTime) => {
+	if (delayed)
+		return;
+
+	delayed = true;
+
 	var origFn = browser.driver.controlFlow()
 		.execute;
 	browser.driver.controlFlow()
