@@ -476,8 +476,7 @@ div.box {
   top: 0px;
   left: 0px;
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.6);
-  cursor: wait; }
+  background-color: rgba(0, 0, 0, 0.6); }
 
 #loading-bar,
 #loading-bar-spinner .spinner-icon {

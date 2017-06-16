@@ -5,7 +5,10 @@ var delay = require('./delay');
 var randomFrom = require('./randomFrom');
 
 beforeEach(() => {
-	delay(50);
+	browser.driver.manage()
+		.window()
+		.maximize();
+	delay(100);
 });
 
 describe('Complete Workflow', () => {
@@ -71,51 +74,88 @@ describe('Complete Workflow', () => {
 
 	it('should submit a configurator from start to end with adding options', () => {
 
+		var EC = protractor.ExpectedConditions;
+
 		browser.get(appUrl);
 
-		var upFamily = element.all(by.id('122'));
+		var upFamily = element(by.id('122'));
 
-		browser.wait(protractor.ExpectedConditions.presenceOf(upFamily), 8000,
+		browser.wait(EC.presenceOf(upFamily), 30000,
 			'Element taking too long to appear in the DOM');
 
 		upFamily.click();
 
-		//Needs to be updated
+		var singleCar = element(by.id('car-13'));
 
-		var allModels = element(by.tagName('tbody'))
+		browser.wait(EC.invisibilityOf($('#loading-bar')), 1000);
+
+		browser.wait(EC.presenceOf(singleCar), 8000,
+			'Model taking too long to appear in the DOM');
+
+		browser.executeScript("arguments[0].click();", singleCar);
+
+		browser.sleep(500)
+		element(by.buttonText('Επόμενο'))
+			.click();
+
+		var myColor = element(by.id('G2G2'));
+
+		browser.wait(EC.presenceOf(myColor), 10000,
+			'Color taking too long to appear in the DOM');
+
+		browser.wait(EC.invisibilityOf($('#loading-bar')), 1000);
+
+		browser.executeScript("arguments[0].click();", myColor);
+
+		browser.sleep(500)
+
+		element(by.buttonText('Επόμενο'))
+			.click();
+
+		browser.wait(EC.invisibilityOf($('#loading-bar')), 1000);
+
+		var aEquipments = element(by.tagName('tbody'))
 			.all(by.tagName('tr'));
 
-		browser.wait(protractor.ExpectedConditions.presenceOf(allModels), 8000,
-			'Element taking too long to appear in the DOM');
+		browser.driver.wait(() => {
+				return aEquipments.count();
+			}, 1000, 'Too late')
+			.then(c => {
+				let i = 0;
+				for (i; i < c; i++) {
+					browser.executeScript("arguments[0].click();", aEquipments.get(i));
+					browser.sleep(500);
+				}
 
-		browser.wait(ExpectedConditions.invisibilityOf($('#loading-bar')), 1000);
+				i = 0;
 
-		randomFrom(allModels)
-			.then(model => {
-				randomModel = model;
-				randomModel.click();
+				for (i; i < 2; i++) {
 
-				browser.wait(ExpectedConditions.invisibilityOf($('#loading-bar')), 1000);
+					let codeInput = element(by.model('$ctrl.equipment.code'));
+					codeInput.sendKeys(Math.random()
+						.toString(36)
+						.substring(7));
 
-				element(by.buttonText('Επόμενο'))
-					.click();
+					let descInput = element(by.model('$ctrl.equipment.description'));
+					descInput.sendKeys(Math.random()
+						.toString(36)
+						.substring(7));
 
-				browser.wait(ExpectedConditions.invisibilityOf($('#loading-bar')), 1000);
+					let co2Input = element(by.model('$ctrl.equipment.co2'));
+					co2Input.sendKeys(Math.floor(Math.random() * 100));
 
-				element(by.buttonText('Επόμενο'))
-					.click();
+					let priceInput = element(by.model('$ctrl.equipment.price'));
+					priceInput.sendKeys(Math.floor(Math.random() * 1000));
 
-				browser.wait(ExpectedConditions.invisibilityOf($('#loading-bar')), 1000);
+					browser.executeScript("arguments[0].click();", element(by.buttonText('Προσθήκη')));
 
-				element(by.buttonText('Επόμενο'))
-					.click();
+				}
+
+				browser.executeScript("arguments[0].click();", element(by.buttonText('Επόμενο')));
 
 				let calcButton = element(by.buttonText('Υπολογισμός'));
 
-				browser.wait(protractor.ExpectedConditions.presenceOf(calcButton), 8000,
-					'Element taking too long to appear in the DOM');
-
-				calcButton.click();
+				browser.executeScript("arguments[0].click();", calcButton);
 
 				element(by.buttonText('Υποβολή'))
 					.click();

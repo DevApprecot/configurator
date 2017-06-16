@@ -34,7 +34,8 @@
 				</thead>
 
 				<tbody>
-					<tr ng-click="$ctrl.toggleSelect(color)"
+					<tr id="{{color.PresentationFee}}"
+					    ng-click="$ctrl.toggleSelect(color)"
 					    ng-class="{'active':$ctrl.isSelected(color.OptionCode)}"
 					    ng-repeat="color in $ctrl.colors track by $index">
 						<td>

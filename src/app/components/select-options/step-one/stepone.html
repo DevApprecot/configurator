@@ -34,8 +34,9 @@
 			<tbody>
 				<tr ng-click="$ctrl.toggleSelect(model)"
 				    ng-class="{'active':$ctrl.isSelected(model.Code)}"
-				    ng-repeat="model in $ctrl.models track by $index">
-
+				    ng-repeat="model in $ctrl.models track by $index"
+					id="{{'car-'+$index}}">
+					
 					<td>
 						<img ng-src="{{$ctrl.imgPath + model.Photo}}"
 						     err-src="{{$ctrl.defaultImg}}"
